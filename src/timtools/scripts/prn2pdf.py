@@ -20,11 +20,11 @@
 
 import sys, os
 
-#from lino.ui import console
-from lino import __url__
-from lino.textprinter.pdfprn import PdfTextPrinter
+#from timtools.ui import console
+from timtools import __url__
+from timtools.textprinter.pdfprn import PdfTextPrinter
 
-from lino.console.application import Application, UsageError
+from timtools.console.application import Application, UsageError
 
 class Prn2pdf(Application):
 
@@ -36,7 +36,7 @@ distributed under the terms of the GNU General Public License.
 See file COPYING.txt for more information."""
     url=__url__+"/prn2pdf.html"
     
-    usage="usage: lino prn2pdf [options] FILE"
+    usage="usage: timtools prn2pdf [options] FILE"
     description="""\
 where FILE is the file to be converted to a pdf file.
 It may contain plain text and simple formatting printer control sequences. """

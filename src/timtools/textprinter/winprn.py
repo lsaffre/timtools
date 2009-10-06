@@ -29,10 +29,10 @@ import pywintypes
 #import win32gui
 from PIL import ImageWin
 
-from lino.console import syscon
-from lino.textprinter.textprinter import TextPrinter, \
+from timtools.console import syscon
+from timtools.textprinter.textprinter import TextPrinter, \
      PrinterNotReady, ParserError
-from lino.textprinter import devcaps 
+from timtools.textprinter import devcaps 
 
 
 #OEM_CHARSET = win32con.OEM_CHARSET
@@ -240,7 +240,7 @@ http://newcenturycomputers.net/projects/pythonicwindowsprinting.html
         devmode=props["pDevMode"]
 
         if devmode is None:
-            # workaround, see http://lino.saffre-rumma.ee/news/477.html
+            # workaround, see http://timtools.saffre-rumma.ee/news/477.html
             self.session.debug("%r has no pDevMode property",props)
         else:
 
@@ -392,7 +392,7 @@ http://newcenturycomputers.net/projects/pythonicwindowsprinting.html
         self.lpi=lpi
         
     def setCpi(self,cpi):
-        "http://lino.saffre-rumma.ee/src/330.html"
+        "http://timtools.saffre-rumma.ee/src/330.html"
         
         #assert cpi != 12
         w = inch/cpi
@@ -547,7 +547,7 @@ http://newcenturycomputers.net/projects/pythonicwindowsprinting.html
                       
 
     def newline(self):
-        self.write("") # see http://lino.saffre-rumma.ee/news/463.html
+        self.write("") # see http://timtools.saffre-rumma.ee/news/463.html
         #self.x = self.doc.margin
         self.x = self.margin
         # self.y -= self.leading
@@ -559,7 +559,7 @@ http://newcenturycomputers.net/projects/pythonicwindowsprinting.html
 
 
     def length2i(self,s):
-        "http://lino.saffre-rumma.ee/src/328.html"
+        "http://timtools.saffre-rumma.ee/src/328.html"
         try:
             if s.endswith("mm"):
                 return int(float(s[:-2]) * mm)

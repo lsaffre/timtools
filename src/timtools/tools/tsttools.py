@@ -27,12 +27,12 @@ import types
 from cStringIO import StringIO
 from subprocess import Popen, PIPE, STDOUT
 
-#from lino.ui import console
-from lino.console import syscon
-from lino.console.console import CaptureConsole
-#from lino.forms.testkit import Toolkit
-from lino import config
-from lino.misc.etc import ispure
+#from timtools.ui import console
+from timtools.console import syscon
+from timtools.console.console import CaptureConsole
+#from timtools.forms.testkit import Toolkit
+from timtools import config
+from timtools.misc.etc import ispure
 
 class UniStringIO:
     def __init__(self,s=u''):

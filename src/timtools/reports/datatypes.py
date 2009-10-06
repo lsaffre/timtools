@@ -23,10 +23,10 @@ from time import mktime, ctime
 import types
 #import decimals
 
-from lino.tools.months import Month
-from lino.misc.etc import ispure, iif
-#from lino.adamo.exceptions import DataVeto
-from lino.reports.constants import *
+from timtools.tools.months import Month
+from timtools.misc.etc import ispure, iif
+#from timtools.adamo.exceptions import DataVeto
+from timtools.reports.constants import *
 
 class DataVeto(Exception):
     "Invalid data submitted"

@@ -22,7 +22,7 @@ import codecs
 
 import yaml
 
-from lino.console.application import Application, OperationFailed
+from timtools.console.application import Application, OperationFailed
 
 
 

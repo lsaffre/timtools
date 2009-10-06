@@ -59,8 +59,8 @@ def setlocalencoding():
     This must be called during site.py because
     sys.setdefaultencoding() is no longer available.
 
-      site.addsitedir(r"local\path\to\lino\trunk\src")
-      from lino.customize import setlocalencoding
+      site.addsitedir(r"local\path\to\timtools\trunk\src")
+      from timtools.customize import setlocalencoding
       setlocalencoding()
 
     

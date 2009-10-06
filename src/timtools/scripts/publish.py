@@ -13,14 +13,14 @@ there are no command-line parameters.
 
 """
 
-from lino import copyleft
+from timtools import copyleft
 
 import os,sys
 
 from PIL import Image
 
-from lino.misc.console import confirm
-#from lino.misc import gpl
+from timtools.misc.console import confirm
+#from timtools.misc import gpl
   
 
 

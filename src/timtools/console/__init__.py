@@ -17,5 +17,5 @@
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 
-from lino.console.application import Application
+from timtools.console.application import Application
 

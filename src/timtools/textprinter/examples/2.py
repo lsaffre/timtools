@@ -3,9 +3,9 @@
 testing textprinter.insertImage()
 """
 
-from lino.misc.tsttools import TestCase, main
-from lino.textprinter import winprn
-from lino.ui import console
+from timtools.misc.tsttools import TestCase, main
+from timtools.textprinter import winprn
+from timtools.ui import console
 
 
 def main():

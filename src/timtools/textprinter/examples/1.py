@@ -18,13 +18,13 @@
 
 import os
 
-from lino.ui import console
-from lino.textprinter.winprn import Win32PrinterDocument
-from lino.textprinter.pdfdoc import PdfDocument
+from timtools.ui import console
+from timtools.textprinter.winprn import Win32PrinterDocument
+from timtools.textprinter.pdfdoc import PdfDocument
 
 def doit(d):
     d.writeln("")
-    d.writeln("lino.textprinter Test page")
+    d.writeln("timtools.textprinter Test page")
     d.writeln("")
     cols = int(d.getWidth() / 10) + 1
     d.writeln("".join([" "*9+str(i+1) for i in range(cols)]))

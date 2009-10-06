@@ -21,10 +21,10 @@ import sys, os
 import zipfile
 import tempfile
 
-#from lino.ui import console
-from lino.oogen import elements
-#from lino.oogen.generators import OoText, OoSpreadsheet
-from lino.oogen.ifiles import IFILES
+#from timtools.ui import console
+from timtools.oogen import elements
+#from timtools.oogen.generators import OoText, OoSpreadsheet
+from timtools.oogen.ifiles import IFILES
 
 class Document:
     extension = NotImplementedError
@@ -349,7 +349,7 @@ class Document:
             h.append(r)
         
 ##     def report(self,**kw):
-##         from lino.reports.oo import OoReport
+##         from timtools.reports.oo import OoReport
 ##         return OoReport(self,**kw)
 
         

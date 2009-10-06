@@ -19,7 +19,7 @@ import sys
 
 USAGE = """
 
-Usage : lino runpy FILE
+Usage : timtools runpy FILE
 
 Executes the specified Python script FILE.
 """

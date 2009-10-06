@@ -28,7 +28,7 @@ import os
 
 from PIL import Image
 
-from lino.console.application import Application
+from timtools.console.application import Application
 
 class Size:
 	def __init__(self,suffix,size):

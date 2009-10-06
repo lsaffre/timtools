@@ -20,7 +20,7 @@ import os
 import tempfile
 from ConfigParser import SafeConfigParser, DEFAULTSECT
 
-lino_home = os.path.abspath(
+timtools_home = os.path.abspath(
     os.path.join( os.path.dirname(__file__),"..",".."))
 
 class Section:
@@ -36,13 +36,13 @@ class Section:
 config = SafeConfigParser()
 
 paths = Section(config,'paths',
-                lino_home=lino_home,
+                timtools_home=timtools_home,
                 tempdir=tempfile.gettempdir(),
-                rtlib_path=os.path.join(lino_home, "rtlib"),
-                tests_path=os.path.join(lino_home, "tests"),
-                docs_path=os.path.join(lino_home, "docs"),
-                src_path=os.path.join(lino_home, "src"),
-                webhome=r"u:\htdocs\timwebs\lino",
+                rtlib_path=os.path.join(timtools_home, "rtlib"),
+                tests_path=os.path.join(timtools_home, "tests"),
+                docs_path=os.path.join(timtools_home, "docs"),
+                src_path=os.path.join(timtools_home, "src"),
+                webhome=r"u:\htdocs\timwebs\timtools",
                 )
 
 #win32=Section(config,'win32',
@@ -62,9 +62,9 @@ paths = Section(config,'paths',
 
 #config.readfp(open('defaults.cfg'))
 config.read( [
-    os.path.join(lino_home,'lino.cfg'),
-    os.path.expanduser('~/lino.cfg'),
-    'lino.cfg'
+    os.path.join(timtools_home,'timtools.cfg'),
+    os.path.expanduser('~/timtools.cfg'),
+    'timtools.cfg'
     ])
 
 get=config.get

@@ -511,16 +511,16 @@ class Console(BaseToolkit):
 ##         return job
     
     def textprinter(self,**kw):
-        from lino.textprinter.plain import PlainTextPrinter
+        from timtools.textprinter.plain import PlainTextPrinter
         return PlainTextPrinter(self.stdout,**kw)
         
 ##     def report(self,**kw):
-##         from lino.reports.plain import Report
+##         from timtools.reports.plain import Report
 ##         return Report(writer=self.stdout,**kw)
 
 
     def show_report(self,rpt,*args,**kw):
-        from lino.gendoc.plain import PlainDocument
+        from timtools.gendoc.plain import PlainDocument
         doc = PlainDocument(self)
         doc.beginDocument()
         doc.report(rpt)
@@ -528,7 +528,7 @@ class Console(BaseToolkit):
     
 
     def executeShow(self,frm):
-        from lino.gendoc.plain import PlainDocument
+        from timtools.gendoc.plain import PlainDocument
         #gd = PlainDocument()
         gd = PlainDocument(self.stdout)
         gd.beginDocument()

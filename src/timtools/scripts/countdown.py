@@ -18,7 +18,7 @@
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 import time
-from lino.console.application import Application, UsageError
+from timtools.console.application import Application, UsageError
 
 class Countdown(Application):
     name="Lino/Countdown"
@@ -27,9 +27,9 @@ Copyright (c) 2006 Luc Saffre.
 This software comes with ABSOLUTELY NO WARRANTY and is
 distributed under the terms of the GNU General Public License.
 See file COPYING.txt for more information."""
-    url="http://lino.saffre-rumma.ee/countdown.html"
+    url="http://timtools.saffre-rumma.ee/countdown.html"
     
-    usage="usage: lino countdown SECS [options]"
+    usage="usage: timtools countdown SECS [options]"
     description="""\
 rings alarm after specified time.
 """ 

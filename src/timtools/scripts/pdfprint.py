@@ -21,8 +21,8 @@
 import sys, os
 import win32api
 
-from lino.textprinter import winprn
-from lino.console.application import Application, UsageError
+from timtools.textprinter import winprn
+from timtools.console.application import Application, UsageError
 
 
 class PdfPrint(Application):
@@ -33,9 +33,9 @@ Copyright (c) 2009 Luc Saffre.
 This software comes with ABSOLUTELY NO WARRANTY and is
 distributed under the terms of the GNU General Public License.
 See file COPYING.txt for more information."""
-    url="http://lino.saffre-rumma.ee/pdfprint.html"
+    url="http://timtools.saffre-rumma.ee/pdfprint.html"
     
-    usage="usage: lino pdfprint [options] FILE [FILE ...]"
+    usage="usage: timtools pdfprint [options] FILE [FILE ...]"
     description="""
 
 where FILE is a PDF file to be printed directly on your Windows

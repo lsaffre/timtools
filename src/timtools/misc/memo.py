@@ -18,7 +18,7 @@
 
 
 import re
-from lino.misc.txt2html import txt2html
+from timtools.misc.txt2html import txt2html
 
 class MemoParser:
 

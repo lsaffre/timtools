@@ -23,14 +23,13 @@ import sys
 from optparse import OptionParser
 import textwrap
 
-import lino
+#import timtools
 
-from lino.console import syscon
-from lino.console.exceptions import UserAborted, OperationFailed, UsageError
-from lino.console.task import Task
+from timtools.console.exceptions import UserAborted, OperationFailed, UsageError
+from . import task # timtools.console.task import Task
 
     
-class Application(Task):
+class Application(task.Task):
 
     """A Task that can be launched from a command line.
 
@@ -75,7 +74,7 @@ class Application(Task):
         self.toolkit.setupOptionParser(p)
         
         def set_lang(option, opt, value, parser):
-            from lino import i18n
+            from timtools import i18n
             i18n.setUserLang(value)
             
         p.add_option(
@@ -122,6 +121,7 @@ alternate configuration file instead of %s.""" % self.configfile,
         return self.toolkit.isInteractive()
 
     def aboutString(self):
+        import timtools
         s = str(self)
         if self.version is not None:
             s += " version " + self.version
@@ -135,17 +135,17 @@ alternate configuration file instead of %s.""" % self.configfile,
             s += "\n"+self.copyright
             
         using = []
-        using.append('Lino ' + lino.__version__)
+        using.append('TimTools ' + timtools.__version__)
         using.append("Python %d.%d.%d %s" % sys.version_info[0:4])
 
-        if sys.modules.has_key('wx'):
-            wx = sys.modules['wx']
-            using.append("wxPython " + wx.__version__)
+        #~ if sys.modules.has_key('wx'):
+            #~ wx = sys.modules['wx']
+            #~ using.append("wxPython " + wx.__version__)
     
-        if sys.modules.has_key('pysqlite2'):
-            from pysqlite2.dbapi2 import version
-            #sqlite = sys.modules['pysqlite2']
-            using.append("PySQLLite " + version)
+        #~ if sys.modules.has_key('pysqlite2'):
+            #~ from pysqlite2.dbapi2 import version
+            #~ #sqlite = sys.modules['pysqlite2']
+            #~ using.append("PySQLLite " + version)
     
         if sys.modules.has_key('reportlab'):
             reportlab = sys.modules['reportlab']
@@ -169,7 +169,7 @@ alternate configuration file instead of %s.""" % self.configfile,
             s += "\n".join(
                 textwrap.wrap(
                 " ".join([ k for k in sys.modules.keys()
-                           if not k.startswith("lino.")]),76))
+                           if not k.startswith("timtools.")]),76))
             
         return s
     
@@ -188,6 +188,7 @@ alternate configuration file instead of %s.""" % self.configfile,
 
         """
 
+        from timtools.console import syscon
         self.toolkit = syscon.getSystemConsole()
         syscon.setMainSession(self)
         

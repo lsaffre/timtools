@@ -17,46 +17,44 @@
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 """
-This is a wrapper to the Lino scripts. Simply importing this module
-examines the command-line arguments and call the appropriate script.
+This is a wrapper to the TimTools scripts. Simply importing this module
+examines the command-line arguments and calls the appropriate script.
 
-The auto-generated file lino.bat uses this wrapper
+The auto-generated file timtools.bat uses this wrapper
 
-  python -c "from lino import runscript" %*
-
+  python -m "timtools.runscript" %*
+  
   (or)
   
-  python -c "from lino import runscript" %1 %2 %3 %4 %5 %6 %7 %8 %9
+  python -c "from timtools import runscript" %*
 
 """
 
 import sys
 
-from lino.tools.my_import import my_import
-from lino import scripts
-
+from timtools.tools.my_import import my_import
+from timtools import scripts
 
 def usage():
-    import lino
+    import timtools
     
-    print "Lino", lino.__version__
-    print lino.__copyright__
-    print "usage: lino SCRIPT [...]"
-
-    print "where SCRIPT is one of:", ", ".join(scripts.LINO_SCRIPTS)
+    print "TimTools", timtools.__version__
+    print timtools.__copyright__
+    print "usage: timtools SCRIPT [...]"
+    print "where SCRIPT is one of:", ", ".join(scripts.SCRIPTS)
 
 
 if len(sys.argv) <= 1:
     usage()
     sys.exit(-1)
 
-if not sys.argv[1] in scripts.LINO_SCRIPTS:
+if not sys.argv[1] in scripts.SCRIPTS:
     usage()
-    print "error: unknown Lino script '%s'" % sys.argv[1]
+    print "error: unknown TimTools script '%s'" % sys.argv[1]
     sys.exit(-1)
 
-scriptName=sys.argv[1]
+scriptName = sys.argv[1]
 del sys.argv[1]
-m = my_import("lino.scripts." + scriptName)
+m = my_import("timtools.scripts." + scriptName)
 m.main()
 

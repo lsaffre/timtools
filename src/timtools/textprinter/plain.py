@@ -16,8 +16,8 @@
 ## along with Lino; if not, write to the Free Software Foundation,
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-from lino.textprinter.textprinter import TextPrinter
-from lino.console import syscon
+from timtools.textprinter.textprinter import TextPrinter
+from timtools.console import syscon
 
 class PlainTextPrinter(TextPrinter):
     def __init__(self,writer=None,cpl=72,frameStyle="+-+|+-+|",**kw):

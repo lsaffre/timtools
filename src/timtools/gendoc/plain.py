@@ -20,10 +20,10 @@ import sys
 from textwrap import TextWrapper
 from cStringIO import StringIO
 
-from lino.gendoc.gendoc import GenericDocument
-from lino.reports.constants import *
-from lino.console import syscon
-from lino.misc.etc import assert_pure
+from timtools.gendoc.gendoc import GenericDocument
+from timtools.reports.constants import *
+from timtools.console import syscon
+from timtools.misc.etc import assert_pure
 
 class PlainDocument(GenericDocument):
     """

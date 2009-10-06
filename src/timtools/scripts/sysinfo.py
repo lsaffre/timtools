@@ -22,10 +22,10 @@ import sys
 import os
 import locale
 
-from lino.console.application import Application, UsageError
-from lino.reports.reports import DictReport
-#from lino.gendoc.html import StaticHtmlDocument
-from lino.gendoc.html import HtmlDocument
+from timtools.console.application import Application, UsageError
+from timtools.reports.reports import DictReport
+#from timtools.gendoc.html import StaticHtmlDocument
+from timtools.gendoc.html import HtmlDocument
 #from HyperText import HTML as html
 #from HyperText.Documents import Document
 
@@ -138,9 +138,9 @@ Copyright (c) 2006-2009 Luc Saffre.
 This software comes with ABSOLUTELY NO WARRANTY and is
 distributed under the terms of the GNU General Public License.
 See file COPYING.txt for more information."""
-    url="http://lino.saffre-rumma.ee/sysinfo.html"
+    url="http://timtools.saffre-rumma.ee/sysinfo.html"
     
-    usage="usage: lino sysinfo [options] [FILE]"
+    usage="usage: timtools sysinfo [options] [FILE]"
     
     description="""
     

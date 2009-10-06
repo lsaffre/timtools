@@ -16,9 +16,8 @@
 ## along with Lino; if not, write to the Free Software Foundation,
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-from lino.console import syscon
+#from timtools.console import syscon
 
-from lino.misc.etc import ispure
 
 _userLang = None
 _messages = {}
@@ -40,8 +39,9 @@ def setUserLang(lang):
         _userLang = lang
     
 def itr(text_en,**kw):
-    for v in kw.values():
-        assert ispure(v)
+    #~ from timtools.misc.etc import ispure
+    #~ for v in kw.values():
+        #~ assert ispure(v)
     _messages[text_en] = kw
 
 

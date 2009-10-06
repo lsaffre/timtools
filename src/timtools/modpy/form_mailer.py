@@ -21,7 +21,7 @@
 a simple form mailer to be called by the mod_python Publisher handler.
 
 
-  from lino.modpy.form_mailer import email
+  from timtools.modpy.form_mailer import email
 
 
 """

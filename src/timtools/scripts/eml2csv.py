@@ -21,9 +21,9 @@ import sys, getopt, os
 from email import message_from_file
 import csv
 
-from lino import copyleft
-#from lino.misc import gpl
-#from lino import __version__
+from timtools import copyleft
+#from timtools.misc import gpl
+#from timtools import __version__
 
 messageFields = ('date','subject','from','to')
 bodyFieldSplitter = '->'
@@ -81,7 +81,7 @@ def body2dict(body):
 
 	
 if __name__ == '__main__':
-	print "lino eml2csv" # version " + __version__
+	print "timtools eml2csv" # version " + __version__
 	print copyleft(year='2004')
 
 	try:

@@ -20,8 +20,8 @@ import sys
 import os
 import codecs
 
-from lino.console import syscon
-from lino.console.exceptions import OperationFailed
+from timtools.console import syscon
+from timtools.console.exceptions import OperationFailed
 
 from PIL import Image
 
@@ -50,7 +50,7 @@ class PrinterNotReady(Exception):
 
 
 class TextPrinter:
-    "http://lino.saffre-rumma.ee/src/44.html"
+    "http://timtools.saffre-rumma.ee/src/44.html"
     
     def __init__(self,
                  pageSize=(0,0),
@@ -98,7 +98,7 @@ class TextPrinter:
         return self.cpl
     
     def lineWidth(self):
-        "http://lino.saffre-rumma.ee/src/331.html"
+        "http://timtools.saffre-rumma.ee/src/331.html"
         return self.pageWidth - self.margin * 2
         
     def openImage(self,filename):
@@ -129,7 +129,7 @@ class TextPrinter:
         raise NotImplementedError
 
     def setCpi(self,cpi):
-        "http://lino.saffre-rumma.ee/src/330.html"
+        "http://timtools.saffre-rumma.ee/src/330.html"
         pass
     
     def setItalic(self,ital):
@@ -214,7 +214,7 @@ class TextPrinter:
 
 
     def writeln(self,line=''):
-        "http://lino.saffre-rumma.ee/src/329.html"
+        "http://timtools.saffre-rumma.ee/src/329.html"
         
         line = line.rstrip()
         
@@ -389,7 +389,7 @@ class TextPrinter:
         return 0
 
     def length2i(self,s):
-        "http://lino.saffre-rumma.ee/src/328.html"
+        "http://timtools.saffre-rumma.ee/src/328.html"
         return 0
         #raise NotImplementedError
 

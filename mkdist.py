@@ -28,14 +28,14 @@ from distutils.core import setup
 import py2exe
 
 
-from lino.console import syscon
-from lino.misc.rdir import rdirlist
+from timtools.console import syscon
+from timtools.misc.rdir import rdirlist
 
-from lino import __version__, __url__
+from timtools import __version__, __url__
 
 #VERSION = __version__
 DIST_ROOT = 'dist'
-#DLROOT=r'u:\htdocs\timwebs\lino\dl'
+#DLROOT=r'u:\htdocs\timwebs\timtools\dl'
 
 
 class InnoScript:
@@ -179,7 +179,7 @@ excludes_console = excludes + ['wx']
 
 if 'timtools' in args:
     
-    from lino import timtools
+    import timtools
     
     sys.argv[1:] = ["py2exe"]
     
@@ -192,13 +192,13 @@ if 'timtools' in args:
     setup(
         name=name,
         version=__version__,
-        description="Lino TIM tools",
+        description="TimTools",
         author="Luc Saffre",
         author_email="luc.saffre@gmx.net",
         url=__url__+"/timtools.html",
         long_description="A collection of command-line tools to help DOS applications survive",
         package_dir = {'': 'src'},
-        console=[ opj("src","lino","scripts",t+".py")
+        console=[ opj("src","timtools","scripts",t+".py")
                   for t in console_targets],
         options= { "py2exe": {
         "compressed": 1,
@@ -246,7 +246,7 @@ if 'hello' in args:
         url=__url__+"/hello.html",
         long_description='"Hello, world!"',
         package_dir = {'': 'src'},
-        console=[ opj("src","lino","scripts","hello.py")],
+        console=[ opj("src","timtools","scripts","hello.py")],
         options= { "py2exe": {
         "compressed": 1,
         "optimize": 2,
@@ -295,7 +295,7 @@ if 'raceman' in args:
 An uncomplete race manager.
 Register participants, input arrival times,
 generate results report.""",
-        windows=[ opj("src", "lino", "apps","raceman",t+".py")
+        windows=[ opj("src", "timtools", "apps","raceman",t+".py")
                   for t in windows_targets],
 ##         packages= ["encodings",
 ##                    "encodings.cp850",
@@ -347,9 +347,9 @@ if 'keeper' in args:
         long_description="""\
 An uncomplete archive manager.
 """,
-        #console=[ opj("src", "lino", "apps","keeper",t+".py")
+        #console=[ opj("src", "timtools", "apps","keeper",t+".py")
         #          for t in console_targets],
-        windows=[ opj("src", "lino", "apps","keeper",t+".py")
+        windows=[ opj("src", "timtools", "apps","keeper",t+".py")
                   for t in windows_targets],
 ##         packages= ["encodings",
 ##                    "encodings.cp850",
@@ -384,7 +384,7 @@ if 'sdist' in args:
     sys.argv[1:] = ["sdist"]
     
     setup(
-        name="lino",
+        name="timtools",
         version=__version__,
         description="Lino Framework",
         author="Luc Saffre",
@@ -394,7 +394,7 @@ if 'sdist' in args:
 Lino is a suite of Python packages for developing business applications for small and medium-sized organisations.
 """,
         package_dir = {'': 'src'},
-        packages=['lino'],
+        packages=['timtools'],
         )
 
 

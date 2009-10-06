@@ -35,7 +35,7 @@ import time
 
 from cStringIO import StringIO
 
-from lino.forms import base
+from timtools.forms import base
 
 from HyperText.Documents import Document
 from HyperText import HTML as html
@@ -318,7 +318,7 @@ class Toolkit(base.Toolkit):
 
     
     def textprinter(self,sess,**kw):
-        from lino.textprinter.plain import PlainTextPrinter
+        from timtools.textprinter.plain import PlainTextPrinter
         return PlainTextPrinter(self._stdout,**kw)
         
 

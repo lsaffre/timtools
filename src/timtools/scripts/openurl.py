@@ -19,7 +19,7 @@
 import sys
 import webbrowser
 
-from lino.console.application import Application, UsageError
+from timtools.console.application import Application, UsageError
 
 class OpenURL(Application):
     name="Lino/openurl"
@@ -28,9 +28,9 @@ Copyright (c) 2002-2005 Luc Saffre.
 This software comes with ABSOLUTELY NO WARRANTY and is
 distributed under the terms of the GNU General Public License.
 See file COPYING.txt for more information."""
-    url="http://www.saffre-rumma.ee/lino/openurl.html"
+    url="http://www.saffre-rumma.ee/timtools/openurl.html"
     
-    usage="lino openurl URL [URL...]"
+    usage="timtools openurl URL [URL...]"
     description="""\
 Starts the default browser on the specified URL(s).
 

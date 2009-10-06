@@ -21,7 +21,7 @@ import sys
 import os
 import locale
 
-from lino.console.application import Application, UsageError
+from timtools.console.application import Application, UsageError
 
 def babel_message():
 
@@ -97,9 +97,9 @@ Copyright (c) 2005-2007 Luc Saffre.
 This software comes with ABSOLUTELY NO WARRANTY and is
 distributed under the terms of the GNU General Public License.
 See file COPYING.txt for more information."""
-    url="http://lino.saffre-rumma.ee/diag.html"
+    url="http://timtools.saffre-rumma.ee/diag.html"
     
-    usage="usage: lino diag [options]"
+    usage="usage: timtools diag [options]"
     description="""\
 writes some diagnostics about your computer.
 """ 

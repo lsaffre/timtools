@@ -17,9 +17,9 @@
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 
-from lino.gendoc.elements import escape
-from lino.textprinter.textprinter import FileTextPrinter
-from lino.misc.txt2html import txt2html
+from timtools.gendoc.elements import escape
+from timtools.textprinter.textprinter import FileTextPrinter
+from timtools.misc.txt2html import txt2html
 
 class TextObject:
     pass

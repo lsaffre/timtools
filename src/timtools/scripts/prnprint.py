@@ -20,8 +20,8 @@
 
 import sys, os
 
-from lino.textprinter import winprn
-from lino.console.application import Application, UsageError
+from timtools.textprinter import winprn
+from timtools.console.application import Application, UsageError
 
 
 class PrnPrint(Application):
@@ -32,9 +32,9 @@ Copyright (c) 2004-2009 Luc Saffre.
 This software comes with ABSOLUTELY NO WARRANTY and is
 distributed under the terms of the GNU General Public License.
 See file COPYING.txt for more information."""
-    url="http://lino.saffre-rumma.ee/prnprint.html"
+    url="http://timtools.saffre-rumma.ee/prnprint.html"
     
-    usage="usage: lino prnprint [options] FILE [FILE ...]"
+    usage="usage: timtools prnprint [options] FILE [FILE ...]"
     description="""
 
 where FILE is a textprinter input file to be printed on your Windows

@@ -84,7 +84,7 @@ class META(InternalXmlFile):
 xmlns:office="http://openoffice.org/2000/office" xmlns:xlink="http://www.w3.org/1999/xlink" 
 xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="http://openoffice.org/2000/meta" office:version="1.0">
 <office:meta>
-<meta:generator>lino.oogen</meta:generator>
+<meta:generator>timtools.oogen</meta:generator>
 <meta:initial-creator>Luc Saffre</meta:initial-creator>
 <meta:creation-date>2004-02-03T11:22:46</meta:creation-date>
 <dc:creator>Luc Saffre</dc:creator>

@@ -17,12 +17,12 @@
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 import os
-from lino.console.application import Application, UsageError
-from lino import config
+from timtools.console.application import Application, UsageError
+from timtools import config
 
-from lino.gendoc.pdf import PdfDocument
-from lino.gendoc.html import HtmlDocument
-#from lino.gendoc.plain import PlainDocument
+from timtools.gendoc.pdf import PdfDocument
+from timtools.gendoc.html import HtmlDocument
+#from timtools.gendoc.plain import PlainDocument
 
 def defaultbody(doc):
     doc.setTitle("Lino DocMaker")
@@ -43,7 +43,7 @@ This software comes with ABSOLUTELY NO WARRANTY and is
 distributed under the terms of the GNU General Public License.
 See file COPYING.txt for more information."""
     
-    url="http://lino.saffre-rumma.ee/docmaker.html"
+    url="http://timtools.saffre-rumma.ee/docmaker.html"
     
     usage="usage: %s [options] [FILE]"
     
