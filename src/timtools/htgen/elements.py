@@ -19,8 +19,8 @@
 import types
 #from xml.sax.saxutils import escape, unescape
 
-from lino.misc.etc import assert_pure
-from lino.misc.tsttools import UniStringIO
+from timtools.misc.etc import assert_pure
+from timtools.misc.tsttools import UniStringIO
 
 ## from xml.sax import saxutils
 ## escape=saxutils.escape

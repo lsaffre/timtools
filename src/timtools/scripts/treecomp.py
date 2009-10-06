@@ -12,7 +12,7 @@ treecomp [options...] DIR1 DIR2
 
 """
 
-from lino import __version__
+from timtools import __version__
 
 import os, sys, time
 
@@ -125,7 +125,7 @@ class Node:
    
    
 if __name__ == "__main__":
-   from lino.misc import gpl
+   from timtools.misc import gpl
    print "treecomp version " + __version__ \
          + gpl.copyright('2003','Luc Saffre')
 

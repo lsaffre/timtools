@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------
-# parser.py  lino's little parser
+# parser.py  timtools' little parser
 #           
 #           
 # Created:   February 2002
@@ -9,7 +9,7 @@
 #from __future__ import nested_scopes
 
 import re
-import lino
+import timtools
 
 from string import replace
 

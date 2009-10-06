@@ -27,7 +27,7 @@ _main=None
 def getSystemConsole():
     global _syscon
     if _syscon is None:
-        from lino.console.console import TtyConsole, Console
+        from timtools.console.console import TtyConsole, Console
         if hasattr(sys.stdout,'isatty') and sys.stdout.isatty():
             _syscon=TtyConsole(sys.stdout, sys.stderr)
         else:
@@ -47,7 +47,7 @@ def setMainSession(sess):
 def getMainSession():
     #global _main
     if _main is None:
-        from lino.console.application import Application
+        from timtools.console.application import Application
         a=Application()
         a.main()
     return _main

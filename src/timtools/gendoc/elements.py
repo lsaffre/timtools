@@ -19,7 +19,7 @@
 import types
 #from xml.sax.saxutils import escape, unescape
 
-from lino.misc.etc import assert_pure
+from timtools.misc.etc import assert_pure
 
 ## from xml.sax import saxutils
 ## escape=saxutils.escape
@@ -134,7 +134,7 @@ class Element:
 ##             s.__add__(x)
 ##         self.__xml__(wr)
 ##         return s
-        from lino.misc.tsttools import UniStringIO
+        from timtools.misc.tsttools import UniStringIO
         u=UniStringIO()
 ##         from cStringIO import StringIO
 ##         b=StringIO()

@@ -7,11 +7,11 @@ all files and directories to lower case.
 
 """
 
-from lino import copyleft
+from timtools import copyleft
 
 import os,sys
 
-from lino.misc.console import confirm
+from timtools.misc.console import confirm
 
 VERBOSE=True
 upperFilenames = []

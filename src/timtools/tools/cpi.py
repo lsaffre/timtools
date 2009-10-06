@@ -46,14 +46,14 @@ Sources:
 - http://ecodata.mineco.fgov.be/mdf/ts_structur.jsp?table=EI0__  
 
 
-File lino/tests/51.py contains more test cases.
+File timtools/tests/51.py contains more test cases.
 
 """
 
 import urllib
 from xml.dom import minidom
-from lino.tools.months import Month
-from lino.tools.fixedpoint import FixedPoint
+from timtools.tools.months import Month
+from timtools.tools.fixedpoint import FixedPoint
 # todo: use decimal module instead of FixedPoint
 
 xmlsource="http://economie.fgov.be/informations/indexes/XML/ConsumerPriceIndices.xml"

@@ -22,11 +22,11 @@
 import sys, os
 import traceback
 
-from lino.sdoc.pdf import PdfRenderer
-from lino.sdoc.environment import ParseError
-from lino.sdoc import commands
+from timtools.sdoc.pdf import PdfRenderer
+from timtools.sdoc.environment import ParseError
+from timtools.sdoc import commands
 
-from lino.console.application import Application, UsageError
+from timtools.console.application import Application, UsageError
 
 class Pds2pdf(Application):
 
@@ -38,10 +38,10 @@ This software comes with ABSOLUTELY NO WARRANTY and is
 distributed under the terms of the GNU General Public License.
 See file COPYING.txt for more information."""
     
-    url="http://lino.saffre-rumma.ee/pds2pdf.html"
+    url="http://timtools.saffre-rumma.ee/pds2pdf.html"
     
     
-    usage="usage: lino pds2pdf [options] FILE"
+    usage="usage: timtools pds2pdf [options] FILE"
     description="""\
 pds2pdf converts the Python Document Script FILE (extension `.pds`) to
 a PDF file with same name, but `.pdf` as extension.
@@ -115,7 +115,7 @@ write to OUTFILE rather than FILE.pdf""",
 
 #Pds2pdf().main()
 
-## # lino.runscript expects a name consoleApplicationClass
+## # timtools.runscript expects a name consoleApplicationClass
 ## consoleApplicationClass = Pds2pdf
 
 ## if __name__ == '__main__':

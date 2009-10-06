@@ -33,14 +33,14 @@ optional options :
 
 """
 
-from lino.console.application import Application, \
+from timtools.console.application import Application, \
      UsageError, OperationFailed # , ApplicationError
 
-from lino.misc.etc import ispure
+from timtools.misc.etc import ispure
 
-#from lino.ui.console import ConsoleApplication, \
+#from timtools.ui.console import ConsoleApplication, \
 #     UsageError, ApplicationError
-#from lino import __version__
+#from timtools import __version__
 
 
 import smtplib
@@ -70,7 +70,7 @@ from email.header import Header
 from email.utils import getaddresses, formataddr, parseaddr
 
 
-from lino.i18n import itr,_
+from timtools.i18n import itr,_
 
 itr("Message size: %d bytes.",
     de=u"Größe: %d Bytes",
@@ -123,9 +123,9 @@ Copyright (c) 2002-2007 Luc Saffre.
 This software comes with ABSOLUTELY NO WARRANTY and is
 distributed under the terms of the GNU General Public License.
 See file COPYING.txt for more information."""
-    url="http://lino.saffre-rumma.ee/sendmail.html"
+    url="http://timtools.saffre-rumma.ee/sendmail.html"
     
-    usage="usage: lino sendmail [options] FILE"
+    usage="usage: timtools sendmail [options] FILE"
     
     description="""\
 sends an email stored in a FILE to a list of recipients

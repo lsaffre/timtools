@@ -24,7 +24,7 @@ import datetime
 from PIL import Image, ImageWin
 from PIL.TiffImagePlugin import DATE_TIME
 
-from lino.console.application import Application, UsageError
+from timtools.console.application import Application, UsageError
 
 class MyException(Exception):
     pass
@@ -43,7 +43,7 @@ def wavtime(root,name,seq):
 
 class JpgRename(Application):
 
-    name="Lino/jpgrename"
+    name="TimTools/jpgrename"
 
     copyright="""\
 Copyright (c) 2002-2009 Luc Saffre.
@@ -51,7 +51,7 @@ This software comes with ABSOLUTELY NO WARRANTY and is
 distributed under the terms of the GNU General Public License.
 See file COPYING.txt for more information."""
     
-    usage="usage: lino jpgrename [options] [DIR]"
+    usage="usage: tt jpgrename [options] [DIR]"
     description="""\
 where DIR (default .) is a directory with .jpg files to rename.
 """

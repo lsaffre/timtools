@@ -37,8 +37,8 @@ import zipfile
 import os.path
 opj = os.path.join
 
-from lino.oogen.ifiles import IFILES
-from lino.ui import console
+from timtools.oogen.ifiles import IFILES
+from timtools.ui import console
 
 class OoGenerator:
     "base clase for OoText,OoSpreadsheet,..."

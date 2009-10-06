@@ -16,15 +16,15 @@ Options:
 import sys, getopt, os
 import webbrowser
 
-from lino import copyleft
+from timtools import copyleft
 
-from lino.adamo.dbds.sqlite_dbd import Connection
-from lino.adamo.ui import UI
-from lino.schemas.sprl.sprl import Schema
-#from lino.adamo.widgets import Window
+from timtools.adamo.dbds.sqlite_dbd import Connection
+from timtools.adamo.ui import UI
+from timtools.schemas.sprl.sprl import Schema
+#from timtools.adamo.widgets import Window
 
 
-#from lino.adamo.html import HtmlRenderer
+#from timtools.adamo.html import HtmlRenderer
 
 class StaticRequest:
 	def __init__(self,baseuri,reqpath):

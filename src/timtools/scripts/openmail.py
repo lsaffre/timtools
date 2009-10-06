@@ -17,8 +17,8 @@
 
 import sys
 
-from lino.console.application import Application, UsageError
-from lino.tools.mail import readmail, openmail
+from timtools.console.application import Application, UsageError
+from timtools.tools.mail import readmail, openmail
 
 class OpenMail(Application):
     name="Lino/openmail"
@@ -28,9 +28,9 @@ Copyright (c) 2002-2007 Luc Saffre.
 This software comes with ABSOLUTELY NO WARRANTY and is
 distributed under the terms of the GNU General Public License.
 See file COPYING.txt for more information."""
-    url="http://lino.saffre-rumma.ee/openmail.html"
+    url="http://timtools.saffre-rumma.ee/openmail.html"
     
-    usage="usage: lino openmail FILE"
+    usage="usage: timtools openmail FILE"
     description="""\
 Start the user's default mail client with a ready-to-send message
 whose content is previously read from FILE.

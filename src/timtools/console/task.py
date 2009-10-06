@@ -20,13 +20,13 @@
 
 from time import sleep
 
-from lino.console.console import BaseToolkit 
-from lino.console.session import Session
+#from timtools.console.console import BaseToolkit 
+from . import session # timtools.console.session import Session
 
-from lino import i18n
+#from timtools import i18n
     
 
-class Task(Session):
+class Task(session.Session):
 
     """A named Session with a status label.
 
@@ -42,7 +42,7 @@ class Task(Session):
     def __init__(self,label=None,**kw):
         if label is not None:
             self.label=label
-        Session.__init__(self,**kw)
+        session.Session.__init__(self,**kw)
 
     def getTitle(self):
         return str(self)

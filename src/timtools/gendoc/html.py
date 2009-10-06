@@ -17,11 +17,11 @@
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 
-#from lino.gendoc import gendoc # import WriterDocument
+#from timtools.gendoc import gendoc # import WriterDocument
 
 from xml.sax.saxutils import escape, unescape
 
-from lino.gendoc.elements import \
+from timtools.gendoc.elements import \
      CDATA, Element, Container
 
 class BR(Element):
@@ -225,7 +225,7 @@ class Story:
         return self.getDocument().getPageNumber()
     
     def memo(self,txt,style=None,**kw):
-        from lino.gendoc.memo import MemoParser
+        from timtools.gendoc.memo import MemoParser
         p=MemoParser(self,style,**kw)
         p.feed(txt)
         p.close()
@@ -414,7 +414,7 @@ class HtmlDocument(Document):
             wr('<link rel=stylesheet type="text/css" href="%s">\n'
                % self.urlto(self.stylesheet))
         wr('<meta name="KEYWORDS" content="">\n')
-        wr('<meta name="GENERATOR" content="lino.gendoc">\n')
+        wr('<meta name="GENERATOR" content="timtools.gendoc">\n')
         wr('<meta name="author" content="">\n')
         wr('<meta name="date" content="%s">'%self.date)
         wr("<head>\n")

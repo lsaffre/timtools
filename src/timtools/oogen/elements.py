@@ -21,7 +21,7 @@
 import sys
 import types
 
-from lino.gendoc.elements import \
+from timtools.gendoc.elements import \
      CDATA, Element, Container, InvalidRequest
 
 class TextElement(Element):

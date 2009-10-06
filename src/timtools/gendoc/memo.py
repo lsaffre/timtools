@@ -19,8 +19,8 @@
 from HTMLParser import HTMLParser
 from htmlentitydefs import name2codepoint
 
-from lino.gendoc import html
-from lino.gendoc.elements import InvalidRequest
+from timtools.gendoc import html
+from timtools.gendoc.elements import InvalidRequest
 
 class MemoParser(HTMLParser):
 

@@ -23,12 +23,12 @@ from reportlab import platypus
 from reportlab.platypus.paraparser import ParaFrag
 from reportlab.lib.fonts import ps2tt, tt2ps
 
-from lino.gendoc import styles
-from lino.gendoc import html
-from lino.console.application import Application, UsageError
+from timtools.gendoc import styles
+from timtools.gendoc import html
+from timtools.console.application import Application, UsageError
 
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
-from lino.gendoc.styles import VA_MIDDLE, VA_TOP, VA_BOTTOM
+from timtools.gendoc.styles import VA_MIDDLE, VA_TOP, VA_BOTTOM
 
 epsilon = 0.001
 
@@ -416,7 +416,7 @@ class PdfDocument(html.Document):
 ## distributed under the terms of the GNU General Public License.
 ## See file COPYING.txt for more information."""
     
-##     url="http://lino.saffre-rumma.ee/pdfmaker.html"
+##     url="http://timtools.saffre-rumma.ee/pdfmaker.html"
     
 ##     usage="usage: %s [options] [FILE]"
     

@@ -21,11 +21,11 @@
 
 
 raise """
-Task moved to lino.console.task
+Task moved to timtools.console.task
 Job no longer used
 """
 
-from lino.i18n import itr,_
+from timtools.i18n import itr,_
 
 itr("Working",
    de="Arbeitsvorgang läuft",
@@ -161,7 +161,7 @@ class BaseJob:
 class Job(BaseJob):
     
     """user code should not override this but instanciate it using
-    Session.job(). subclassed by lino.forms.wx"""
+    Session.job(). subclassed by timtools.forms.wx"""
     
     def init(self,session,label=None,*args,**kw):
         self._label = label

@@ -17,10 +17,10 @@
 ## along with Lino; if not, write to the Free Software Foundation,
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-from lino.console.application import Application, \
+from timtools.console.application import Application, \
      UsageError, UserAborted
-from lino.tools.synchronizer import Synchronizer
-from lino import __url__
+from timtools.tools.synchronizer import Synchronizer
+from timtools import __url__
 
 class Sync(Application):
 
@@ -32,7 +32,7 @@ distributed under the terms of the GNU General Public License.
 See file COPYING.txt for more information."""
     url=__url__+"/sync.html"
     
-    usage="usage: lino sync [options] SRC DEST"
+    usage="usage: timtools sync [options] SRC DEST"
     
     description="""\
 where SRC and DEST are two directories to be synchronized.

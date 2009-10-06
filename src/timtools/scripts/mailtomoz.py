@@ -39,7 +39,7 @@ mailtomoz will then do the following system call::
 To use this script, you must edit your registry and modify the value
 of `HKEY_CLASSES_ROOT\mailto\shell\open\command` to something like::
 
-  lino mailtomoz "C:\Program files\mozilla.org\mozilla.exe" "%1"
+  timtools mailtomoz "C:\Program files\mozilla.org\mozilla.exe" "%1"
   # or "C:\Programme\mozilla.org\Mozilla\mozilla.exe "
 
 When bug 220306 is fixed, change this entry back to::
@@ -52,7 +52,7 @@ See also `openmail <openmail.html>`_.
 
 import sys,os
 import urllib
-from lino.ui.console import confirm
+from timtools.ui.console import confirm
 
 if __name__ == '__main__':
 

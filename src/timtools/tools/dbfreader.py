@@ -10,7 +10,7 @@ http://www.the-oasis.net/clipper-12.html#ss12.4
 http://www.clicketyclick.dk/databases/xbase/format/
 """
 
-#from lino.tools.normalDate import ND
+#from timtools.tools.normalDate import ND
 import datetime
 
 

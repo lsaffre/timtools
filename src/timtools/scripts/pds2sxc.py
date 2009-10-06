@@ -18,9 +18,9 @@
 
 import sys
 
-#from lino.ui import console
-from lino.oogen import SpreadsheetDocument
-from lino.scripts.pds2sxw import pds2oo
+#from timtools.ui import console
+from timtools.oogen import SpreadsheetDocument
+from timtools.scripts.pds2sxw import pds2oo
 
 def main(argv):
     console.copyleft(name="Lino pds2sxc",

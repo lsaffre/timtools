@@ -19,13 +19,13 @@
 
 #import copy
 import types
-from lino.misc.descr import Describable
-from lino.console import syscon
-#from lino.adamo.query import Query
-from lino.misc.etc import ispure
-from lino.gendoc.plain import PlainDocument
-from lino.reports.datatypes import STRING, INT
-from lino.reports.constants import *
+from timtools.misc.descr import Describable
+from timtools.console import syscon
+#from timtools.adamo.query import Query
+from timtools.misc.etc import ispure
+from timtools.gendoc.plain import PlainDocument
+from timtools.reports.datatypes import STRING, INT
+from timtools.reports.constants import *
 
 class ReportRow:
     def __init__(self,rpt,item,index):

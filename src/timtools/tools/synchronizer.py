@@ -42,16 +42,16 @@ try:
 except:
     win32file = None
 
-from lino.i18n import itr,_
-from lino.console.exceptions import OperationFailed
-from lino.console.task import Progresser, Task
+from timtools.i18n import itr,_
+from timtools.console.exceptions import OperationFailed
+from timtools.console.task import Progresser, Task
 
 class NeitherFileNorDirectory(Exception): pass
 
 
 
-## if gettext.find('lino')!=None:
-##     gettext.translation('lino').install()
+## if gettext.find('timtools')!=None:
+##     gettext.translation('timtools').install()
 ##     print "using language file ",gettext.find('dirssync')
 ## else:
 ##     print "no language file found."

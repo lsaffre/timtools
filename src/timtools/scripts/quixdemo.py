@@ -7,10 +7,10 @@ if __name__ == "__main__":
 	from quixote import enable_ptl
 	enable_ptl()
 
-	from lino.quix import default 
-	from lino.quix.serve import startServer
+	from timtools.quix import default 
+	from timtools.quix.serve import startServer
 
-	from lino.schemas.sprl import demo
+	from timtools.schemas.sprl import demo
 
 	#import webbrowser
 

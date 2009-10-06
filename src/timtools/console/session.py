@@ -19,10 +19,8 @@
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 import os
-from lino.console import syscon
-from lino.console.exceptions import UserAborted
 
-from lino.i18n import itr,_
+from timtools.i18n import itr,_
 
 itr("Are you sure you want to abort?",
     de="Arbeitsvorgang abbrechen?",
@@ -42,6 +40,7 @@ class Session:
 
     def __init__(self,toolkit=None,**kw):
         #assert toolkit is not None
+        from timtools.console import syscon
         if toolkit is None:
             toolkit=syscon.getSystemConsole()
         self.toolkit=toolkit
@@ -108,7 +107,7 @@ class Session:
         return task
 
     def runtask(self,task,*args,**kw):
-        # used by lino.scripts.sync.Sync.run()
+        # used by timtools.scripts.sync.Sync.run()
         return task.runfrom(self.toolkit,*args,**kw)
 
     def showReport(self,*args,**kw):
@@ -122,6 +121,7 @@ class Session:
     def requestAbort(self):
         if self.confirm( _("Are you sure you want to abort?"),
                          default=False):
+            from timtools.console.exceptions import UserAborted
             raise UserAborted()
         #self._abortRequested=False
         self.toolkit.onTaskResume(self)
@@ -134,20 +134,20 @@ class Session:
 
     def connection(self,*args,**kw):
         
-        from lino.adamo.qtconn import Connection
-        #from lino.adamo.dbds.firebird import Connection
-        #from lino.adamo.dbds.sqlite_dbd import Connection
-        #from lino.adamo.dbds.mysql_dbd import Connection
-        #from lino.adamo.dbds.gadfly_dbd import Connection
+        from timtools.adamo.qtconn import Connection
+        #from timtools.adamo.dbds.firebird import Connection
+        #from timtools.adamo.dbds.sqlite_dbd import Connection
+        #from timtools.adamo.dbds.mysql_dbd import Connection
+        #from timtools.adamo.dbds.gadfly_dbd import Connection
         
 ##         try:
-##             from lino.adamo.dbds.sqlite_dbd import Connection
+##             from timtools.adamo.dbds.sqlite_dbd import Connection
 ##         except ImportError:
 ##             try:
-##                 from lino.adamo.dbds.mysql_dbd import Connection
+##                 from timtools.adamo.dbds.mysql_dbd import Connection
 ##             except ImportError:
 ##                 try:
-##                     from lino.adamo.dbds.gadfly_dbd import Connection
+##                     from timtools.adamo.dbds.gadfly_dbd import Connection
 ##                 except ImportError:
 ##                     raise DatabaseError("no database driver available")
 
@@ -159,7 +159,7 @@ class Session:
     def database(self,schema,name=None,**kw):
         #if name is None:
         #    name = str(schema)+str(len(self._databases)+1)
-        from lino.adamo.database import Database
+        from timtools.adamo.database import Database
         db = Database(schema,name=name,**kw)
         self._databases.append(db)
         return db

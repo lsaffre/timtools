@@ -27,7 +27,7 @@ Works only on Windows (on UNIX it isn't necessary)
 import os
 import sys
 
-from lino.ui import console
+from timtools.ui import console
 
 class Collector:
     def __init__(self):

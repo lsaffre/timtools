@@ -7,14 +7,14 @@
 
 import sys, os
 
-from lino import copyleft
-from lino.ui import console
+from timtools import copyleft
+from timtools.ui import console
 
 import datetime
 
 editorCommand = r's:\gnuserv\gnuclientw -F %s'
-#actions = ('lino','debian','windows', 'priv')
-actions = ('lino','work', 'priv')
+#actions = ('timtools','debian','windows', 'priv')
+actions = ('timtools','work', 'priv')
 blogDir = r't:\data\luc\blogs'
 filenames = []
 today = datetime.date.today()

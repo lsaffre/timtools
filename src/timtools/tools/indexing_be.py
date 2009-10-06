@@ -48,12 +48,12 @@ Sources:
 - http://ecodata.mineco.fgov.be/mdf/ts_structur.jsp?table=EI0__  
 
 
-File lino/tests/51.py contains more test cases.
+File timtools/tests/51.py contains more test cases.
 
 """
 
-from lino.tools.months import Month
-from lino.tools.fixedpoint import FixedPoint
+from timtools.tools.months import Month
+from timtools.tools.fixedpoint import FixedPoint
 
 
 

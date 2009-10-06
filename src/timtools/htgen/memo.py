@@ -20,8 +20,8 @@ import re
 from HTMLParser import HTMLParser
 from htmlentitydefs import name2codepoint
 
-from lino.htgen import html
-from lino.htgen.elements import InvalidRequest
+from timtools.htgen import html
+from timtools.htgen.elements import InvalidRequest
 
 class ParserError(Exception):
     pass

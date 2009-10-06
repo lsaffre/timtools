@@ -17,15 +17,15 @@
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 
-__micro__ = 43
+__micro__ = 0
 
-__date__ = "2009-08-10"
+__date__ = "2009-10-06"
 
-__version__ = "0.6.%d" % __micro__
+__version__ = "1.0.%d" % __micro__
 
 __author__ = "Luc Saffre <luc.saffre@gmx.net>"
 
-__url__ = "http://lino.saffre-rumma.ee"
+__url__ = "http://timtools.saffre-rumma.ee"
 
 __copyright__ = """\
 Copyright (c) 2002-2009 Luc Saffre.

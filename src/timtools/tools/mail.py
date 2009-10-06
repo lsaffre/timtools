@@ -144,7 +144,7 @@ here is a lonely line
 last line 
 """
 
-from lino.tools.mail import openmaila
+from timtools.tools.mail import openmaila
 openmaila(to,subject,body,attachment)
 
 

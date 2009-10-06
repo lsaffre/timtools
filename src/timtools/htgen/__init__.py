@@ -18,7 +18,7 @@
 
 raise """No longer supported. There are many other similar modules to generate HTML from Python, and this one is quite buggy and would need more work. I decided to switch to jinja2 for quick HTML generation. LS 20090210."""
 
-from lino.htgen.story import Document
+from timtools.htgen.story import Document
 
 
 

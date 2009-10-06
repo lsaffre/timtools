@@ -19,9 +19,9 @@
 
 import codecs
 
-from lino.misc.tsttools import UniStringIO
-from lino.htgen import html
-#from lino.misc import restify
+from timtools.misc.tsttools import UniStringIO
+from timtools.htgen import html
+#from timtools.misc import restify
 
 class Story:
     """
@@ -31,7 +31,7 @@ class Story:
         raise NotImplementedError
 
     def memo(self,*args,**kw):
-        raise "replaced by lino.htgen.memo.parse_memo()"
+        raise "replaced by timtools.htgen.memo.parse_memo()"
             
     def table(self,*args,**kw):
         return self.append(html.TABLE(*args,**kw))
@@ -151,7 +151,7 @@ class Document(Story):
             wr('<link rel=stylesheet type="text/css" href="%s">\n'
                % self.urlto(self.stylesheet))
         wr('<meta name="KEYWORDS" content="">\n')
-        wr('<meta name="GENERATOR" content="lino.htgen">\n')
+        wr('<meta name="GENERATOR" content="timtools.htgen">\n')
         wr('<meta name="author" content="">\n')
         wr('<meta name="date" content="%s">'%self.date)
         wr("</head>\n")

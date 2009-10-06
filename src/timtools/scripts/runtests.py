@@ -21,11 +21,11 @@ import sys
 import types
 import unittest
 
-from lino.tools import tsttools
-from lino.tools.my_import import my_import
+from timtools.tools import tsttools
+from timtools.tools.my_import import my_import
 
-from lino.console import Application
-from lino.console import syscon
+from timtools.console import Application
+from timtools.console import syscon
 
 class StoppingTestResult(unittest._TextTestResult):
 

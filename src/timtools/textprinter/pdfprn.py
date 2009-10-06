@@ -29,7 +29,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont, TTFError
 
 
-from lino.textprinter.textprinter import FileTextPrinter, \
+from timtools.textprinter.textprinter import FileTextPrinter, \
      ParserError
 
 # name: (regular, bold, italic, bolditalic)
@@ -69,7 +69,7 @@ class Status:
         
 
 class PdfTextPrinter(FileTextPrinter):
-    "http://lino.saffre-rumma.ee/src/299.html"
+    "http://timtools.saffre-rumma.ee/src/299.html"
     
     extension=".pdf"
     ratio_width2size=1.67   # fontsize = width * ratio_width2size
@@ -222,14 +222,14 @@ class PdfTextPrinter(FileTextPrinter):
         
     def newline(self):
         # self.session.debug("PdfTextPrinter.newline()")
-        self.write("") # see http://lino.saffre-rumma.ee/news/463.html
+        self.write("") # see http://timtools.saffre-rumma.ee/news/463.html
         self.x = self.margin
         self.y -= self.maxLeading
         self.maxLeading=0
 
         
     def length2i(self,s):
-        "http://lino.saffre-rumma.ee/src/328.html"
+        "http://timtools.saffre-rumma.ee/src/328.html"
         try:
             if s.endswith("mm"):
                 return float(s[:-2]) * mm
@@ -249,7 +249,7 @@ class PdfTextPrinter(FileTextPrinter):
                     x=None,y=None,
                     dx=None,dy=None,
                     behindText=None):
-        "http://lino.saffre-rumma.ee/src/334.html"
+        "http://timtools.saffre-rumma.ee/src/334.html"
         if behindText is not None:
             print """\
 Warning: PdfTextPrinter.insertImage() does not support *behindText*.
@@ -302,7 +302,7 @@ the input file.
 
 
     def setCpi(self,cpi):
-        "http://lino.saffre-rumma.ee/src/330.html"
+        "http://timtools.saffre-rumma.ee/src/330.html"
         w=inch/cpi
         self.status.size = w*self.ratio_width2size
         self.cpl=self.lineWidth() / inch * cpi

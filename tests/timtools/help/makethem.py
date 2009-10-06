@@ -16,16 +16,16 @@
 ## along with Lino; if not, write to the Free Software Foundation,
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-from lino.timtools import CONSOLE_TARGETS
-from lino.console.syscon import confirm
-from lino.tools.tsttools import trycmd
+from timtools.timtools import CONSOLE_TARGETS
+from timtools.console.syscon import confirm
+from timtools.tools.tsttools import trycmd
 
 def main(*args,**kw):
     msg = "Gonna rebuild the following files:\n"
     msg += ", ".join(["%s.help.txt" % ct for ct in CONSOLE_TARGETS])
     if confirm(msg+"\nAre you sure?"):
         for ct in CONSOLE_TARGETS:
-            cmd = "lino %s --help > %s.help.txt" % (ct,ct)
+            cmd = "tt %s --help > %s.help.txt" % (ct,ct)
             print cmd
             trycmd(cmd)
     

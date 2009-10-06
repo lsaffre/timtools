@@ -18,8 +18,8 @@
 
 import sys, os
 
-#from lino.ui import console
-from lino.oogen import TextDocument
+#from timtools.ui import console
+from timtools.oogen import TextDocument
 
 def pds2oo(docClass,argv):
     parser = console.getOptionParser(
