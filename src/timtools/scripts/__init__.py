@@ -26,9 +26,21 @@ SCRIPTS = (
     'openurl',
     'runpy',
     'maketn',
-    'jpgrename', 'runtests',
-    'contacts', 'ledger',
-    'sysinfo', 'countdown',
+    'jr', 'runtests',
+    # 'contacts', 'ledger',
+    'sysinfo', 
+    #'countdown',
     'pisa', 'pdfprint',
     )
+
+CONSOLE_TARGETS = (
+  #'pds2pdf',
+  #'pds2sxw', 'pds2sxc',
+  'prn2pdf', 'prnprint',
+  'sync', 'diag',
+  'openmail','openurl',
+  'runpy', 'sysinfo',
+  'sendmail', 'pisa'
+  )
+
 

@@ -43,7 +43,7 @@ def wavtime(root,name,seq):
 
 class JpgRename(Application):
 
-    name="TimTools/jpgrename"
+    name="jr (aka jpgrename)"
 
     copyright="""\
 Copyright (c) 2002-2009 Luc Saffre.
@@ -51,7 +51,7 @@ This software comes with ABSOLUTELY NO WARRANTY and is
 distributed under the terms of the GNU General Public License.
 See file COPYING.txt for more information."""
     
-    usage="usage: tt jpgrename [options] [DIR]"
+    usage="usage: timtools jr [options] [DIR]"
     description="""\
 where DIR (default .) is a directory with .jpg files to rename.
 """
