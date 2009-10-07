@@ -179,11 +179,11 @@ excludes_console = excludes + ['wx']
 
 if 'timtools' in args:
     
-    import timtools
+    from timtools import scripts
     
     sys.argv[1:] = ["py2exe"]
     
-    console_targets = timtools.CONSOLE_TARGETS
+    console_targets = scripts.CONSOLE_TARGETS
 
     name = "timtools"
 
