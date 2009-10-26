@@ -34,7 +34,7 @@ SCRIPTS = (
     )
 
 CONSOLE_TARGETS = (
-  #'pds2pdf',
+  'pds2pdf',
   #'pds2sxw', 'pds2sxc',
   'prn2pdf', 'prnprint',
   'sync', 'diag',

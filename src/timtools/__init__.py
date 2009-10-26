@@ -17,11 +17,11 @@
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 
-__micro__ = 0
+#__micro__ = 0
 
-__date__ = "2009-10-06"
+#__date__ = "2009-10-06"
 
-__version__ = "1.0.%d" % __micro__
+__version__ = "1.0.1" #% __micro__
 
 __author__ = "Luc Saffre <luc.saffre@gmx.net>"
 
