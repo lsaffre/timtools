@@ -1,8 +1,15 @@
-#----------------------------------------------------------------------
-# ID:        $Id: eml2csv.py,v 1.2 2004/03/14 21:58:30 lsaffre Exp $
-# Copyright: (c) 2004 Luc Saffre
-# License:	 GPL
-#----------------------------------------------------------------------
+## Copyright 2004-2009 Luc Saffre
+## This file is part of the TimTools project.
+## TimTools is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 3 of the License, or
+## (at your option) any later version.
+## TimTools is distributed in the hope that it will be useful, 
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+## GNU General Public License for more details.
+## You should have received a copy of the GNU General Public License
+## along with TimTools; if not, see <http://www.gnu.org/licenses/>.
 
 """\
 Usage : eml2csv [options] DIR [DIR...]
@@ -21,7 +28,7 @@ import sys, getopt, os
 from email import message_from_file
 import csv
 
-from timtools import copyleft
+#from timtools import copyleft
 #from timtools.misc import gpl
 #from timtools import __version__
 
@@ -81,8 +88,8 @@ def body2dict(body):
 
 	
 if __name__ == '__main__':
-	print "timtools eml2csv" # version " + __version__
-	print copyleft(year='2004')
+	#print "timtools eml2csv" # version " + __version__
+	#print copyleft(year='2004')
 
 	try:
 		opts, args = getopt.getopt(sys.argv[1:],
