@@ -1,19 +1,15 @@
-## Copyright 2004-2006 Luc Saffre.
-## This file is part of the Lino project.
-
-## Lino is free software; you can redistribute it and/or modify it
-## under the terms of the GNU General Public License as published by
-## the Free Software Foundation; either version 2 of the License, or
+## Copyright 2004-2009 Luc Saffre
+## This file is part of the TimTools project.
+## TimTools is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 3 of the License, or
 ## (at your option) any later version.
-
-## Lino is distributed in the hope that it will be useful, but WITHOUT
-## ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-## or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public
-## License for more details.
-
+## TimTools is distributed in the hope that it will be useful, 
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+## GNU General Public License for more details.
 ## You should have received a copy of the GNU General Public License
-## along with Lino; if not, write to the Free Software Foundation,
-## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+## along with TimTools; if not, see <http://www.gnu.org/licenses/>.
 
 
 import sys
@@ -22,7 +18,7 @@ import webbrowser
 from timtools.console.application import Application, UsageError
 
 class OpenURL(Application):
-    name="Lino/openurl"
+    name="openurl"
     copyright="""\
 Copyright (c) 2002-2005 Luc Saffre.
 This software comes with ABSOLUTELY NO WARRANTY and is
@@ -45,12 +41,6 @@ Starts the default browser on the specified URL(s).
             print url
             webbrowser.open_new(url)
 
-#OpenURL().main()
-
-## consoleApplicationClass = OpenURL
-
-## if __name__ == '__main__':
-##     consoleApplicationClass().main() 
 
 def main(*args,**kw):
     OpenURL().main(*args,**kw)

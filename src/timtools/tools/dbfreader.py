@@ -1,4 +1,4 @@
-# Based on original work by  Lars Garshol
+# Based on original work by Lars Garshol
 # http://www.garshol.priv.no/download/software/python/dbfreader.py
 
 # modified by Luc Saffre who is interested in support for Clipper

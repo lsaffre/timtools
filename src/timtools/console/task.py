@@ -35,8 +35,8 @@ class Task(session.Session):
 
     """
     
-    label=None
-    maxval=0 # used by Console.on_breathe
+    label = None
+    maxval = 0 # used by Console.on_breathe
     
     
     def __init__(self,label=None,**kw):
@@ -58,14 +58,14 @@ class Task(session.Session):
         return self.label
 
     def status(self,msg,*args,**kw):
-        msg=self.buildMessage(msg,*args,**kw)
-        self.label=msg
+        msg = self.buildMessage(msg,*args,**kw)
+        self.label = msg
         self.breathe()
 
     def runfrom(self,toolkit,*args,**kw):
         # overridden by Progresser
-        assert isinstance(toolkit,BaseToolkit)
-        self.toolkit=toolkit
+        # assert isinstance(toolkit,BaseToolkit)
+        self.toolkit = toolkit
         return self.run(*args,**kw)
     
 
@@ -79,7 +79,7 @@ class Progresser(Task):
 
 
     def runfrom(self,toolkit,*args,**kw):
-        assert isinstance(toolkit,BaseToolkit)
+        #assert isinstance(toolkit,BaseToolkit)
         self.toolkit=toolkit
         self.curval=0
         

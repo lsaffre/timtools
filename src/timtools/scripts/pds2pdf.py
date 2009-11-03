@@ -1,22 +1,16 @@
-#encoding: cp850
-
-## Copyright 2004-2006 Luc Saffre
-
-## This file is part of the Lino project.
-
-## Lino is free software; you can redistribute it and/or modify it
-## under the terms of the GNU General Public License as published by
-## the Free Software Foundation; either version 2 of the License, or
+## Copyright 2002-2009 Luc Saffre
+## This file is part of the TimTools project.
+## TimTools is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 3 of the License, or
 ## (at your option) any later version.
-
-## Lino is distributed in the hope that it will be useful, but WITHOUT
-## ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-## or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public
-## License for more details.
-
+## TimTools is distributed in the hope that it will be useful, 
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+## GNU General Public License for more details.
 ## You should have received a copy of the GNU General Public License
-## along with Lino; if not, write to the Free Software Foundation,
-## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+## along with TimTools; if not, see <http://www.gnu.org/licenses/>.
+
 
 
 import sys, os
@@ -30,18 +24,18 @@ from timtools.console.application import Application, UsageError
 
 class Pds2pdf(Application):
 
-    name="Lino/pds2pdf"
+    name = "pds2pdf"
 
-    copyright="""\
+    copyright = """\
 Copyright (c) 2002-2006 Luc Saffre.
 This software comes with ABSOLUTELY NO WARRANTY and is
 distributed under the terms of the GNU General Public License.
 See file COPYING.txt for more information."""
     
-    url="http://timtools.saffre-rumma.ee/pds2pdf.html"
+    url = "http://timtools.saffre-rumma.ee/pds2pdf.html"
     
     
-    usage="usage: timtools pds2pdf [options] FILE"
+    usage = "usage: timtools pds2pdf [options] FILE"
     description="""\
 pds2pdf converts the Python Document Script FILE (extension `.pds`) to
 a PDF file with same name, but `.pdf` as extension.
