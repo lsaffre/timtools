@@ -11,8 +11,8 @@
 ## You should have received a copy of the GNU General Public License
 ## along with TimTools; if not, see <http://www.gnu.org/licenses/>.
 
-from lino.misc.pset import PropertySet
-from lino.sdoc.environment import ChildEnvironment
+from timtools.misc.pset import PropertySet
+from timtools.sdoc.environment import ChildEnvironment
 
 ## class ListItem(ChildEnvironment,ElementContainer):
 ##    def __init__(self,parent,bulletText,txt):

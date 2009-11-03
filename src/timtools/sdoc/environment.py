@@ -14,11 +14,10 @@
 import types
 import bookland
 
-from lino.misc.etc import isnumber
-from lino.misc import debug
-from lino.sdoc.memo import parseMemo
+from timtools.misc.etc import isnumber
+from timtools.misc import debug
+from timtools.sdoc.memo import parseMemo
 
-# from lino.sdoc import pds
 
 class ParseError(RuntimeError):
    pass
@@ -116,7 +115,7 @@ class BaseEnvironment(Writer):
    def memo(self,txt):
       parseMemo(self.document,txt)
 
-   def header(lvl,txt,**kw):
+   def header(self,lvl,txt,**kw):
        self.p(txt,
               style=self.document.stylesheet["Heading"+str(lvl)],
               **kw)

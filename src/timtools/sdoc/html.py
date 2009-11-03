@@ -12,11 +12,11 @@
 ## along with TimTools; if not, see <http://www.gnu.org/licenses/>.
 
 import os, types
-from lino.sdoc.document import Document
-from lino.sdoc.renderer import Renderer
-from lino.sdoc.tables import TableInstance, TableRow
-from lino.sdoc.lists import ListInstance
-from lino.sdoc.environment import Body
+from timtools.sdoc.document import Document
+from timtools.sdoc.renderer import Renderer
+from timtools.sdoc.tables import TableInstance, TableRow
+from timtools.sdoc.lists import ListInstance
+from timtools.sdoc.environment import Body
 
 
 HTML_BEGIN = """

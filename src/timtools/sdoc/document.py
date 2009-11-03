@@ -13,17 +13,15 @@
 
 import sys, os
 
-#lino.sdoc :
-from environment import Body, Story, ParseError
-from tables import TablesMixin
-from lists import ListsMixin
-import styles
+from timtools.sdoc.environment import Body, Story, ParseError
+from timtools.sdoc.tables import TablesMixin
+from timtools.sdoc.lists import ListsMixin
+from timtools.sdoc import styles
 
 from timtools.misc.etc import isnumber
 from timtools.misc import debug
 from timtools.sdoc.feeders import getFeeder
 
-# from lino.sdoc import pds
 
 from timtools.sdoc import PdsError
 

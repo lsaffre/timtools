@@ -41,9 +41,9 @@ from reportlab.lib import pagesizes
 from reportlab.lib.units import inch,mm
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
 
-from lino.misc.pset import PropertySet, StyleSheet
+from timtools.misc.pset import PropertySet, StyleSheet
 # from sdoc.lists import ListStyle, NumberedListStyle
-# from lino.sdoc.tables import TableModel
+# from timtools.sdoc.tables import TableModel
 
 
 
@@ -65,6 +65,14 @@ class ParagraphStyle(PropertySet):
         'bulletIndent':0,
         'textColor': colors.black,
         'backColor':None,
+        'wordWrap':None, 
+        'borderWidth': 0, 
+        'borderPadding': 0, 
+        'borderColor': None, 
+        'borderRadius': None, 
+        'allowWidows': 1, 
+        'allowOrphans': 0, 
+        'textTransform':None,   #uppercase lowercase (captitalize not yet) or None or absent 
         'wrap':True # added by LS
         }
 
@@ -159,8 +167,8 @@ def getDefaultStyleSheet():
       firstLineIndent=0,
       leftIndent=36))
 
-   #sheet.define("Wrapped",sheet.Normal.child(wrap=False,
-   #                                          alignment=TA_LEFT))
+   sheet.define("Wrapped",sheet.Normal.child(wrap=False,
+                                             alignment=TA_LEFT))
    return sheet
 
 
