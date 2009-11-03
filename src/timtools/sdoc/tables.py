@@ -17,18 +17,18 @@ from warnings import warn
 from reportlab.lib import colors
 
 
-from lino.sdoc.environment import ChildEnvironment, ElementContainer
-from lino.sdoc.environment import ParseError
-from lino.misc.pset import PropertySet
-from lino.misc.etc import isnumber, issequence
-#from lino.misc import debug
+from timtools.sdoc.environment import ChildEnvironment, ElementContainer
+from timtools.sdoc.environment import ParseError
+from timtools.misc.pset import PropertySet
+from timtools.misc.etc import isnumber, issequence
+#from timtools.misc import debug
 
 from reportlab.lib.enums import TA_LEFT, TA_RIGHT, \
 	  TA_CENTER, TA_JUSTIFY
 
-from lino.sdoc import PdsError
+from timtools.sdoc import PdsError
 
-# from lino.sdoc import pds # .environment
+# from timtools.sdoc import pds # .environment
 # from pds import ParseError
 
 epsilon = 0.001

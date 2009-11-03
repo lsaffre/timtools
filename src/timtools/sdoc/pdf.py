@@ -20,13 +20,13 @@ from reportlab.platypus import \
       
 from reportlab.lib.units import mm
 
-from lino.sdoc.document import Document
-from lino.sdoc.renderer import Renderer
-from lino.sdoc.environment import Body, Story
-from lino.sdoc.tables import TableInstance, TableRow
+from timtools.sdoc.document import Document
+from timtools.sdoc.renderer import Renderer
+from timtools.sdoc.environment import Body, Story
+from timtools.sdoc.tables import TableInstance, TableRow
 
-from lino.sdoc.barcodes import BarcodeFlowable
-from lino.sdoc.lists import ListInstance, ListStyle
+from timtools.sdoc.barcodes import BarcodeFlowable
+from timtools.sdoc.lists import ListInstance, ListStyle
 
 
 
@@ -87,7 +87,7 @@ document. To be able to print "page 1 of 7"
 #IndexingFlowable
         
  
-# from lino.sdoc import pds
+# from timtools.sdoc import pds
 
 # epsilon = 0.001
 
