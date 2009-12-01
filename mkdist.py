@@ -124,12 +124,7 @@ class InnoScript:
 
 
 
-args = sys.argv[1:]
-# sys.args will be rewritten later
-if len(args) == 0:
-    args = ['timtools', 'raceman', 'keeper', 'sdist']
-
-msg = "mkdist (%s) version %s" % (' '.join(args),__version__)
+msg = "mkdist timtools version %s" % __version__
 print msg
 
 ## if not syscon.confirm(msg):
@@ -172,56 +167,53 @@ excludes = [ #"pywin", "pywin.debugger", "pywin.debugger.dbgcon",
 
 excludes_console = excludes + ['wx']
 
+from timtools import scripts
 
-if 'timtools' in args:
-    
-    from timtools import scripts
-    
-    sys.argv[1:] = ["py2exe"]
-    
-    console_targets = scripts.CONSOLE_TARGETS
+sys.argv[1:] = ["py2exe"]
 
-    name = "timtools"
+console_targets = scripts.CONSOLE_TARGETS
 
-    dist_dir = opj(DIST_ROOT,name)
+name = "timtools"
+
+dist_dir = opj(DIST_ROOT,name)
+
+setup(
+    name=name,
+    version=__version__,
+    description="TimTools",
+    author="Luc Saffre",
+    author_email="luc.saffre@gmx.net",
+    url=__url__+"/timtools.html",
+    long_description="A collection of command-line tools to help DOS applications survive",
+    package_dir = {'': 'src'},
+    console=[ opj("src","timtools","scripts",t+".py")
+              for t in console_targets],
+    options= { "py2exe": {
+    "compressed": 1,
+    "optimize": 2,
+    "dist_dir" : dist_dir,
+    "excludes" : excludes_console,
+    "includes": ["encodings.*",
+                 "email.iterators",
+                 "email.generator",
+                 #"encodings.cp850",
+                 #"encodings.cp1252",
+                 #"encodings.iso-8859-1"
+                 ],
+    "dll_excludes" : dll_excludes,
+    }}
     
-    setup(
-        name=name,
-        version=__version__,
-        description="TimTools",
-        author="Luc Saffre",
-        author_email="luc.saffre@gmx.net",
-        url=__url__+"/timtools.html",
-        long_description="A collection of command-line tools to help DOS applications survive",
-        package_dir = {'': 'src'},
-        console=[ opj("src","timtools","scripts",t+".py")
-                  for t in console_targets],
-        options= { "py2exe": {
-        "compressed": 1,
-        "optimize": 2,
-        "dist_dir" : dist_dir,
-        "excludes" : excludes_console,
-        "includes": ["encodings.*",
-                     "email.iterators",
-                     "email.generator",
-                     #"encodings.cp850",
-                     #"encodings.cp1252",
-                     #"encodings.iso-8859-1"
-                     ],
-        "dll_excludes" : dll_excludes,
-        }}
-        
-        )
+    )
 
-    zipname = "%s-%s-py2exe.zip" % (name,__version__)
-    zipname = opj(DIST_ROOT,zipname)
-    zf = zipfile.ZipFile(zipname,'w',zipfile.ZIP_DEFLATED)
-    l = rdirlist(dist_dir)
-    for fn in l:
-        zf.write(opj(dist_dir,fn),opj(name,fn))
-    for fn in ['COPYING.txt']:
-        zf.write(fn,opj(name,fn))
-    zf.close()   
+zipname = "%s-%s-py2exe.zip" % (name,__version__)
+zipname = opj(DIST_ROOT,zipname)
+zf = zipfile.ZipFile(zipname,'w',zipfile.ZIP_DEFLATED)
+l = rdirlist(dist_dir)
+for fn in l:
+    zf.write(opj(dist_dir,fn),opj(name,fn))
+for fn in ['COPYING.txt']:
+    zf.write(fn,opj(name,fn))
+zf.close()   
 
 
 ## distlog.write("done at %s\n\n" % ctime())
