@@ -20,7 +20,7 @@ from timtools.console.application import Application, UsageError
 
 class PrnPrint(Application):
     
-    name="Lino prnprint"
+    name="TimTools prnprint"
     copyright="""\
 Copyright (c) 2004-2009 Luc Saffre.
 This software comes with ABSOLUTELY NO WARRANTY and is
