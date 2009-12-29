@@ -1,0 +1,141 @@
+Changes 2009
+============
+
+20090213
+--------
+
+Configurable boldness
+
+Okay, it seems that not all printer drivers behave correctly when they
+get «unusual» font weights. New testcase 
+srcref:`tests/textprinter/3.py` 
+shows whether your
+configured PostScript printer does it right. On the other hand the
+"Courier New" font looks «too lightweight» to many people on most
+printers. So I must make this option customizable. 
+
+N.B.: :mod:`win32.lib.win32con` defines the following names::
+
+  FW_DONTCARE = 0 
+  FW_THIN = 100 
+  FW_EXTRALIGHT = 200 
+  FW_LIGHT = 300 
+  FW_NORMAL = 400 
+  FW_MEDIUM = 500 
+  FW_SEMIBOLD = 600 
+  FW_BOLD = 700 
+  FW_EXTRABOLD = 800 
+  FW_HEAVY = 900 
+  FW_ULTRALIGHT = FW_EXTRALIGHT 
+  FW_REGULAR = FW_NORMAL 
+  FW_DEMIBOLD = FW_SEMIBOLD 
+  FW_ULTRABOLD = FW_EXTRABOLD 
+  FW_BLACK = FW_HEAVY
+
+
+
+20090227
+--------
+
+:doc:`../timtools/index` 0.6.42 released:
+
+- The boldness of bold and normal text is now configurable for
+  prnprint.py
+  (see [ref NEW:492 How bold is bold? (14.04.07)]).           
+
+
+20090418
+--------
+
+I discovered that :meth:`lino.textprinter.pdfprn.PdfTextPrinter.insertImage`
+has changed its behaviour between `0.6.37 <20071123_>`  and 
+`0.6.42 <20090227>`_.
+Maybe because I upgraded the ReportLab toolkit between those releases. 
+
+PdfTextPrinter.insertImage() does not support *behindText*.
+Images are always placed over any text that occurs before them in 
+the input file.
+
+
+20090419 Working on tests
+-------------------------
+
+- runtests.py now recurses into subdirs.
+
+- Started to move configuration options from "lino.config" to application-specific options. The first option is
+  :configcmd:`postscript_printer`.
+  Its definition has moved 
+  from the obsolete global :xfile:`lino.cfg` file to a new file :xfile:`runtest.ini`.
+  Until now it was accessed in testcases by::
+  
+    config.win32.get('postscript_printer')
+    
+  New access code::
+  
+    self.runtests.options.postscript_printer
+
+- moved my_import and tsttools from lino.misc to lino.tools
+
+
+20090810
+--------
+
+- Bug report: 
+  on a Windows XP running on a virtual machine of a Mac, calling for example...
+  
+  ::
+  
+    prnprint .\preview.prn
+    
+  ... causes an error::
+
+    Traceback (most recent call last):
+      File "prnprint.py", line 153, in <module>
+      File "prnprint.py", line 150, in main
+      File "lino\console\application.pyo", line 210, in main
+      File "prnprint.py", line 139, in run
+      File "lino\textprinter\textprinter.pyo", line 198, in readfile
+    WindowsError: [Error 123] Die Syntax für den Dateinamen, Verzeichnisnamen oder die Datenträgerbezeichnung ist falsch: '.'
+
+
+- Released `TIM Tools 0.6.43 <http://lino.googlecode.com/files/timtools-0.6.43-py2exe.zip>`_. which fixes the above bug.
+
+200909
+------
+
+- Somewhere in September 2009 I split TimTools out of Lino.
+
+20091228
+--------
+
+- There was a problem on a site with two machines, one running Windows XP and the other Vista::
+
+    Lino prnprint
+    Homepage: http://lino.saffre-rumma.ee/prnprint.html
+    Copyright (c) 2004-2009 Luc Saffre.
+    This software comes with ABSOLUTELY NO WARRANTY and is
+    distributed under the terms of the GNU General Public License.
+    See file COPYING.txt for more information.
+    Using Lino 0.6.42, Python 2.5.2 final, Python Windows Extensions, PIL
+    Traceback (most recent call last):
+      File "prnprint.py", line 153, in <module>
+      File "prnprint.py", line 150, in main
+      File "lino\console\application.pyo", line 210, in main
+      File "prnprint.py", line 139, in run
+      File "lino\textprinter\textprinter.pyo", line 200, in readfile
+      File "codecs.pyo", line 626, in readlines
+      File "codecs.pyo", line 535, in readlines
+      File "codecs.pyo", line 424, in read
+      File "encodings\cp1252.pyo", line 15, in decode
+    UnicodeDecodeError: 'charmap' codec can't decode byte 0x81 in position 695: character maps to <undefined>
+    
+  For reasons I don't understand, the system encoding (sys.stdin.encoding) was neither cp437 nor cp850 on both machines, but cp1252. Workaround was to specify manually the encoding of the input file using the ``-e`` parameter of prnprint and prn2pdf.
+  
+
+20091229
+--------
+
+- Migrated timtools-related changlog entries from Lino repository. 
+  Seems that I will maintain a changelog using Sphinx for each of my projects.
+
+.. _latest-news:
