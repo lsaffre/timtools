@@ -188,6 +188,6 @@ latex_documents = [
 
 #language="de"
 
-srcref_base_uri="http://code.google.com/timtools"
+srcref_base_uri="http://code.google.com/p/timtools/source/browse"
 
 from timtools.sphinx import setup

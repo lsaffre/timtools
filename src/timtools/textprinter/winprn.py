@@ -1,4 +1,4 @@
-## Copyright 2004-2009 Luc Saffre 
+## Copyright 2004-2010 Luc Saffre 
 
 ## This file is part of the Lino project.
 
@@ -395,13 +395,13 @@ http://newcenturycomputers.net/projects/pythonicwindowsprinting.html
         "http://timtools.saffre-rumma.ee/src/330.html"
         
         #assert cpi != 12
-        w = inch/cpi
+        w = inch / cpi
 
         self.logfont.lfWidth=int(w)
         self.logfont.lfHeight=-int(round(w*self.ratio_width2size))
         # must create new font object before next TextOut():
         self.font = None
-        self.cpi=cpi
+        self.cpi = cpi
         self.cpl = int(self.lineWidth()/inch*cpi)
         self.session.debug("setCpi(): cpi=%d, lineWidth()=%d, cpl=%d",
                            cpi, self.lineWidth(),self.cpl)

@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-## Copyright 2004-2009 Luc Saffre
+## Copyright 2004-2010 Luc Saffre
 
 ## This file is part of the Lino project.
 
@@ -303,8 +303,8 @@ the input file.
 
     def setCpi(self,cpi):
         "http://timtools.saffre-rumma.ee/src/330.html"
-        w=inch/cpi
-        self.status.size = w*self.ratio_width2size
+        w = inch / cpi
+        self.status.size = w * self.ratio_width2size
         self.cpl=self.lineWidth() / inch * cpi
         #print __name__, self.width
         self.onSetFont()
