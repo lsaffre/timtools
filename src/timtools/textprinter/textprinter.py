@@ -1,4 +1,4 @@
-## Copyright 2003-2009 Luc Saffre
+## Copyright 2003-2010 Luc Saffre
 
 ## This file is part of the Lino project.
 
@@ -321,7 +321,10 @@ class TextPrinter:
     
     def parse_c(self,line):
         par = line.split(None,1)[0]
-        self.setCpi(int(par))
+        try:
+            self.setCpi(int(par))
+        except ValueError:
+            self.setCpi(float(par))
         return len(par)+1
         
     def parse_i(self,line):

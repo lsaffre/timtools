@@ -1,4 +1,4 @@
-## Copyright 2003-2009 Luc Saffre
+## Copyright 2003-2010 Luc Saffre
 ## This file is part of the TimTools project.
 ## TimTools is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -183,7 +183,7 @@ setup(
     description="TimTools",
     author="Luc Saffre",
     author_email="luc.saffre@gmx.net",
-    url=__url__+"/timtools.html",
+    url=__url__,
     long_description="A collection of command-line tools to help DOS applications survive",
     package_dir = {'': 'src'},
     console=[ opj("src","timtools","scripts",t+".py")
@@ -193,13 +193,12 @@ setup(
     "optimize": 2,
     "dist_dir" : dist_dir,
     "excludes" : excludes_console,
-    "includes": ["encodings.*",
-                 "email.iterators",
-                 "email.generator",
-                 #"encodings.cp850",
-                 #"encodings.cp1252",
-                 #"encodings.iso-8859-1"
-                 ],
+    "includes": [
+      "encodings.*",
+      "reportlab.pdfbase.*",
+      "email.iterators",
+      "email.generator",
+      ],
     "dll_excludes" : dll_excludes,
     }}
     
