@@ -1,4 +1,4 @@
-## Copyright 2009 Luc Saffre
+## Copyright 2009-2010 Luc Saffre
 
 ## This file is part of the Lino project.
 
@@ -23,6 +23,7 @@ def srcref_role(typ, rawtext, etext, lineno,
                inliner, options={}, content=[]):
     env = inliner.document.settings.env
     baseuri = env.config.srcref_base_uri
+    #~ print "BASEURI", baseuri
     text = utils.unescape(etext)
     refnode = nodes.reference('', '', refuri=posixpath.join(baseuri, text))
     refnode += nodes.literal(text, text)

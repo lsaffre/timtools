@@ -31,6 +31,7 @@ def setUserLang(lang):
         _userLang = None
     else:
         _userLang = lang
+    #~ print 'LANGUAGE set to', _userLang, 'in', __file__
     
 def itr(text_en,**kw):
     #~ from timtools.misc.etc import ispure
@@ -45,4 +46,3 @@ import locale
 userLang=locale.getdefaultlocale()[0]
 if userLang is not None:
     setUserLang(userLang[:2])
-#print _userLang
