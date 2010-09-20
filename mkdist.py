@@ -184,9 +184,9 @@ setup(
     author="Luc Saffre",
     author_email="luc.saffre@gmx.net",
     url=__url__,
-    long_description="A collection of command-line tools to help DOS applications survive",
-    package_dir = {'': 'src'},
-    console=[ opj("src","timtools","scripts",t+".py")
+    long_description="A collection of command-line tools to help TIM survive",
+    package_dir = {'': 'timtools'},
+    console=[ opj("timtools","scripts",t+".py")
               for t in console_targets],
     options= { "py2exe": {
     "compressed": 1,

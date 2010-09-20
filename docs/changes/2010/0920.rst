@@ -1,0 +1,6 @@
+2010-09-20
+==========
+
+- Bug fixed: sendmail.py could possibly make a UnicodeEncoding because there was a print statement hanging around.
+
+- Release version 1.0.5
