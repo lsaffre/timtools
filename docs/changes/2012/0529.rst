@@ -1,0 +1,6 @@
+20120529
+========
+
+:meth:`timtools.textprinter.TextPrinter.writeln` did an rstrip() of each line. 
+But this also removed formfeed (`chr(12)`) characters if they happened to 
+be at the end of the line.
