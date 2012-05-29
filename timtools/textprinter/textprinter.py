@@ -50,7 +50,7 @@ class PrinterNotReady(Exception):
 
 
 class TextPrinter:
-    "http://timtools.saffre-rumma.ee/src/44.html"
+    "http://timtools.saffre-rumma.net/src/44.html"
     
     def __init__(self,
                  pageSize=(0,0),
@@ -215,18 +215,17 @@ class TextPrinter:
 
     def writeln(self,line=''):
         "http://timtools.saffre-rumma.ee/src/329.html"
-        
-        line = line.rstrip()
-        
-##         for k,v in self.lineCommands.items():
-##             if line.startswith(k):
-##                 m = getattr(self,v)
-##                 m(line[len(k):])
-##                 return
-        if line.endswith("\r\n"):
-            line=line[:-2]
-        elif line.endswith("\n"):
-            line=line[:-1]
+        if True:
+            #~ new algorithm after 20120529 (rstrip() removes form feeds)
+            line = line.rstrip(' \r\n')
+            #~ if chr(12) in line:
+                #~ print 20120529, repr(line)
+        else:
+            line = line.rstrip()
+            if line.endswith("\r\n"):
+                line=line[:-2]
+            elif line.endswith("\n"):
+                line=line[:-1]
             
         if len(line) > 0:
             #oline=line
@@ -387,6 +386,7 @@ class TextPrinter:
         #self.insertImage(**d)
     
     def formFeed(self,line):
+        #~ print "20120529 formFeed"
         self.endPage()
         # self.beginPage()
         return 0
@@ -422,4 +422,4 @@ class FileTextPrinter(TextPrinter):
         TextPrinter.close(self)
         self.session.showfile(self.filename)
             
-		
+
