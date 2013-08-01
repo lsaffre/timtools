@@ -11,15 +11,5 @@
 ## You should have received a copy of the GNU General Public License
 ## along with TimTools; if not, see <http://www.gnu.org/licenses/>.
 
-__version__ = "1.0.5" 
-
-__author__ = "Luc Saffre <luc.saffre@gmx.net>"
-
-__url__ = "http://code.google.com/p/timtools/"
-
-__copyright__ = """\
-Copyright (c) 2002-2010 Luc Saffre.
-This software comes with ABSOLUTELY NO WARRANTY and is
-distributed under the terms of the GNU General Public License.
-See file COPYING.txt for more information."""
+execfile('setup_info.py')
 

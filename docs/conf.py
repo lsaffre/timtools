@@ -38,8 +38,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u"Tim Tools"
-copyright = u'2002-2009, Luc Saffre'
+project = u"TimTools"
+copyright = u'2002-2012, Luc Saffre'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
