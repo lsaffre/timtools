@@ -135,7 +135,7 @@ alternate configuration file instead of %s.""" % self.configfile,
             s += "\n"+self.copyright
             
         using = []
-        using.append('TimTools ' + timtools.__version__)
+        using.append('TimTools ' + timtools.SETUP_INFO['version'])
         using.append("Python %d.%d.%d %s" % sys.version_info[0:4])
 
         #~ if sys.modules.has_key('wx'):

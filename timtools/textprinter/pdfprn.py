@@ -71,19 +71,18 @@ class PdfTextPrinter(FileTextPrinter):
     ratio_size2leading=1.065 # leading = fontsize * ratio_size2leading
     charwidth=0.6
     
-    def __init__(self,filename,fontName="Courier",**kw):
-        FileTextPrinter.__init__(self,filename,pageSize=A4,**kw)
+    def __init__(self, filename, fontName="Courier", **kw):
+        FileTextPrinter.__init__(self, filename, pageSize=A4, **kw)
 
-        fontfiles=FONTFILES[fontName]
+        fontfiles = FONTFILES[fontName]
         pdfmetrics.registerFont(TTFont(fontName, fontfiles[0]))
         if len(fontfiles) == 1:
-            self._can_bold=False
+            self._can_bold = False
         else:
-            self._can_bold=True
+            self._can_bold = True
             pdfmetrics.registerFont(TTFont(fontName+"-Bold", fontfiles[1]))
             pdfmetrics.registerFont(TTFont(fontName+"-Oblique", fontfiles[2]))
             pdfmetrics.registerFont(TTFont(fontName+"-BoldOblique", fontfiles[3]))
-        
 
 ##         try:
 ## ##             font=TTFont("Courier", "cour.ttf")
@@ -100,17 +99,15 @@ class PdfTextPrinter(FileTextPrinter):
 ##             pdfmetrics.registerFont(TTFont("Courier-BoldOblique", "courbi.ttf"))
 ##         except TTFError,e:
 ##             pass # continue with the Adobe builtin version
-        
-        
-        self.maxLeading=0
-        self.leading=0
-        self.canvas = canvas.Canvas(filename,pagesize=A4)
+
+        self.maxLeading = 0
+        self.leading = 0
+        self.canvas = canvas.Canvas(filename, pagesize=A4)
         #self.textobject = None
         self.status = Status(fontName=fontName)
-        self.leading=None
+        self.leading = None
         self.lpi = None
         self.setCpi(self.cpi)
-
 
 ##      def background(self):
 ##          self.canvas.drawImage('logo2.jpg',
@@ -139,7 +136,7 @@ class PdfTextPrinter(FileTextPrinter):
         self.y = self.pageHeight-self.margin
         if self.isLandscape():
             self.canvas.rotate(90)
-            self.canvas.translate(0,-210.0*mm)
+            self.canvas.translate(0, -210.0*mm)
         #FileTextPrinter.onBeginPage(self)
     
     def onEndPage(self):
@@ -148,13 +145,12 @@ class PdfTextPrinter(FileTextPrinter):
         #self.textobject = None
         
     def onSetPageSize(self):
-        self.canvas.setPageSize((self.pageHeight,self.pageWidth))
+        self.canvas.setPageSize((self.pageHeight, self.pageWidth))
             
-
     def onEndDoc(self):
         try:
             self.canvas.save()
-        except IOError,e:
+        except IOError as e:
             print "ERROR : could not save pdf file:"
             print e
             sys.exit(-1)
@@ -164,7 +160,7 @@ class PdfTextPrinter(FileTextPrinter):
 
     def prepareFont(self):
         if not self.fontChanged: return
-        self.fontChanged=False
+        self.fontChanged = False
         if self.lpi is None:
             self.leading = self.status.size * self.ratio_size2leading
         else:
@@ -189,9 +185,8 @@ class PdfTextPrinter(FileTextPrinter):
             else:
                 self.canvas.setFillGray(0.2)
         
-
-    def write(self,text):
-        self.session.debug("write(%r)",text)
+    def write(self, text):
+        self.session.debug("write(%r)", text)
         self.beforeWrite()
         assert not "\n" in text, repr(text)
         assert not "\r" in text, repr(text)
