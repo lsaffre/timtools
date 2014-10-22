@@ -299,7 +299,7 @@ class TextPrinter:
         if self.pageHeight > self.pageWidth:
             # only if not already
             (self.pageHeight, self.pageWidth) = \
-                             (self.pageWidth,self.pageHeight)
+                             (self.pageWidth, self.pageHeight)
             self.onSetPageSize()
 
     def isLandscape(self):

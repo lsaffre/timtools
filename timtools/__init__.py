@@ -1,4 +1,4 @@
-## Copyright 2003-2010 Luc Saffre
+## Copyright 2003-2013 Luc Saffre
 ## This file is part of the TimTools project.
 ## TimTools is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
@@ -11,5 +11,5 @@
 ## You should have received a copy of the GNU General Public License
 ## along with TimTools; if not, see <http://www.gnu.org/licenses/>.
 
-execfile('setup_info.py')
-
+import os
+execfile(os.path.join(os.path.dirname(__file__), 'project_info.py'))

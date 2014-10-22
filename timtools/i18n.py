@@ -22,16 +22,15 @@ def _(text_en):
     try:
         return _messages[text_en][_userLang]
     except KeyError:
-        #print "No translation to %s for %r." % (_userLang,text_en)
+        print "No translation to %s for %r." % (_userLang,text_en)
         return text_en
 
 def setUserLang(lang):
     global _userLang
+    _userLang = lang
     if _userLang == "en":
         _userLang = None
-    else:
-        _userLang = lang
-    #~ print 'LANGUAGE set to', _userLang, 'in', __file__
+    print '20141013 LANGUAGE set to %r %r' % (lang, _userLang)
     
 def itr(text_en,**kw):
     #~ from timtools.misc.etc import ispure
