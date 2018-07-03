@@ -1,15 +1,5 @@
-## Copyright 2004-2009 Luc Saffre
-## This file is part of the TimTools project.
-## TimTools is free software; you can redistribute it and/or modify
-## it under the terms of the GNU General Public License as published by
-## the Free Software Foundation; either version 3 of the License, or
-## (at your option) any later version.
-## TimTools is distributed in the hope that it will be useful, 
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
-## GNU General Public License for more details.
-## You should have received a copy of the GNU General Public License
-## along with TimTools; if not, see <http://www.gnu.org/licenses/>.
+# -*- coding: utf-8 -*-
+# Copyright 2004-2018 Rumma & Ko Ltd
 
 import sys
 
@@ -17,14 +7,9 @@ from timtools.console.application import Application, UsageError
 from timtools.tools.mail import readmail, openmail
 
 class OpenMail(Application):
-    name="openmail"
-
-    copyright="""\
-Copyright (c) 2004-2009 Luc Saffre.
-This software comes with ABSOLUTELY NO WARRANTY and is
-distributed under the terms of the GNU General Public License.
-See file COPYING.txt for more information."""
-    url="http://timtools.saffre-rumma.ee/openmail.html"
+    name = "openmail"
+    copyright = "Copyright (c) 2004-2018 Rumma & Ko Ltd"
+    url = "http://timtools.saffre-rumma.ee/openmail.html"
     
     usage="usage: timtools openmail FILE"
     description="""\

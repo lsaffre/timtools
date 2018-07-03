@@ -1,16 +1,5 @@
-# -*- coding: ISO-8859-1 -*-
-## Copyright 2002-2010 Luc Saffre
-## This file is part of the TimTools project.
-## TimTools is free software; you can redistribute it and/or modify
-## it under the terms of the GNU General Public License as published by
-## the Free Software Foundation; either version 3 of the License, or
-## (at your option) any later version.
-## TimTools is distributed in the hope that it will be useful, 
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
-## GNU General Public License for more details.
-## You should have received a copy of the GNU General Public License
-## along with TimTools; if not, see <http://www.gnu.org/licenses/>.
+# -*- coding: utf-8 -*-
+# Copyright 2002-2018 Rumma & Ko Ltd
 
 """\
 mandatory options :
@@ -31,8 +20,6 @@ optional options :
 
 from timtools.console.application import Application, \
      UsageError, OperationFailed # , ApplicationError
-
-from timtools.misc.etc import ispure
 
 #from timtools.ui.console import ConsoleApplication, \
 #     UsageError, ApplicationError
@@ -69,17 +56,17 @@ from email.utils import getaddresses, formataddr, parseaddr
 from timtools.i18n import itr,_
 
 itr("Message size: %d bytes.",
-    de=u"Grˆﬂe: %d Bytes",
+    de=u"Gr√∂√üe: %d Bytes",
     fr=u"Taille: %d octets")
 itr("Send this to %d recipients: %s",
-    de=u"Mail schicken an %d Empf‰nger: %s",
+    de=u"Mail schicken an %d Empf√§nger: %s",
     fr=u"Envoyer ce mail a %d destinataires: %s")
 itr("Sent to %d recipients.",
-    de=u"Verschickt an %d Empf‰nger.",
-    fr=u"EnvoyÈ ? %d destinataires.")
+    de=u"Verschickt an %d Empf√§nger.",
+    fr=u"Envoy√© ? %d destinataires.")
 itr("%d recipients refused.",
-    de=u"%d Empf‰nger verweigert.",
-    fr=u"%d destinataires ont ÈtÈ refusÈs.")
+    de=u"%d Empf√§nger verweigert.",
+    fr=u"%d destinataires ont √©t√© refus√©s.")
 
 class MyMessage(Message):
     
@@ -114,11 +101,7 @@ class MyMessage(Message):
 class Sendmail(Application):
     
     name="Lino/sendmail"
-    copyright="""\
-Copyright (c) 2002-2010 Luc Saffre.
-This software comes with ABSOLUTELY NO WARRANTY and is
-distributed under the terms of the GNU General Public License.
-See file COPYING.txt for more information."""
+    copyright="Copyright 2002-2018 Rumma & Ko Ltd"
     url="http://timtools.saffre-rumma.ee/sendmail.html"
     
     usage="usage: timtools sendmail [options] FILE"

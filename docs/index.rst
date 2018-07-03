@@ -16,6 +16,6 @@ Quick links:
    :maxdepth: 2
 
    changes/index
-
+   build
 
 

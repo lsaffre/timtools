@@ -1,16 +1,5 @@
-#coding: latin1
-## Copyright 2003-2009 Luc Saffre
-## This file is part of the TimTools project.
-## TimTools is free software; you can redistribute it and/or modify
-## it under the terms of the GNU General Public License as published by
-## the Free Software Foundation; either version 3 of the License, or
-## (at your option) any later version.
-## TimTools is distributed in the hope that it will be useful, 
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
-## GNU General Public License for more details.
-## You should have received a copy of the GNU General Public License
-## along with TimTools; if not, see <http://www.gnu.org/licenses/>.
+# -*- coding: utf-8 -*-
+# Copyright 2003-2018 Rumma & Ko Ltd
 
 
 """
@@ -20,10 +9,10 @@ scripts/openmail.py
 tests/etc/1.py
 
 """
-import sys,os
+import os
 
 import urllib
-import email
+# import email
 import webbrowser
 
 def mailto_url(to=None,subject=None,body=None,cc=None):
@@ -68,11 +57,12 @@ def readmail(filename):
 
     text = open(filename).read()
     text = text.decode("cp850")
-    text = text.encode("iso-8859-1","replace")
+    # text = text.encode("iso-8859-1","replace")
+    text = text.encode("utf-8", "replace")
 
     headersDone = False
-    subject = None
-    to = None
+    # subject = None
+    # to = None
     body = ""
     for line in text.splitlines():
         if headersDone:
@@ -123,11 +113,11 @@ Example:
 
 #coding: latin1
 
-to=u"Luc Saffre <luc.saffre@gmx.net>, Ännchen Müller <anna@muller.de>"
-subject=u"Dornröschen und der schöne Prinz"
+to=u"Luc Saffre <luc.saffre@gmx.net>, Ã„nnchen MÃ¼ller <anna@muller.de>"
+subject=u"DornrÃ¶schen und der schÃ¶ne Prinz"
 attachment=r"c:\temp\VKR\thieron.pdf,c:\temp\Sissejuhatus est_t6lkimiseks.doc"
 body=u"""
-Ännchen Müller war ein schönes Mädchen.
+Ã„nnchen MÃ¼ller war ein schÃ¶nes MÃ¤dchen.
 bla foo
 foo bar
 

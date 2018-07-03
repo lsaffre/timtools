@@ -6,6 +6,4 @@ syntax: glob
 *.pyc
 *~
 build
-dist
-
-src\mysites\media\pdf_cache
+timtools.egg-info
