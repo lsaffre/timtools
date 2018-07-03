@@ -37,7 +37,7 @@ N.B.: :mod:`win32.lib.win32con` defines the following names::
 20090227
 --------
 
-:doc:`../timtools/index` 0.6.42 released:
+TimTools 0.6.42 released:
 
 - The boldness of bold and normal text is now configurable for
   prnprint.py

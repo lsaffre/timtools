@@ -5,5 +5,5 @@ syntax: glob
 *.dpyc
 *.pyc
 *~
-build
+.build
 timtools.egg-info

@@ -17,5 +17,5 @@ Quick links:
 
    changes/index
    build
-
+   about
 

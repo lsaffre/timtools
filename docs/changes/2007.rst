@@ -5,6 +5,6 @@ Changes 2007
 20071123
 --------
 
-:doc:`../timtools/index` 0.6.37 released
+TimTools 0.6.37 released
 
 
