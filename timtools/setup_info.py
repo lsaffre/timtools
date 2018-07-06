@@ -6,7 +6,7 @@ and possibly some external tools, too.
 SETUP_INFO = dict(
   name = 'timtools', 
   version = '2.0.0',
-  install_requires = ['reportlab'],
+  install_requires = ['reportlab', 'pyinstaller'],
   description = "A collection of command-line tools for Win32",
   license = 'GPL',
   test_suite = 'tests',
@@ -14,7 +14,10 @@ SETUP_INFO = dict(
   author_email = 'luc.saffre@gmail.com',
   url = "http://timtools.lino-framework.org",
   long_description="""\
-A collection of command-line tools for Win32
+timtools is a collection of command-line tools for TIM.
+
+The central project homepage is http://timtools.lino-framework.org
+
 """,
   classifiers="""\
 Development Status :: 5 - Production/Stable

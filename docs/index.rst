@@ -1,20 +1,19 @@
 =================================================
-TimTools -- A suite of command-line tools for TIM
+timtools -- A suite of command-line tools for TIM
 =================================================
 
-Welcome to the TIM Tools Website.
+Welcome to the timtools documetation.
 
+.. py2rst::
 
-Quick links:
-
-- `Code <http://code.google.com/p/timtools>`__
-- `PyPI entry <http://pypi.python.org/pypi/timtools>`__
-- :doc:`changes/index`
+  from timtools.setup_info import SETUP_INFO
+  print(SETUP_INFO['long_description'])
 
 
 .. toctree::
    :maxdepth: 2
 
+   install
    changes/index
    build
    about

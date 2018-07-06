@@ -3,13 +3,18 @@
 
 import sys
 
+from timtools.setup_info import SETUP_INFO
 from timtools.console.application import Application, UsageError
 from timtools.tools.mail import readmail, openmail
 
 class OpenMail(Application):
+
+    name = "timtools openmail"
+    copyright = "Copyright (c) 2004-2018 Rumma & Ko Ltd"
+    url = SETUP_INFO['url']
+    
     name = "openmail"
     copyright = "Copyright (c) 2004-2018 Rumma & Ko Ltd"
-    url = "http://timtools.saffre-rumma.ee/openmail.html"
     
     usage="usage: timtools openmail FILE"
     description="""\

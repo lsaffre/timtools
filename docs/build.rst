@@ -1,3 +1,5 @@
+.. _timtools.build:
+
 ==================
 Build the zip file
 ==================
@@ -9,22 +11,31 @@ How to set up a build environment on a Windows machine:
   installer" (or -64) and run it as usual with default installation
   options.
   
-- Microsoft Visual C++ 14.0 is required. Get it with "Microsoft Visual C++ Build Tools": http://landinghub.visualstudio.com/visual-cpp-build-tools
-  
-- pip install -e timtools
-- pip install pyinstaller
+- Install `pywin32 <https://github.com/mhammond/pywin32>`__
 
-We don't recommend to use pipenv because it doesn't support -e switch
-for install.
+- Install `PIL <http://www.pythonware.com/products/pil/>`__
+  
+- (If Microsoft Visual C++ 14.0 is required, get it with `Microsoft
+  Visual C++ Build Tools
+  <http://landinghub.visualstudio.com/visual-cpp-build-tools>`__)
+
+- pip install -e timtools
+
+We cannot use pipenv because it doesn't support -e switch for install.
 
 When your build environment is set up, here is how to create a
 distribution file::
 
   i  
-  pyinstaller timtools/scripts/openmail
-  pyinstaller timtools/scripts/prn2pdf
-  pyinstaller timtools/scripts/prnprint
+  pyinstaller timtools/scripts/openmail.py
+  pyinstaller timtools/scripts/prn2pdf.py
+  pyinstaller timtools/scripts/prnprint.py
+
   cd dist
+  mkdir timtools
+  xcopy openmail\* timtools /s
+  xcopy prn2pdf\* timtools /s
+  xcopy prnprint\* timtools /s
   python -m zipfile -c timtools.zip timtools
 
   

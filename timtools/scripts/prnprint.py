@@ -1,18 +1,19 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 # Copyright 2004-2018 Rumma & Ko Ltd
 
 
 import sys, os
 
+from timtools.setup_info import SETUP_INFO
 from timtools.textprinter import winprn
 from timtools.console.application import Application, UsageError
 
 
 class PrnPrint(Application):
     
-    name="TimTools prnprint"
-    copyright="Copyright 2004-2018 Rumma & Ko Ltd"
-    url="http://timtools.saffre-rumma.net/prnprint.html"
+    name = "timtools prnprint"
+    copyright = "Copyright (c) 2004-2018 Rumma & Ko Ltd"
+    url = SETUP_INFO['url']
     
     usage="usage: timtools prnprint [options] FILE [FILE ...]"
     description="""

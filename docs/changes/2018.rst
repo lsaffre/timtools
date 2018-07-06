@@ -1,0 +1,25 @@
+====
+2018
+====
+
+
+2018-07-06
+==========
+
+We released version 2.0.0 which fixes a problem in the :cmd:`openmail`
+command: that command wrote its temporary file using cp850 encoding,
+now it uses UTF-8.
+
+The version bump is because now we use pyinstaller for creating the
+:xfile:`timtools.zip` file and that now the source code is publicly
+available on GitHub.
+
+**Warning** : this is the first release of the 2.0 series and it
+potentially contains regression bugs which break things.  For example
+it includes only the commands :cmd:`sync`, :cmd:`prnprint`,
+:cmd:`prn2pdf` and :cmd:`openmail` because these are the only ones we
+know to be used.  If you discover that your TIM actually uses some
+other timtools command, let us know.
+
+See :doc:`/install` for installation instructions.
+

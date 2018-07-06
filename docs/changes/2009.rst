@@ -62,10 +62,10 @@ the input file.
 
 - runtests.py now recurses into subdirs.
 
-- Started to move configuration options from "lino.config" to application-specific options. The first option is
-  :configcmd:`postscript_printer`.
-  Its definition has moved 
-  from the obsolete global :xfile:`lino.cfg` file to a new file :xfile:`runtest.ini`.
+- Started to move configuration options from "lino.config" to
+  application-specific options. The first option is
+  `postscript_printer`.  Its definition has moved from the obsolete
+  global :xfile:`lino.cfg` file to a new file :xfile:`runtest.ini`.
   Until now it was accessed in testcases by::
   
     config.win32.get('postscript_printer')

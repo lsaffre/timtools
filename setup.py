@@ -1,5 +1,5 @@
 from setuptools import setup
-fn = 'timtools/project_info.py'
+fn = 'timtools/setup_info.py'
 exec(compile(open(fn, "rb").read(), fn, 'exec'))
 
 if __name__ == '__main__':

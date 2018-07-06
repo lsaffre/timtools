@@ -5,17 +5,16 @@
 import sys, os
 
 #from timtools.ui import console
-from timtools import __url__
+from timtools.setup_info import SETUP_INFO
 from timtools.textprinter.pdfprn import PdfTextPrinter
 
 from timtools.console.application import Application, UsageError
 
 class Prn2pdf(Application):
 
-    name="TimTools prn2pdf"
-    copyright="""\
-Copyright (c) 2002-2018 Rumma & Ko Ltd."""
-    url=__url__+"/prn2pdf.html"
+    name = "timtools prn2pdf"
+    copyright = "Copyright (c) 2002-2018 Rumma & Ko Ltd"
+    url = SETUP_INFO['url']
     
     usage="usage: timtools prn2pdf [options] FILE"
     description="""\

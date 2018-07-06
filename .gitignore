@@ -1,9 +1,11 @@
 # use glob syntax.
 syntax: glob
 
-*.elc
-*.dpyc
+*.spec
 *.pyc
 *~
 .build
 timtools.egg-info
+build
+dist
+dl
