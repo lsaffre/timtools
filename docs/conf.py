@@ -59,6 +59,8 @@ html_static_path = ['.static']
 #html_last_updated_fmt = '%b %d, %Y'
 last_updated = True
 
+html_favicon = 'favicon.ico'
+
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
