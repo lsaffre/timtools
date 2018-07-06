@@ -38,6 +38,6 @@ SETUP_INFO.update(packages = [str(n) for n in """
 timtools
 """.splitlines() if n])
 
-scripts = "prn2pdf prnprint openmail"
-scripts = ['timtools/scripts/{}.py'.format(n) for n in scripts.split()]
-SETUP_INFO.update(scripts=scripts)
+# scripts = "prn2pdf prnprint openmail sync"
+# scripts = ['timtools/scripts/{}.py'.format(n) for n in scripts.split()]
+# SETUP_INFO.update(scripts=scripts)
