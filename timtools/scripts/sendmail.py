@@ -29,7 +29,7 @@ from timtools.console.application import Application, \
 import smtplib
 #import string
 import socket
-import sys
+# import sys
 import os.path
 opj=os.path.join
 #import getopt
@@ -39,7 +39,7 @@ import email
 import email.Utils
 import mimetypes
 import codecs
-import types
+# import types
 
 
 from email import encoders

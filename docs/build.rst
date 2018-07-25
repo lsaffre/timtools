@@ -6,10 +6,7 @@ Build the zip file
 
 How to set up a build environment on a Windows machine:
 
-- Install Python : Go to https://www.python.org/downloads/windows/ and
-  select "Latest Python 3 Release".  Choose "Windows x86 executable
-  installer" (or -64) and run it as usual with default installation
-  options.
+- Install Python 2 : Go to https://www.python.org/downloads/windows/
   
 - Install `pywin32 <https://github.com/mhammond/pywin32>`__
 
@@ -23,21 +20,20 @@ How to set up a build environment on a Windows machine:
 
 We cannot use pipenv because it doesn't support -e switch for install.
 
-When your build environment is set up, here is how to create a
-distribution file::
+When your build environment is set up, simply run the file
+:file:`mkdist.bat` in the project's root directory.
+  
+This creates a file :file:`timtools.zip` in the download folder
+of the documentation tree (:file:`docs\dl`).
 
-  i  
-  pyinstaller timtools/scripts/openmail.py
-  pyinstaller timtools/scripts/prn2pdf.py
-  pyinstaller timtools/scripts/prnprint.py
+You can test the exe files as follows::
 
-  cd dist
-  mkdir timtools
-  xcopy openmail\* timtools /s
-  xcopy prn2pdf\* timtools /s
-  xcopy prnprint\* timtools /s
-  python -m zipfile -c timtools.zip timtools
+  > cd dist\timtools
+  > openmail --help
 
   
-This creates a file :file:`timtools.zip` in your `dist` folder.
-  
+You can then publish the documentation tree from an 
+atelier environment as follows::
+
+  $ go tt
+  $ inv bd pd

@@ -22,5 +22,17 @@ Explanations
 
 .. xfile:: timtools.zip
 
-    This is the file which contains the latest released version.
+    This is the file that contains the latest released version.
+
+The name of the download file is always
+:xfile:`timtools.zip` regardless of the version.
+
+.. py2rst::
+
+  from timtools.setup_info import SETUP_INFO
+  print("The currently published file contains version {}.".format(SETUP_INFO['version']))
+
+
+    
+    
     
