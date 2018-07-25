@@ -5,7 +5,7 @@ and possibly some external tools, too.
 """
 SETUP_INFO = dict(
   name = 'timtools', 
-  version = '2.0.0',
+  version = '2.0.1',
   install_requires = ['reportlab', 'pyinstaller'],
   description = "A collection of command-line tools for Win32",
   license = 'GPL',

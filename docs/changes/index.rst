@@ -2,6 +2,14 @@
 Changes in timtools
 ===================
 
+.. _tt2_0_1:
+
+Version 2.0.1 (released 2018-07-25)
+===================================
+
+Added also the :cmd:`sendmail` command.
+
+
 .. _tt2_0_0:
 
 Version 2.0.0 (released 2018-07-06)
