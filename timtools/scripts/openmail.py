@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2004-2018 Rumma & Ko Ltd
+# License: BSD (see COPYING.txt)
 
 import sys
 

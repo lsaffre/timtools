@@ -2,6 +2,20 @@
 Changes in timtools
 ===================
 
+
+.. _tt2_0_2:
+
+Version 2.0.2 (not yet released)
+===================================
+
+The :cmd:`sync` command failed with a traceback::
+
+    Traceback (most recent call last):
+      File "timtools\scripts\sync.py", line 18, in <module>
+    ImportError: cannot import name __url__
+    [292] Failed to execute script sync
+
+
 .. _tt2_0_1:
 
 Version 2.0.1 (released 2018-07-25)

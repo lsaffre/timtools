@@ -9,3 +9,4 @@ timtools.egg-info
 build
 dist
 dl
+.doctrees

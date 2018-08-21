@@ -1,33 +1,19 @@
-#coding: latin1
-## Copyright 2005-2009 Luc Saffre.
-## This file is part of the TimTools project.
-## TimTools is free software; you can redistribute it and/or modify
-## it under the terms of the GNU General Public License as published by
-## the Free Software Foundation; either version 3 of the License, or
-## (at your option) any later version.
-## TimTools is distributed in the hope that it will be useful, 
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
-## GNU General Public License for more details.
-## You should have received a copy of the GNU General Public License
-## along with TimTools; if not, see <http://www.gnu.org/licenses/>.
+# -*- coding: utf-8 -*-
+# Copyright 2005-2018 Rumma & Ko Ltd
+# License: BSD (see COPYING.txt)
 
 from timtools.console.application import Application, \
      UsageError, UserAborted
 from timtools.tools.synchronizer import Synchronizer
-from timtools import __url__
+from timtools.setup_info import SETUP_INFO
 
 class Sync(Application):
 
-    name="TimTools sync"
-    copyright="""\
-Copyright (c) 2005-2009 Luc Saffre.
-This software comes with ABSOLUTELY NO WARRANTY and is
-distributed under the terms of the GNU General Public License.
-See file COPYING.txt for more information."""
-    url=__url__+"/sync.html"
+    name = "TimTools sync"
+    copyright = "Copyright 2005-2018 Rumma & Ko Ltd"
+    url = SETUP_INFO['url']
     
-    usage="usage: timtools sync [options] SRC DEST"
+    usage = "usage: timtools sync [options] SRC DEST"
     
     description="""\
 where SRC and DEST are two directories to be synchronized.

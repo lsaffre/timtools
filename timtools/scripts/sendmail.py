@@ -18,6 +18,7 @@ optional options :
 
 """
 
+from timtools.setup_info import SETUP_INFO
 from timtools.console.application import Application, \
      UsageError, OperationFailed # , ApplicationError
 
@@ -101,8 +102,9 @@ class MyMessage(Message):
 class Sendmail(Application):
     
     name="Lino/sendmail"
-    copyright="Copyright 2002-2018 Rumma & Ko Ltd"
-    url="http://timtools.saffre-rumma.ee/sendmail.html"
+    copyright = "Copyright 2002-2018 Rumma & Ko Ltd"
+    # url = "http://timtools.saffre-rumma.net/sendmail.html"
+    url = SETUP_INFO['url']
     
     usage="usage: timtools sendmail [options] FILE"
     

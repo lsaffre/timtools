@@ -30,6 +30,9 @@ You can test the exe files as follows::
 
   > cd dist\timtools
   > openmail --help
+  > sendmail --help
+  > sync --help
+  ...
 
   
 You can then publish the documentation tree from an 
