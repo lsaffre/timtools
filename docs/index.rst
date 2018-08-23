@@ -2,7 +2,7 @@
 timtools -- A suite of command-line tools for TIM
 =================================================
 
-Welcome to the timtools documetation.
+Welcome to the timtools documentation.
 
 .. py2rst::
 
