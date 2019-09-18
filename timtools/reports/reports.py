@@ -417,7 +417,7 @@ class ReportColumn(Describable):
         return self.meth(row)
 
     def setCellValue(self,row,value):
-        raise NotImplementedError,str(self.__class__)
+        raise NotImplementedError(str(self.__class__))
 
     def getMinWidth(self):
         return self.datatype.minWidth

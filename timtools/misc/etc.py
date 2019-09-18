@@ -16,7 +16,7 @@ def ispure(s):
     if type(s) == types.StringType:
         try:
             s.decode('ascii')
-        except UnicodeDecodeError,e:
+        except UnicodeDecodeError as e:
             return False
         return True
     return False
@@ -84,10 +84,10 @@ class AttribDict:
    def __getattr__(self,name):
       try:
          return self.__dict__["_dict"][name]
-      except KeyError,e:
+      except KeyError as e:
          s = "%s has no attribute '%s'" % (self._name,
                                            name)
-         raise AttributeError,s
+         raise AttributeError(s)
    
    def __setattr__(self,name,value):
       self.__dict__["_dict"][name] = value

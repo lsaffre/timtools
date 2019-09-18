@@ -81,7 +81,7 @@ class Session:
     def error(self,*args,**kw):
         return self.toolkit.show_error(self,*args,**kw)
     def exception(self,*args,**kw):
-        print "session.py", args, kw
+        print("session.py", args, kw)
         return self.toolkit.showException(self,*args,**kw)
 
     def logmessage(self,*args,**kw):

@@ -84,7 +84,7 @@ class Progresser(Task):
             self.toolkit.onTaskDone(self)
             return retval
             
-        except Exception,e:
+        except Exception as e:
             # cleanup, then forward the exception 
             self.toolkit.onTaskAbort(self)
             raise 

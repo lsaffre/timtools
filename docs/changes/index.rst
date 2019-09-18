@@ -2,6 +2,11 @@
 Changes in timtools
 ===================
 
+2019-09-18
+==========
+
+Started converting to Python 3. 
+
 
 .. _tt2_0_2:
 
@@ -53,11 +58,8 @@ Older changes
 .. toctree::
    :maxdepth: 1
    :glob:
-   
+
    2012/index
    2010/index
    2009
    2007
-   
-   
-

@@ -64,7 +64,7 @@ def shutdown():
     if DEBUG:
         l = sys.modules.keys()
         l.sort()
-        print "used modules: " + ' '.join(l)
+        print("used modules: " + ' '.join(l))
 
 atexit.register(shutdown)
 

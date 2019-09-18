@@ -17,5 +17,5 @@
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 
-raise "lino.reports.base replaced by lino.reports.reports"
+raise Exception("lino.reports.base replaced by lino.reports.reports")
 

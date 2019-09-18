@@ -194,14 +194,14 @@ alternate configuration file instead of %s.""" % self.configfile,
             self.stop_running()
             return ret
 
-        except UsageError,e:
+        except UsageError as e:
             self.error("Usage error: "+str(e))
             p.print_help()
             return -1
-        except UserAborted,e:
+        except UserAborted as e:
             self.verbose(str(e))
             return -1
-        except OperationFailed,e:
+        except OperationFailed as e:
             self.error(str(e))
             return -2
 
