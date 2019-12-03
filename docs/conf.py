@@ -43,7 +43,7 @@ copyright = '2002-2018 Rumma & Ko Ltd'
 version = SETUP_INFO['version']
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+# pygments_style = 'sphinx'
 
 html_sidebars = {
    '**': ['globaltoc.html', 'searchbox.html', 'links.html'],
@@ -128,8 +128,8 @@ htmlhelp_basename = 'timtools'
 
 
 # http://sphinx.pocoo.org/theming.html
-my_font_family = "Swiss, Helvetica, 'Liberation Sans'"
-html_theme_options = {
-    "font_family": my_font_family,
-    "head_font_family": my_font_family,
-}
+# my_font_family = "Swiss, Helvetica, 'Liberation Sans'"
+# html_theme_options = {
+#     "font_family": my_font_family,
+#     "head_font_family": my_font_family,
+# }
