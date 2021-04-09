@@ -14,7 +14,7 @@ SETUP_INFO = dict(
   test_suite = 'empty',
   author = 'Luc Saffre',
   author_email = 'luc.saffre@gmail.com',
-  url = "http://timtools.lino-framework.org",
+  url = "https://github.com/lsaffre/timtools",
   long_description="""\
 timtools is a collection of command-line tools for TIM.
 
