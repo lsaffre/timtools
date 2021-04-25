@@ -9,6 +9,6 @@ from .setup_info import SETUP_INFO
 
 __version__ = SETUP_INFO['version']
 
-intersphinx_urls = dict(docs="http://timtools.lino-framework.org")
+intersphinx_urls = dict(docs="https://timtools.lino-framework.org")
 srcref_url = 'https://github.com/lsaffre/timtools/blob/master/%s'
 doc_trees = ['docs']
