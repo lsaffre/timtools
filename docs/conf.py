@@ -24,7 +24,7 @@ configure(globals())
 
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['.templates']
+# templates_path = ['.templates']
 
 # The master toctree document.
 master_doc = 'index'
