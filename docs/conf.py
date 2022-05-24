@@ -16,7 +16,7 @@ from timtools.setup_info import SETUP_INFO
 extensions = []
 extlinks = {}
 
-from atelier.sphinxconf import configure
+from rstgen.sphinxconf import configure
 configure(globals())
 
 # extensions += ['atelier.sphinxconf.complex_tables']
