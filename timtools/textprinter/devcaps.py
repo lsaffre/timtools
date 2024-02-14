@@ -1,4 +1,4 @@
-## Copyright 2007 Luc Saffre 
+## Copyright 2007 Luc Saffre
 
 ## This file is part of the Lino project.
 
@@ -15,7 +15,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Lino; if not, write to the Free Software Foundation,
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-
 """
 
 This module defines the constants to be used as parameter to
@@ -91,52 +90,46 @@ monitors.
 
 """
 
-
 # most constants also defined in win32con
 
-DRIVERVERSION  = 0     # 'Device driver version
-TECHNOLOGY     = 2     # 'Device classification
-HORZSIZE       = 4     # 'Horizontal size in millimeters
-VERTSIZE       = 6     # 'Vertical size in millimeters
-HORZRES        = 8     # 'Horizontal width in pixels
-VERTRES        = 10    #'Vertical height in pixels
-BITSPIXEL      = 12    #'Number of bits per pixel
-PLANES         = 14    #'Number of planes
-NUMBRUSHES     = 16    #'Number of brushes the device has
-NUMPENS        = 18    #'Number of pens the device has
-NUMMARKERS     = 20    #'Number of markers the device has
-NUMFONTS       = 22    #'Number of fonts the device has
-NUMCOLORS      = 24    #'Number of colors the device supports
-PDEVICESIZE    = 26    #'Size required for device descriptor
-CURVECAPS      = 28    #'Curve capabilities
-LINECAPS       = 30    #'Line capabilities
-POLYGONALCAPS  = 32    #'Polygonal capabilities
-TEXTCAPS       = 34    #'Text capabilities
-CLIPCAPS       = 36    #'Clipping capabilities
-RASTERCAPS     = 38    #'Bitblt capabilities
-ASPECTX        = 40    #'Length of the X leg
-ASPECTY        = 42    #'Length of the Y leg
-ASPECTXY       = 44    #'Length of the hypotenuse
-SHADEBLENDCAPS = 45    #'Shading and blending caps (IE5)
-LOGPIXELSX     = 88    #'Logical pixels/inch in X
-LOGPIXELSY     = 90    #'Logical pixels/inch in Y
-SIZEPALETTE    = 104   #'Number of entries in physical palette
-NUMRESERVED    = 106   #'Number of reserved entries in palette
-COLORRES       = 108   #'Actual color resolution
-
+DRIVERVERSION = 0  # 'Device driver version
+TECHNOLOGY = 2  # 'Device classification
+HORZSIZE = 4  # 'Horizontal size in millimeters
+VERTSIZE = 6  # 'Vertical size in millimeters
+HORZRES = 8  # 'Horizontal width in pixels
+VERTRES = 10  #'Vertical height in pixels
+BITSPIXEL = 12  #'Number of bits per pixel
+PLANES = 14  #'Number of planes
+NUMBRUSHES = 16  #'Number of brushes the device has
+NUMPENS = 18  #'Number of pens the device has
+NUMMARKERS = 20  #'Number of markers the device has
+NUMFONTS = 22  #'Number of fonts the device has
+NUMCOLORS = 24  #'Number of colors the device supports
+PDEVICESIZE = 26  #'Size required for device descriptor
+CURVECAPS = 28  #'Curve capabilities
+LINECAPS = 30  #'Line capabilities
+POLYGONALCAPS = 32  #'Polygonal capabilities
+TEXTCAPS = 34  #'Text capabilities
+CLIPCAPS = 36  #'Clipping capabilities
+RASTERCAPS = 38  #'Bitblt capabilities
+ASPECTX = 40  #'Length of the X leg
+ASPECTY = 42  #'Length of the Y leg
+ASPECTXY = 44  #'Length of the hypotenuse
+SHADEBLENDCAPS = 45  #'Shading and blending caps (IE5)
+LOGPIXELSX = 88  #'Logical pixels/inch in X
+LOGPIXELSY = 90  #'Logical pixels/inch in Y
+SIZEPALETTE = 104  #'Number of entries in physical palette
+NUMRESERVED = 106  #'Number of reserved entries in palette
+COLORRES = 108  #'Actual color resolution
 
 # the following constants are missing in win32con:
 
-PHYSICALWIDTH   = 110
-PHYSICALHEIGHT  = 111
+PHYSICALWIDTH = 110
+PHYSICALHEIGHT = 111
 PHYSICALOFFSETX = 112
-PHYSICALOFFSETY = 113            
-VREFRESH        = 116   #'Current vertical refresh rate of the
-                        #'display device (for displays only) in Hz
-DESKTOPVERTRES  = 117   #'Horizontal width of entire desktop in pixels (NT5)
-DESKTOPHORZRES  = 118   #'Vertical height of entire desktop in pixels (NT5)
-BLTALIGNMENT    = 119   #'Preferred blt alignment
-
-
-
-
+PHYSICALOFFSETY = 113
+VREFRESH = 116  #'Current vertical refresh rate of the
+#'display device (for displays only) in Hz
+DESKTOPVERTRES = 117  #'Horizontal width of entire desktop in pixels (NT5)
+DESKTOPHORZRES = 118  #'Vertical height of entire desktop in pixels (NT5)
+BLTALIGNMENT = 119  #'Preferred blt alignment

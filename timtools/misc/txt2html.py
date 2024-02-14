@@ -20,21 +20,20 @@ import htmlentitydefs
 
 # from twisted.web.html import escape
 
+
 def html_encode(txt):
-	txt2 = ''
-	for c in txt:
-		o = ord(c)
-		if o < 128:
-			txt2 += c
-		else:
-			try:
-				txt2 += "&%s;" % htmlentitydefs.codepoint2name[o]
-			except KeyError:
-				txt2 += "&#%d;" % o
-	return txt2
-		
+    txt2 = ''
+    for c in txt:
+        o = ord(c)
+        if o < 128:
+            txt2 += c
+        else:
+            try:
+                txt2 += "&%s;" % htmlentitydefs.codepoint2name[o]
+            except KeyError:
+                txt2 += "&#%d;" % o
+    return txt2
+
 
 def txt2html(txt):
     return html_encode(txt)
-
-

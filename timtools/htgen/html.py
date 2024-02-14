@@ -1,4 +1,4 @@
-## Copyright 2003-2009 Luc Saffre 
+## Copyright 2003-2009 Luc Saffre
 
 ## This file is part of the Lino project.
 
@@ -16,104 +16,136 @@
 ## along with Lino; if not, write to the Free Software Foundation,
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-
 from timtools.htgen.elements import CDATA, Element, Container, escape, unescape
+
 
 class BR(Element):
     #flowable=True
     pass
 
+
 class IMG(Element):
-    flowable=True
-    allowedAttribs=dict(src="src",
-                        width="width",
-                        height="height")
+    flowable = True
+    allowedAttribs = dict(src="src", width="width", height="height")
 
 
 class Fragment(Container):
-    fragmentable=True
-    flowable=False
-    allowedAttribs=dict(xclass='class',
-                        id='id',
-                        lang='lang',
-                        style='style',
-                        title='title')
+    fragmentable = True
+    flowable = False
+    allowedAttribs = dict(xclass='class',
+                          id='id',
+                          lang='lang',
+                          style='style',
+                          title='title')
 
 
 class SPAN(Fragment):
-    allowedContent = (CDATA,IMG,Fragment)
-    
+    allowedContent = (CDATA, IMG, Fragment)
+
+
 #SPAN.allowedContent = (CDATA,IMG,Fragment,SPAN)
 
 #class DIV(Fragment):
 #    allowedContent = (CDATA,P,TABLE,SPAN,BR,IMG)
-    
 
-class B(SPAN): pass
-class EM(SPAN): pass
-class I(SPAN): pass
-class U(SPAN): pass
-class SUP(SPAN): pass
-class TT(SPAN): pass    
-class FONT(SPAN): pass
+
+class B(SPAN):
+    pass
+
+
+class EM(SPAN):
+    pass
+
+
+class I(SPAN):
+    pass
+
+
+class U(SPAN):
+    pass
+
+
+class SUP(SPAN):
+    pass
+
+
+class TT(SPAN):
+    pass
+
+
+class FONT(SPAN):
+    pass
+
 
 class LI(Fragment):
-    flowable=True
-    
+    flowable = True
     """Maybe P must be the first element because MemoParser wouln't
     otherwise handle empty lines inside a LI correctly.  To be
     tested."""
 
-class UL(Fragment): 
-    flowable=True
-    allowedContent = (LI,)
-    def li(self,*args,**kw):
-        return self.append(LI(*args,**kw))
 
-class OL(UL): 
+class UL(Fragment):
+    flowable = True
+    allowedContent = (LI, )
+
+    def li(self, *args, **kw):
+        return self.append(LI(*args, **kw))
+
+
+class OL(UL):
     pass
-
 
 
 class Cell(SPAN):
-    allowedAttribs=dict(
-        align="align",
-        valign="valign",
-        **Fragment.allowedAttribs)
+    allowedAttribs = dict(align="align",
+                          valign="valign",
+                          **Fragment.allowedAttribs)
+
 
 class TD(Cell):
     pass
-    
+
+
 class TH(Cell):
     pass
-    
+
+
 class TR(Fragment):
-    allowedContent=(TD,TH)
-    
+    allowedContent = (TD, TH)
+
+
 class COL(Element):
-    allowedAttribs=dict(span="span",width="width")
+    allowedAttribs = dict(span="span", width="width")
+
 
 class COLGROUP(Fragment):
-    allowedContent=(COL,)
-    allowedAttribs=dict(span="span",width="width")
+    allowedContent = (COL, )
+    allowedAttribs = dict(span="span", width="width")
+
 
 class THEAD(Fragment):
-    allowedContent=(TR,)
+    allowedContent = (TR, )
+
+
 class TFOOT(Fragment):
-    allowedContent=(TR,)
+    allowedContent = (TR, )
+
+
 class TBODY(Fragment):
-    allowedContent=(TR,)
-    
+    allowedContent = (TR, )
+
+
 class TABLE(Fragment):
-    fragmentable=False
-    flowable=True
-    allowedContent=(TR,COLGROUP,THEAD,TFOOT,TBODY)
-    
-    def addrow(self,*cells):
+    fragmentable = False
+    flowable = True
+    allowedContent = (TR, COLGROUP, THEAD, TFOOT, TBODY)
+
+    def addrow(self, *cells):
         return self.append(TR(*[TD(e) for e in cells]))
         #return self.append(TR(*cells))
-    
-def tablerows(table,area):
+
+
+def tablerows(table, area):
     """
     area is one of 0:THEAD, 1:TFOOT, 2:TBODY
 
@@ -142,73 +174,97 @@ def tablerows(table,area):
             pass
         else:
             raise "unhandled element %s" % elem
-        
-
-
 
 
 class P(Fragment):
-    fragmentable=False
-    flowable=True
-    allowedContent = (CDATA,SPAN,BR,IMG)
-    allowedAttribs = dict(
-        align="align",
-        **SPAN.allowedAttribs)
-    
+    fragmentable = False
+    flowable = True
+    allowedContent = (CDATA, SPAN, BR, IMG)
+    allowedAttribs = dict(align="align", **SPAN.allowedAttribs)
+
+
 class H(P):
-    level=None
-    def __init__(self,level,*args,**kw):
+    level = None
+
+    def __init__(self, level, *args, **kw):
         assert level > 0 and level <= 9
-        self.level=level
-        Container.__init__(self,*args,**kw)
-        
+        self.level = level
+        Container.__init__(self, *args, **kw)
+
     def tag(self):
-        return self.__class__.__name__+str(self.level)
-        
-class H1(P): pass
-class H2(P): pass
-class H3(P): pass
-class H4(P): pass
-class H5(P): pass
-class H6(P): pass
-class H7(P): pass
-class H8(P): pass
-class H9(P): pass
+        return self.__class__.__name__ + str(self.level)
+
+
+class H1(P):
+    pass
+
+
+class H2(P):
+    pass
+
+
+class H3(P):
+    pass
+
+
+class H4(P):
+    pass
+
+
+class H5(P):
+    pass
+
+
+class H6(P):
+    pass
+
+
+class H7(P):
+    pass
+
+
+class H8(P):
+    pass
+
+
+class H9(P):
+    pass
+
 
 class PRE(P):
-    allowedContent = (CDATA,)
+    allowedContent = (CDATA, )
+
 
 class A(SPAN):
-    allowedAttribs=dict(href="href",
-                        **SPAN.allowedAttribs)
+    allowedAttribs = dict(href="href", **SPAN.allowedAttribs)
 
 
-P.autoClosedByStart=(P,LI,UL,OL,TABLE,PRE)
-P.autoClosedByEnd=(LI,UL,OL,TABLE,TD,TH,TR)
-TD.autoClosedByStart=(TD,TH,TR)
-TD.autoClosedByEnd=(TH,TR,TABLE)
-TH.autoClosedByStart=(TD,TH,TR)
-TH.autoClosedByEnd=(TD,TR,TABLE)
-TR.autoClosedByStart=(TR,TABLE)
-TR.autoClosedByEnd=(TABLE,)
-LI.autoClosedByStart=(LI,)
-LI.autoClosedByEnd=(UL,OL)
+P.autoClosedByStart = (P, LI, UL, OL, TABLE, PRE)
+P.autoClosedByEnd = (LI, UL, OL, TABLE, TD, TH, TR)
+TD.autoClosedByStart = (TD, TH, TR)
+TD.autoClosedByEnd = (TH, TR, TABLE)
+TH.autoClosedByStart = (TD, TH, TR)
+TH.autoClosedByEnd = (TD, TR, TABLE)
+TR.autoClosedByStart = (TR, TABLE)
+TR.autoClosedByEnd = (TABLE, )
+LI.autoClosedByStart = (LI, )
+LI.autoClosedByEnd = (UL, OL)
 
 #LI.allowedContent = Cell.allowedContent \
 #                    = (CDATA,P,BR,SPAN,IMG,TABLE)
-    
-Fragment.allowedContent = (CDATA,IMG,BR,Fragment)
-    
+
+Fragment.allowedContent = (CDATA, IMG, BR, Fragment)
+
+
 class BODY(Container):
-    allowedAttribs=dict(
-        bgcolor='bgcolor',
-        **Fragment.allowedAttribs)
-    allowedContent=(P,IMG,TABLE,UL,OL,PRE)
+    allowedAttribs = dict(bgcolor='bgcolor', **Fragment.allowedAttribs)
+    allowedContent = (P, IMG, TABLE, UL, OL, PRE)
+
 
 class HEAD(Container):
-    ignore=True
+    ignore = True
+
 
 class HTML(Container):
-    flowable=True
-    allowedContent=(BODY,HEAD)
-    
+    flowable = True
+    allowedContent = (BODY, HEAD)

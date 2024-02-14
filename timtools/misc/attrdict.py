@@ -18,40 +18,39 @@
 
 import types
 
+
 class AttrDict(dict):
-    
-    def __init__(self,d=None,factory=None):
+
+    def __init__(self, d=None, factory=None):
         if d is None:
             d = {}
         self.__dict__["_values"] = d
         self.__dict__["_factory"] = factory
-        for m in ('values','__len__','keys','items','get','has_key'):
-            self.__dict__[m] = getattr(d,m)
+        for m in ('values', '__len__', 'keys', 'items', 'get', 'has_key'):
+            self.__dict__[m] = getattr(d, m)
 
-    def __getattr__(self,name):
+    def __getattr__(self, name):
         try:
             return self._values[name]
-        except KeyError,e:
+        except KeyError, e:
             if self._factory is not None:
                 v = self._factory(name)
                 self._values[name] = v
                 return v
-            raise AttributeError,e
+            raise AttributeError, e
 
-    def __setattr__(self,name,value):
+    def __setattr__(self, name, value):
         if self._values.has_key(name):
             self.__dict__['_values'][name] = value
         else:
             raise "Not allowed"
 
-    def define(self,name,value):
+    def define(self, name, value):
         assert type(name) == types.StringType
         assert name.isalnum(), "invalid attribute name %s" % name
         assert not self._values.has_key(name), \
                "duplicate key %s" % repr(name)
         self._values[name] = value
 
-
-    def installto(self,d):
+    def installto(self, d):
         d.update(self._values)
-

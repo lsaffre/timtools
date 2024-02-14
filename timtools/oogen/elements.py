@@ -24,35 +24,43 @@ import types
 from timtools.gendoc.elements import \
      CDATA, Element, Container, InvalidRequest
 
+
 class TextElement(Element):
     "any element that may appear besides CDATA in a paragraph context"
     pass
 
+
 class TextContainer(Container):
-    
     """any conainer element that may appear besides TextElement and
     CDATA in a paragraph context"""
-    
+
     pass
 
+
 class Story(Container):
-    def __init__(self,doc,*args,**kw):
-        self.doc=doc
-        Container.__init__(self,*args,**kw)
 
-    def table(self,*args,**kw):
-        return self.append(Table(self.doc,*args,**kw))
+    def __init__(self, doc, *args, **kw):
+        self.doc = doc
+        Container.__init__(self, *args, **kw)
 
-    def par(self,*args,**kw):
-        return self.append(P(*args,**kw))
-        
-    def heading(self,level,text,**kw):
-        return self.append(H(level,text,**kw))
-    def h1(self,txt,**kw): self.heading(1,txt,**kw)
-    def h2(self,txt,**kw): self.heading(2,txt,**kw)
-    def h3(self,txt,**kw): self.heading(3,txt,**kw)
-    
-    
+    def table(self, *args, **kw):
+        return self.append(Table(self.doc, *args, **kw))
+
+    def par(self, *args, **kw):
+        return self.append(P(*args, **kw))
+
+    def heading(self, level, text, **kw):
+        return self.append(H(level, text, **kw))
+
+    def h1(self, txt, **kw):
+        self.heading(1, txt, **kw)
+
+    def h2(self, txt, **kw):
+        self.heading(2, txt, **kw)
+
+    def h3(self, txt, **kw):
+        self.heading(3, txt, **kw)
+
 
 class LineBreak(TextElement):
     elementname = "text:line-break"
@@ -60,58 +68,54 @@ class LineBreak(TextElement):
 
 class Text(TextContainer):
     elementname = "number:text"
-    allowedContent = (CDATA,)
+    allowedContent = (CDATA, )
+
 
 class Span(Text):
     elementname = "text:span"
-    
+
+
 class SheetName(Text):
     elementname = "text:sheet-name"
+
+
 class PageNumber(Text):
     elementname = "text:page-number"
+
+
 class Title(Text):
     elementname = "text:title"
-    
+
+
 class Date(Text):
     elementname = "text:date"
-    allowedAttribs=dict(
-        dataStyleName="style:data-style-name",
-        dateValue="text:date-value")
+    allowedAttribs = dict(dataStyleName="style:data-style-name",
+                          dateValue="text:date-value")
+
 
 class Time(Text):
     elementname = "text:time"
-    
-    
-        
-        
+
+
 class P(Container):
-    allowedContent = (CDATA,TextElement,TextContainer)
+    allowedContent = (CDATA, TextElement, TextContainer)
     elementname = "text:p"
-    allowedAttribs = dict(
-        styleName='text:style-name')
-        
+    allowedAttribs = dict(styleName='text:style-name')
+
     #~ def __init__(self,style="Default",*content,**kw):
-        #~ kw['style'] = style
-        #~ Container.__init__(self,*content,**kw)
-        
-    
+    #~ kw['style'] = style
+    #~ Container.__init__(self,*content,**kw)
+
+
 class H(P):
-    allowedContent = (CDATA,)
+    allowedContent = (CDATA, )
     elementname = "text:h"
-    allowedAttribs = dict(
-        level='text:level',
-        **P.allowedAttribs)
-        
-    def __init__(self,level,*content,**kw):
-        kw['styleName'] = "Heading "+str(level)
+    allowedAttribs = dict(level='text:level', **P.allowedAttribs)
+
+    def __init__(self, level, *content, **kw):
+        kw['styleName'] = "Heading " + str(level)
         kw['level'] = level
-        P.__init__(self,*content,**kw)
-        
-        
-        
-        
-
-
+        P.__init__(self, *content, **kw)
 
 
 """
@@ -159,18 +163,18 @@ Default styles are represented by the <style:default-style> element.
 
 
 """
-    
-    
+
+
 class Properties(Container):
     # <style:properties fo:font-style="italic" style:text-underline="single" style:text-underline-color="font-color" fo:font-weight="bold"/>
     # <style:properties fo:text-align="center" style:text-align-source="fix" fo:font-size="16pt" fo:font-style="italic" fo:font-weight="bold"/>
     # <style:properties fo:text-align="center" style:text-align-source="fix" fo:font-size="16pt" fo:font-style="italic" fo:font-weight="bold"/>
     # <style:properties fo:direction="ltr" style:rotation-angle="90"/>
     # <style:properties style:writing-mode="lr-tb"/>
-    #~ <style:properties fo:min-height="0.751cm" fo:margin-left="0cm" fo:margin-right="0cm" fo:margin-top="0.25cm" 
+    #~ <style:properties fo:min-height="0.751cm" fo:margin-left="0cm" fo:margin-right="0cm" fo:margin-top="0.25cm"
     #~  fo:border="0.088cm solid #000000" fo:padding="0.018cm" fo:background-color="#c0c0c0">
-    elementname="style:properties"
-    allowedAttribs=dict(
+    elementname = "style:properties"
+    allowedAttribs = dict(
         decimalPlaces="style:decimal-places",
         fontName="style:font-name",
         fontSize="fo:font-size",
@@ -203,7 +207,7 @@ class Properties(Container):
         useWindowFontColor="style:use-window-font-color",
         hyphenate="fo:hyphenate",
         hypenationRemainCharCount="fo:hyphenation-remain-char-count",
-        hypenationPushCharCount="fo:hyphenation-push-char-count" ,
+        hypenationPushCharCount="fo:hyphenation-push-char-count",
         hypenationLadderCount="fo:hyphenation-ladder-count",
         textAutospace="style:text-autospace",
         punctuationWrap="style:punctuation-wrap",
@@ -211,14 +215,14 @@ class Properties(Container):
         columnWidth="style:column-width",
         **Element.allowedAttribs)
 
+
 class TableProperties(Properties):
-    allowedAttribs=dict(
-        align="table:align",
-        width="style:width",
-        relWidth="style:rel-width",
-        **Element.allowedAttribs)
-        
-        
+    allowedAttribs = dict(align="table:align",
+                          width="style:width",
+                          relWidth="style:rel-width",
+                          **Element.allowedAttribs)
+
+
 class PageLayout(Properties):
     """
     The attributes that you can associate with the <style:page-layout> element are: name and pageUsage.     
@@ -226,45 +230,39 @@ class PageLayout(Properties):
     (all, left, right, mirrored.)
     """
     elementname = "style:page-layout"
-    allowedAttribs = dict(
-        name="style:name",
-        pageUsage="style:page-usage")
-        
-        
+    allowedAttribs = dict(name="style:name", pageUsage="style:page-usage")
+
+
 class FootnoteSep(Element):
-        elementname = "style:footnote-sep"
-        allowedAttribs  = dict(
-            width="style:width",
-            distanceBeforeSep="style:distance-before-sep",
-            distanceAfterSep="style:distance-after-sep",
-            adjustment="style:adjustment",
-            relWidth="style:rel-width",
-            color="style:color",
-            )
+    elementname = "style:footnote-sep"
+    allowedAttribs = dict(
+        width="style:width",
+        distanceBeforeSep="style:distance-before-sep",
+        distanceAfterSep="style:distance-after-sep",
+        adjustment="style:adjustment",
+        relWidth="style:rel-width",
+        color="style:color",
+    )
 
-
-    
-        
-    
 
 class BackgroundImage(Element):
     #~ <style:background-image/>
-    elementname="style:background-image"
+    elementname = "style:background-image"
 
 
 class Number(Element):
-    elementname="number:number"
-    allowedAttribs=dict(
-    minIntegerDigits="min-integer-digits",
-    decimalPlaces="number:decimal-places",
-    grouping="number:grouping",
+    elementname = "number:number"
+    allowedAttribs = dict(
+        minIntegerDigits="min-integer-digits",
+        decimalPlaces="number:decimal-places",
+        grouping="number:grouping",
     )
-    
+
 
 class CurrencySymbol(Text):
     # <number:currency-symbol number:language="fr" number:country="BE">EUR</number:currency-symbol>
     elementname = "number:currency-symbol"
-    allowedAttribs=dict(
+    allowedAttribs = dict(
         language="number:language",
         country="number:country",
     )
@@ -272,8 +270,8 @@ class CurrencySymbol(Text):
 
 class Style(Container):
     elementname = "style:style"
-    allowedContent = (Properties,)
-    allowedAttribs=dict(
+    allowedContent = (Properties, )
+    allowedAttribs = dict(
         name="style:name",
         family="style:family",
         className="style:class",
@@ -282,16 +280,17 @@ class Style(Container):
         dataStyle="style:data-style-name",
         #displayName="style:display-name",
     )
-    primaryKey = ('name','family')
-    
-    def addProperties(self,**kw):
+    primaryKey = ('name', 'family')
+
+    def addProperties(self, **kw):
         self.append(Properties(**kw))
-    
-    
+
+
 class NumberStyle(Style):
     elementname = "number:number-style"
-    allowedContent = (Properties,Number,Text)
-    
+    allowedContent = (Properties, Number, Text)
+
+
 class DefaultStyle(Style):
     """
 A default style specifies default formatting properties for a certain style family. These defaults are
@@ -305,140 +304,135 @@ on the style family.
 [oospec-1.0, p. 386]
     """
     elementname = "style:default-style"
-    allowedAttribs=dict(family="style:family")
-    allowedContent=(Properties,)
+    allowedAttribs = dict(family="style:family")
+    allowedContent = (Properties, )
+
 
 class FooterStyle(Style):
     elementname = "style:footer-style"
-    
+
+
 class HeaderStyle(Style):
     elementname = "style:header-style"
+
 
 class CurrencyStyle(NumberStyle):
     elementname = "number:currency-style"
 
 
-
-
-
-
-
-
-
-
-        
-        
 class TableColumn(Element):
     elementname = "table:table-column"
     allowedAttribs = dict(
         styleName="table:style-name",
-        numberColumnsRepeated="table:number-columns-repeated"
-        )
+        numberColumnsRepeated="table:number-columns-repeated")
+
     #def addProperties(self,**kw):
-    def __init__(self,table,**kw):
-        assert isinstance(table,Table)
+    def __init__(self, table, **kw):
+        assert isinstance(table, Table)
         self.table = table
-        name = table.name+"."+str(len(table.columns)+1)
-        s = table.doc.addAutoStyle(name=name,family="table-column")
+        name = table.name + "." + str(len(table.columns) + 1)
+        s = table.doc.addAutoStyle(name=name, family="table-column")
         if len(kw):
             s.addProperties(**kw)
-        Element.__init__(self,styleName=s.name)
+        Element.__init__(self, styleName=s.name)
+
 
 ##     def addProperties(self,**kw):
 ##         self.append(Properties(**kw))
-    
-    
+
+
 class TableCell(Container):
-    allowedContent = (P,Span,Container)
+    allowedContent = (P, Span, Container)
     elementname = "table:table-cell"
     allowedAttribs = dict(
         valueType="table:value-type",
         numberColumnsSpanned="table:number-columns-spanned",
-        )
-    
+    )
+
+
 class TableRow(Container):
-    allowedContent = (TableCell,)
+    allowedContent = (TableCell, )
     elementname = "table:table-row"
-    def __init__(self,table,*args,**kw):
-        Container.__init__(self,*args,**kw)
+
+    def __init__(self, table, *args, **kw):
+        Container.__init__(self, *args, **kw)
         self._table = table
 
-    def cell(self,*content,**kw):
+    def cell(self, *content, **kw):
         if len(self.content) == len(self._table.columns):
             s = self._table.column()
-        elem = TableCell(valueType="string",*content,**kw)
-##         for x in content:
-##             if isinstance(x,TableCell):
-##                 row.cell(cell)
-##             else:
-##                 row.cell(TableCell(cell))
+        elem = TableCell(valueType="string", *content, **kw)
+        ##         for x in content:
+        ##             if isinstance(x,TableCell):
+        ##                 row.cell(cell)
+        ##             else:
+        ##                 row.cell(TableCell(cell))
         self.append(elem)
-            
+
         #if len(kw):
         #    raise NotImplementedError
-            #if kw.has_key('styleName')
-            #s = self._table.doc.addAutoStyle(name="?",family="todo")
-            # cell style? or paragraph style
+        #if kw.has_key('styleName')
+        #s = self._table.doc.addAutoStyle(name="?",family="todo")
+        # cell style? or paragraph style
         return elem
 
+
 class TableHeaderRows(Container):
-    allowedContent = (TableRow,)
+    allowedContent = (TableRow, )
     elementname = "table:table-header-rows"
 
-    
 
 class Table(Container):
     elementname = "table:table"
-    allowedContent = (TableHeaderRows,TableColumn,TableRow)
+    allowedContent = (TableHeaderRows, TableColumn, TableRow)
     allowedAttribs = dict(
         name="table:name",
         styleName='table:style-name',
         #styleFamily='style:family',
     )
+
     #defaultAttribs = dict(styleFamily="table")
-    
-    
-    def __init__(self,doc,name=None,styleName=None,**kw):
+
+    def __init__(self, doc, name=None, styleName=None, **kw):
 
         if name is None:
-            name = "Table"+str(len(doc.getTables())+1)
+            name = "Table" + str(len(doc.getTables()) + 1)
         if styleName is None:
             styleName = name
-            s = doc.addAutoStyle(name=styleName,
-                                 family="table")
-            if len(kw)>0:
+            s = doc.addAutoStyle(name=styleName, family="table")
+            if len(kw) > 0:
                 if kw.has_key('width'):
                     if not kw.has_key('align'):
                         kw['align'] = 'center'
                 s.append(TableProperties(**kw))
         else:
             assert len(kw) == 0
-            s = doc.getStyle(styleName,"table")
+            s = doc.getStyle(styleName, "table")
             # just to check existence
-                                 
-        Container.__init__(self,name=name, styleName=styleName)
+
+        Container.__init__(self, name=name, styleName=styleName)
 
         self.doc = doc
         self.columns = []
         self._headerRows = None
 
-    def heading(self,level,text,**kw):
-        return self.p(text,styleName="Heading"+str(level),**kw)
-    
-    def par(self,text,**kw):
+    def heading(self, level, text, **kw):
+        return self.p(text, styleName="Heading" + str(level), **kw)
+
+    def par(self, text, **kw):
         r = self.row()
-        p = P(text,**kw)
-        r.cell(p,numberColumnsSpanned=str(len(self.columns)))
+        p = P(text, **kw)
+        r.cell(p, numberColumnsSpanned=str(len(self.columns)))
         #r.__xml__(sys.stdout.write)
         return p
 
-    def column(self,**kw):
+    def column(self, **kw):
         assert self._headerRows is None
-        col = TableColumn(self,**kw)
+        col = TableColumn(self, **kw)
         self.columns.append(col)
         self.append(col)
         return col
-    
+
 ##     def column(self,**kw):
 ##         name = self.name+"."+str(len(self.columns)+1)
 ##         s = self.doc.addAutoStyle(name=name,family="table-column")
@@ -450,46 +444,42 @@ class Table(Container):
 ##         if len(kw):
 ##             col.addProperties(**kw)
 ##         return col
-        
-    def createTableRow(self,*cells,**kw):
-        row = TableRow(self,**kw)
+
+    def createTableRow(self, *cells, **kw):
+        row = TableRow(self, **kw)
         for cell in cells:
             row.cell(cell)
+
+
 ##             if isinstance(cell,TableCell):
 ##                 row.cell(cell)
 ##             else:
 ##                 row.cell(TableCell(cell))
         return row
 
-    def row(self,*cells,**kw):
-        r = self.createTableRow(*cells,**kw)
+    def row(self, *cells, **kw):
+        r = self.createTableRow(*cells, **kw)
         self.append(r)
         return r
-        
-    def headerRow(self,*cells,**kw):
-        r = self.createTableRow(*cells,**kw)
+
+    def headerRow(self, *cells, **kw):
+        r = self.createTableRow(*cells, **kw)
         if not self._headerRows:
             self._headerRows = TableHeaderRows()
             self.append(self._headerRows)
         self._headerRows.append(r)
-                
-                
 
 
-
-
-
-    
-    
 class Font(Element):
     elementname = "style:font-decl"
     #def __init__(self,name=None,fontFamily=None,fontFamilyGeneric=None,fontPitch=None):
     allowedAttribs = dict(
         name="style:name",
-        fontFamily="fo:font-family",  
-        fontFamilyGeneric="style:font-family-generic", # e.g. "modern", "roman"
-        fontPitch="style:font-pitch", #  e.g. "fixed", "variable"
+        fontFamily="fo:font-family",
+        fontFamilyGeneric="style:font-family-generic",  # e.g. "modern", "roman"
+        fontPitch="style:font-pitch",  #  e.g. "fixed", "variable"
     )
+
 
 class PageMaster(Style):
     """The <style:page-master> element specifies the physical properties of a page. This element
@@ -498,9 +488,9 @@ properties of the page and two optional elements that specify the properties of 
 footers.
     """
     elementname = "style:page-master"
-    allowedContent = (Properties,FootnoteSep,HeaderStyle,FooterStyle)
-    
-    
+    allowedContent = (Properties, FootnoteSep, HeaderStyle, FooterStyle)
+
+
 class MasterPage(Container):
     """
     In text and spreadsheet documents, the <style:master-page> element contains the content
@@ -513,11 +503,10 @@ class MasterPage(Container):
     
     """
     elementname = "style:master-page"
-    allowedAttribs = dict(
-        name="style:name",
-        pageMasterName="style:page-master-name"
-    )
-    
+    allowedAttribs = dict(name="style:name",
+                          pageMasterName="style:page-master-name")
+
+
 """
 
 The header and footer elements specify the content of headers and
@@ -547,66 +536,78 @@ The content of headers and footers is either:
 [p. 390]
 """
 
+
 class Region(Container):
     allowedContent = (P, Table)
-    
-    
+
+
 class RegionLeft(Region):
     elementname = "style:region-left"
+
+
 class RegionCenter(Region):
     elementname = "style:region-center"
+
+
 class RegionRight(Region):
     elementname = "style:region-right"
-    
+
+
 class HeaderOrFooter(Story):
     allowedContent = (CDATA, Region, P, Table)
     allowedAttribs = dict(display="style:display")
-    
-    
+
+
 class Header(HeaderOrFooter):
     elementname = "style:header"
-    
+
+
 class Footer(HeaderOrFooter):
     elementname = "style:footer"
 
+
 class HeaderLeft(Header):
     elementname = "style:header-left"
+
 
 class FooterLeft(Footer):
     elementname = "style:footer-left"
 
 
-
 # second-level elements used in ifiles.py
 class Fonts(Container):
-        elementname = "office:font-decls"
-        allowedContent = (Font,)
+    elementname = "office:font-decls"
+    allowedContent = (Font, )
+
 
 class Styles(Container):
-        elementname = "office:styles"
-        allowedContent = (Style,)
-        
+    elementname = "office:styles"
+    allowedContent = (Style, )
+
+
 class AutoStyles(Container):
-        elementname = "office:automatic-styles"
-        allowedContent = (Style,)
-        
+    elementname = "office:automatic-styles"
+    allowedContent = (Style, )
+
+
 class MasterStyles(Container):
-        elementname = "office:master-styles"
-        allowedContent = (Style,MasterPage)
-        
-            
+    elementname = "office:master-styles"
+    allowedContent = (Style, MasterPage)
+
+
 class Body(Story):
     elementname = "office:body"
-    
+
+
 ##     def __init__(self,doc):
 ##         Story.__init__(self)
 ##         self.doc = doc
-        
+
 ##     def getTables(self):
 ##         raise NotImplementedError
-            
+
 ## class TextBody(Body):
-    
+
 ##     def __init__(self,doc):
 ##         Body.__init__(self,doc)
 
@@ -614,6 +615,5 @@ class Body(Story):
 ##         t = Story.table(self,*args,**kw)
 ##         self.tables.append(t)
 ##         return t
-        
-## class SpreadsheetBody(Body):
 
+## class SpreadsheetBody(Body):

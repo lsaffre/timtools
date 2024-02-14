@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 # Copyright 2003-2018 Rumma & Ko Ltd
-
-
 """
 
 used by :
@@ -15,7 +13,8 @@ import urllib
 # import email
 import webbrowser
 
-def mailto_url(to=None,subject=None,body=None,cc=None):
+
+def mailto_url(to=None, subject=None, body=None, cc=None):
     """
     encodes the content as a mailto link as described on
     http://www.faqs.org/rfcs/rfc2368.html
@@ -23,19 +22,19 @@ def mailto_url(to=None,subject=None,body=None,cc=None):
     http://selfhtml.teamone.de/html/verweise/email.htm
     """
     #url = "mailto:" + urllib.quote(to.strip())
-    url = "mailto:" + urllib.quote(to.strip(),"@,")
+    url = "mailto:" + urllib.quote(to.strip(), "@,")
     sep = "?"
     if cc:
-        url+= sep + "cc=" + urllib.quote(cc,"@,")
+        url += sep + "cc=" + urllib.quote(cc, "@,")
         sep = "&"
     if subject:
-        url+= sep + "subject=" + urllib.quote(subject,"")
+        url += sep + "subject=" + urllib.quote(subject, "")
         sep = "&"
     if body:
         # Also note that line breaks in the body of a message MUST be
         # encoded with "%0D%0A". (RFC 2368)
-        body="\r\n".join(body.splitlines())
-        url+= sep + "body=" + urllib.quote(body,"")
+        body = "\r\n".join(body.splitlines())
+        url += sep + "body=" + urllib.quote(body, "")
         sep = "&"
     # if not confirm("okay"): return
     return url
@@ -48,10 +47,11 @@ def mailto_url(to=None,subject=None,body=None,cc=None):
 ##      raise "%s contains a multipart message : not supported" % filename
 ##  return msg
 
-def readmail(filename): 
+
+def readmail(filename):
     """reads a "simplified pseudo-RFC2822" file
     """
-    
+
     from email.Message import Message
     msg = Message()
 
@@ -71,8 +71,10 @@ def readmail(filename):
             if len(line) == 0:
                 headersDone = True
             else:
-                (name,value) = line.split(':')
+                (name, value) = line.split(':')
                 msg[name] = value.strip()
+
+
 ##              if name.lower() == 'subject':
 ##                  subject = value.strip()
 ##              elif name.lower() == 'to':
@@ -84,24 +86,21 @@ def readmail(filename):
     return msg
 
 
-
 def openmail(msg):
-    url = mailto_url(msg.get('to'),msg.get("subject"),msg.get_payload())
-    webbrowser.open(url,new=1)
-
+    url = mailto_url(msg.get('to'), msg.get("subject"), msg.get_payload())
+    webbrowser.open(url, new=1)
 
 
 RESERVED = ";/?:@&=+$, <>\r\n"
+
 
 def quote(s):
     """Like urllib.quote(), but non-ascii characters are left unchanged.
 
     """
     for c in RESERVED:
-        s = s.replace(c,'%%%02X' % ord(c))
+        s = s.replace(c, '%%%02X' % ord(c))
     return s
-
-    
 
 
 '''
@@ -135,36 +134,37 @@ openmaila(to,subject,body,attachment)
 
 
 '''
-    
-def openmaila(to=None,subject=None,body=None,attachment=None,**kw):
-    message_options=[]
+
+
+def openmaila(to=None, subject=None, body=None, attachment=None, **kw):
+    message_options = []
     if to is not None:
-        to=quote(to)
+        to = quote(to)
         #if " " in to or "<" in to:
         #    to="'"+to+"'"
         message_options.append("to=%s" % to)
     if subject is not None:
-        subject=quote(subject)
+        subject = quote(subject)
         message_options.append("subject=%s" % subject)
     if body is not None:
-        body="\r\n".join(body.splitlines())
-        body=quote(body)
+        body = "\r\n".join(body.splitlines())
+        body = quote(body)
         message_options.append("body=%s" % body)
     if attachment is not None:
-        attachment=quote(attachment)
+        attachment = quote(attachment)
         message_options.append("attachment=%s" % attachment)
     for kv in kw.items():
         message_options.append("%s='%s'" % kv)
-    
-    path=r'C:\Program Files\Mozilla Thunderbird\thunderbird.exe'
-    
+
+    path = r'C:\Program Files\Mozilla Thunderbird\thunderbird.exe'
+
     #cmd="'%s' -compose \"%s\"" % (path,",".join(message_options))
     #print cmd
     #os.system(cmd)
-    
+
     args = [path, '-compose', ",".join(message_options)]
     #print args
-    os.spawnv(os.P_NOWAIT,path,args)
+    os.spawnv(os.P_NOWAIT, path, args)
 
 
 """
@@ -192,4 +192,3 @@ Syntax Rules
       page" .
 
 """
-

@@ -1,6 +1,6 @@
 #coding: latin1
 
-## Copyright 2003-2006 Luc Saffre 
+## Copyright 2003-2006 Luc Saffre
 
 ## This file is part of the Lino project.
 
@@ -18,90 +18,90 @@
 ## along with Lino; if not, write to the Free Software Foundation,
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-
 #import sys
 
+
 class GenericDocument:
-    
+
     def beginDocument(self):
         pass
-    
+
     def endDocument(self):
         pass
 
-    def renderLabel(self,lbl):
+    def renderLabel(self, lbl):
         if lbl.enabled:
             self.p(lbl.getLabel())
-        
-    def renderButton(self,btn):
+
+    def renderButton(self, btn):
         if btn.enabled:
-            self.p("["+btn.getLabel()+"]")
-            
-    def renderEntry(self,e):
+            self.p("[" + btn.getLabel() + "]")
+
+    def renderEntry(self, e):
         raise
         if e.enabled:
-            v=e.getValue()
+            v = e.getValue()
             if v is None:
-                self.p(e.getLabel()+": [None]")
+                self.p(e.getLabel() + ": [None]")
             else:
-                self.p(e.getLabel()+": ["+e.format(v)+"]")
-        
-    def renderDataGrid(self,grid):
+                self.p(e.getLabel() + ": [" + e.format(v) + "]")
+
+    def renderDataGrid(self, grid):
         if grid.enabled:
             self.report(grid.rpt)
-            
-    def renderForm(self,frm):
+
+    def renderForm(self, frm):
         frm.render(self)
-        
-    def h1(self,txt,**kw): self.heading(1,txt,**kw)
-    def h2(self,txt,**kw): self.heading(2,txt,**kw)
-    def h3(self,txt,**kw): self.heading(3,txt,**kw)
-    
+
+    def h1(self, txt, **kw):
+        self.heading(1, txt, **kw)
+
+    def h2(self, txt, **kw):
+        self.heading(2, txt, **kw)
+
+    def h3(self, txt, **kw):
+        self.heading(3, txt, **kw)
 
 
-class Story: # better name? Content Area Body ?
+class Story:  # better name? Content Area Body ?
 
-    def __init__(self,doc):
-        self.doc=doc
-        
+    def __init__(self, doc):
+        self.doc = doc
+
     def getDocument(self):
         return self.doc
-        
+
+
 ##     def getLineWidth(self):
 ##         return 100
-    
+
 ##     def getColumnSepWidth(self):
 ##         return 0
-    
-    def table(self,*args,**kw):
+
+    def table(self, *args, **kw):
         raise NotImplementedError
 
-    def par(self,*args,**kw):
+    def par(self, *args, **kw):
         raise NotImplementedError, repr(self)
 
-    def pre(self,*args,**kw):
+    def pre(self, *args, **kw):
         raise NotImplementedError, repr(self)
 
-    def header(self,*args,**kw):
-        raise NotImplementedError
-        
-    def ul(self,*args,**kw):
-        raise NotImplementedError
-        
-    def report(self,rpt):
+    def header(self, *args, **kw):
         raise NotImplementedError
 
+    def ul(self, *args, **kw):
+        raise NotImplementedError
+
+    def report(self, rpt):
+        raise NotImplementedError
 
 
 class WriterDocument(GenericDocument):
+
     def __init__(self, writer=None):
         #if writer is None: writer=sys.stdout.write
         self.writer = writer
 
-    
-    def write(self,txt):
+    def write(self, txt):
         self.writer(txt)
-        
-
-        
-

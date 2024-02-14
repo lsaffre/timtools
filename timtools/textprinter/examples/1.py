@@ -22,40 +22,39 @@ from timtools.ui import console
 from timtools.textprinter.winprn import Win32PrinterDocument
 from timtools.textprinter.pdfdoc import PdfDocument
 
+
 def doit(d):
     d.writeln("")
     d.writeln("timtools.textprinter Test page")
     d.writeln("")
     cols = int(d.getWidth() / 10) + 1
-    d.writeln("".join([" "*9+str(i+1) for i in range(cols)]))
-    d.writeln("1234567890"*cols)
+    d.writeln("".join([" " * 9 + str(i + 1) for i in range(cols)]))
+    d.writeln("1234567890" * cols)
     d.writeln("")
     d.writeln("Here is some \033b1bold\033b0 text.")
     d.writeln("Here is some \033u1underlined\033u0 text.")
     d.writeln("Here is some \033i1italic\033i0 text.")
     d.endDoc()
-        
+
 
 def main():
-    
+
     # first on console:
     d = console.textprinter()
     doit(d)
-    
+
     # now on the printer:
-    if console.confirm(
-        "print it on your default Windows printer?"):
+    if console.confirm("print it on your default Windows printer?"):
         d = Win32PrinterDocument()
         doit(d)
-        
+
     # and now on a PDF document:
     filename = "test.pdf"
     if console.confirm("start Acrobat Reader on %s?" % filename):
         d = PdfDocument(filename)
         doit(d)
-        os.system("start "+filename)
-        
+        os.system("start " + filename)
+
+
 if __name__ == '__main__':
     main()
-
-

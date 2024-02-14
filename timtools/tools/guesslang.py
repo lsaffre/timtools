@@ -5,13 +5,12 @@
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation; either version 3 of the License, or
 ## (at your option) any later version.
-## TimTools is distributed in the hope that it will be useful, 
+## TimTools is distributed in the hope that it will be useful,
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
 ## You should have received a copy of the GNU General Public License
 ## along with TimTools; if not, see <http://www.gnu.org/licenses/>.
-
 
 # based on a recipe by Dirk Holtwick:
 # http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/355807
@@ -21,10 +20,11 @@ import zlib
 
 _guesser = None
 
+
 class Entropy:
-    
+
     #encoding='utf-8'
-    encoding=sys.getfilesystemencoding()
+    encoding = sys.getfilesystemencoding()
 
     def __init__(self):
         self.entro = []
@@ -35,8 +35,8 @@ class Entropy:
         <name> may also be a function or whatever you need
         to handle the result.
         """
-        corpus=corpus.encode(self.encoding)
-        ziplen=len(zlib.compress(corpus))
+        corpus = corpus.encode(self.encoding)
+        ziplen = len(zlib.compress(corpus))
         self.entro.append((name, corpus, ziplen))
 
     def guess(self, part):
@@ -49,12 +49,12 @@ class Entropy:
         diff = 0
         part = part.encode(self.encoding)
         for name, corpus, ziplen in self.entro:
-            nz = len(zlib.compress(corpus+part))-ziplen
+            nz = len(zlib.compress(corpus + part)) - ziplen
             #print name, nz, ziplen, nz-ziplen, (1.0 * (nz-ziplen)) / len(part)
-            if diff==0 or nz<diff:
-                what=name
-                diff=nz
-                
+            if diff == 0 or nz < diff:
+                what = name
+                diff = nz
+
         return what
 
 
@@ -62,8 +62,9 @@ def guesslang(x):
     global _guesser
     if _guesser is None:
         _guesser = Entropy()
-    
-        _guesser.register("en","""
+
+        _guesser.register(
+            "en", """
 
 If you ever wrote a large shell script, you probably know this
 feeling: you'd love to add yet another feature, but it's already so
@@ -78,33 +79,30 @@ sufficiently familiar with C.
 
         """)
 
-## In the beginning God created the heavens and the earth.  Now the
-## earth was formless and empty, darkness was over the surface of the
-## deep, and the Spirit of God was hovering over the waters.  And God
-## said, "Let there be light," and there was light. God saw that the
-## light was good, and He separated the light from the darkness.  God
-## called the light "day," and the darkness he called "night." And
-## there was evening, and there was morning—the first day.  And God
-## said, "Let there be an expanse between the waters to separate water
-## from water." So God made the expanse and separated the water under
-## the expanse from the water above it. And it was so. God called the
-## expanse "sky." And there was evening, and there was morning—the
-## second day.  And God said, "Let the water under the sky be gathered
-## to one place, and let dry ground appear." And it was so. God called
-## the dry ground "land," and the gathered waters he called "seas."
-## And God saw that it was good.  Then God said, "Let the land produce
-## vegetation: seed-bearing plants and trees on the land that bear
-## fruit with seed in it, according to their various kinds." And it
-## was so. The land produced vegetation: plants bearing seed according
-## to their kinds and trees bearing fruit with seed in it according to
-## their kinds. And God saw that it was good. And there was evening,
-## and there was morning—the third day.
+        ## In the beginning God created the heavens and the earth.  Now the
+        ## earth was formless and empty, darkness was over the surface of the
+        ## deep, and the Spirit of God was hovering over the waters.  And God
+        ## said, "Let there be light," and there was light. God saw that the
+        ## light was good, and He separated the light from the darkness.  God
+        ## called the light "day," and the darkness he called "night." And
+        ## there was evening, and there was morning—the first day.  And God
+        ## said, "Let there be an expanse between the waters to separate water
+        ## from water." So God made the expanse and separated the water under
+        ## the expanse from the water above it. And it was so. God called the
+        ## expanse "sky." And there was evening, and there was morning—the
+        ## second day.  And God said, "Let the water under the sky be gathered
+        ## to one place, and let dry ground appear." And it was so. God called
+        ## the dry ground "land," and the gathered waters he called "seas."
+        ## And God saw that it was good.  Then God said, "Let the land produce
+        ## vegetation: seed-bearing plants and trees on the land that bear
+        ## fruit with seed in it, according to their various kinds." And it
+        ## was so. The land produced vegetation: plants bearing seed according
+        ## to their kinds and trees bearing fruit with seed in it according to
+        ## their kinds. And God saw that it was good. And there was evening,
+        ## and there was morning—the third day.
 
-        
-
-
-
-        _guesser.register("de",u"""
+        _guesser.register(
+            "de", u"""
         
 Über spirito (http://www.spirito.de) Die spirito GmbH mit Sitz in
 Duisburg ist Dienstleister im Bereich maßgeschneiderte Programmierung
@@ -127,8 +125,8 @@ der Software überlassen ...
 
         """)
 
-
-        _guesser.register("et",u"""
+        _guesser.register(
+            "et", u"""
         Iluaed tõuseb, kapsamaa langeb
         14.04.2005 Annika Poldre, Sirje Pärismaa, Merike Pitk
         Kuigi elukutseliste põllumeeste arv on tänases Eestis väike,
@@ -152,7 +150,8 @@ der Software überlassen ...
 
         # Eric Brasseur: Les impostures
         # http://www.lulu.com/content/255713
-        _guesser.register("fr",u"""
+        _guesser.register(
+            "fr", u"""
 
 Le canon du bonheur est peut-être un bébé cajolé par sa maman.  Ses
 besoins sont simples et très forts. Sa maman souriante est toute
@@ -179,6 +178,3 @@ ornière de l'enfance. Le malheur vient des adultes infantiles.
         #       for name, corpus, ziplen
         #       in _guesser.entro]
     return _guesser.guess(x)
-
-
-

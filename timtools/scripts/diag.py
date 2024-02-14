@@ -5,9 +5,9 @@
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation; either version 3 of the License, or
 ## (at your option) any later version.
-## TimTools is distributed in the hope that it will be useful, 
+## TimTools is distributed in the hope that it will be useful,
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
 ## You should have received a copy of the GNU General Public License
 ## along with TimTools; if not, see <http://www.gnu.org/licenses/>.
@@ -17,6 +17,7 @@ import os
 import locale
 
 from timtools.console.application import Application, UsageError
+
 
 def babel_message():
 
@@ -37,18 +38,18 @@ Overview table with some accented characters:
     ^   Â Ê Î Ô Û   â ê î ô û
     
 """
-    
-    try:
-        out_encoding=repr(sys.stdout.encoding)
-    except AttributeError:
-        out_encoding="(undefined)"
-        
-    try:
-        in_encoding=repr(sys.stdin.encoding)
-    except AttributeError:
-        in_encoding="(undefined)"
 
-    s+="""
+    try:
+        out_encoding = repr(sys.stdout.encoding)
+    except AttributeError:
+        out_encoding = "(undefined)"
+
+    try:
+        in_encoding = repr(sys.stdin.encoding)
+    except AttributeError:
+        in_encoding = "(undefined)"
+
+    s += """
     
 Some system settings related to encodings:
 
@@ -58,21 +59,18 @@ Some system settings related to encodings:
     sys.stdout.encoding : %s
     sys.stdin.encoding : %s
     
-    """ % ( locale.getdefaultlocale(), 
-    sys.getdefaultencoding(),
-    sys.getfilesystemencoding(),
-    out_encoding,
-    in_encoding)
+    """ % (locale.getdefaultlocale(), sys.getdefaultencoding(),
+           sys.getfilesystemencoding(), out_encoding, in_encoding)
 
     return s
-              
+
 
 ##     out.write("""
 ## Miscellaneous system settings:
 ## """)
 ##     l = sys.modules.keys()
 ##     l.sort()
-    
+
 ##     out.write("modules: " + ' '.join(l)+"\n")
 
 ##     rpt = console.report()
@@ -82,23 +80,23 @@ Some system settings related to encodings:
 ##     rpt.addColumn(meth=lambda row: repr(row[1]),
 ##                   label="value",
 ##                   width=40)
-##     rpt.execute(d.items())    
-    
+##     rpt.execute(d.items())
+
 
 class Diag(Application):
-    name="diag"
-    copyright="""\
+    name = "diag"
+    copyright = """\
 Copyright (c) 2005-2007 Luc Saffre.
 This software comes with ABSOLUTELY NO WARRANTY and is
 distributed under the terms of the GNU General Public License.
 See file COPYING.txt for more information."""
-    url="http://timtools.saffre-rumma.ee/diag.html"
-    
-    usage="usage: timtools diag [options]"
-    description="""\
+    url = "http://timtools.saffre-rumma.ee/diag.html"
+
+    usage = "usage: timtools diag [options]"
+    description = """\
 writes some diagnostics about your computer.
-""" 
-    
+"""
+
     def run(self):
         if len(self.args) != 0:
             raise UsageError("no arguments please")
@@ -108,10 +106,7 @@ writes some diagnostics about your computer.
 
 def main():
     Diag().main()
-    
+
+
 if __name__ == '__main__':
     main()
-    
-    
-        
-

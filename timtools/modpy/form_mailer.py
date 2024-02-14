@@ -1,4 +1,4 @@
-## Copyright 2007-2008 Luc Saffre 
+## Copyright 2007-2008 Luc Saffre
 
 ## This file is part of the Lino project.
 
@@ -15,7 +15,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Lino; if not, write to the Free Software Foundation,
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-
 """
 
 a simple form mailer to be called by the mod_python Publisher handler.
@@ -30,8 +29,9 @@ import smtplib
 from mod_python import apache
 # import apache
 
-WEBMASTER = "webmaster"   # webmaster e-mail
-SMTP_SERVER = "localhost" # your SMTP server
+WEBMASTER = "webmaster"  # webmaster e-mail
+SMTP_SERVER = "localhost"  # your SMTP server
+
 
 def email(req, name, email, comment, **kw):
 
@@ -39,9 +39,9 @@ def email(req, name, email, comment, **kw):
         return "Sorry: name, email and comment are required."
 
     if kw.has_key('_recipient'):
-        recipient=kw["_recipient"]
+        recipient = kw["_recipient"]
     else:
-        recipient=WEBMASTER
+        recipient = WEBMASTER
     # create the message text
     msg = """\
 From: %s
@@ -55,21 +55,21 @@ To: %s
     msg += "email: %s\n" % email
     # msg += "URI:%s\n" % req.connection.the_request
     msg += "comment:\n\n %s\n\n" % comment
-    
+
     msg += "other:\n"
 
-    for k,v in kw.items():
+    for k, v in kw.items():
         if not k.startswith('_'):
             msg += str(k) + ":" + str(v) + "\n\n"
     if False:
         msg += "\nRequest:\n"
         for k in dir(req):
             if not k.startswith('_'):
-                msg += "- " + str(k) + ":" + str(getattr(req,k)) + "\n"
-    
+                msg += "- " + str(k) + ":" + str(getattr(req, k)) + "\n"
+
     # send it out
     conn = smtplib.SMTP(SMTP_SERVER)
-    conn.sendmail(email, [recipient,WEBMASTER], msg)
+    conn.sendmail(email, [recipient, WEBMASTER], msg)
     conn.quit()
 
     # provide feedback to the user
@@ -81,7 +81,7 @@ To: %s
         raise apache.SERVER_RETURN, apache.OK
         #return req.internal_redirect(kw['_response_ok'])
     else:
-      s = """\
+        s = """\
 <html>
 
 Dear %s,<br>
@@ -89,4 +89,4 @@ Thank you for your feedback.
 
 </html>""" % name
 
-      return s
+        return s

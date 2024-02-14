@@ -20,15 +20,16 @@ from timtools.timtools import CONSOLE_TARGETS
 from timtools.console.syscon import confirm
 from timtools.tools.tsttools import trycmd
 
-def main(*args,**kw):
+
+def main(*args, **kw):
     msg = "Gonna rebuild the following files:\n"
     msg += ", ".join(["%s.help.txt" % ct for ct in CONSOLE_TARGETS])
-    if confirm(msg+"\nAre you sure?"):
+    if confirm(msg + "\nAre you sure?"):
         for ct in CONSOLE_TARGETS:
-            cmd = "tt %s --help > %s.help.txt" % (ct,ct)
-            print cmd
+            cmd = "tt %s --help > %s.help.txt" % (ct, ct)
+            print(cmd)
             trycmd(cmd)
-    
 
-if __name__ == '__main__': 
+
+if __name__ == '__main__':
     main()

@@ -16,25 +16,24 @@
 ## along with Lino; if not, write to the Free Software Foundation,
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-
 LEFT = "LEFT"
 RIGHT = "RIGHT"
 CENTER = "CENTER"
 TOP = "TOP"
 BOTTOM = "BOTTOM"
 
+
 class ConfigError(Exception):
     pass
+
 
 class NotEnoughSpace(Exception):
     pass
 
 
-
-
 __all__ = filter(lambda x: x[0] != "_", dir())
 
 ## __all__ = [
-    
+
 ##     "LEFT","RIGHT","CENTER","TOP","BOTTOM",
 ##     ]

@@ -1,4 +1,4 @@
-## Copyright 2005 Luc Saffre 
+## Copyright 2005 Luc Saffre
 
 ## This file is part of the Lino project.
 
@@ -16,32 +16,31 @@
 ## along with Lino; if not, write to the Free Software Foundation,
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-
 from timtools.forms import gui
 
 if __name__ == "__main__":
-    
+
     gui.parse_args()
-    
+
     frm = gui.form(label="The First Lino Form")
-    
+
     frm.addLabel("""\
 Please enter your personal data.
 Don't worry about your privacy.
 You can trust us.
 """)
-    firstName = frm.addEntry("firstName",label="First name")
+    firstName = frm.addEntry("firstName", label="First name")
     name = frm.addEntry("name")
     frm.addOkButton()
     frm.addCancelButton()
 
     if frm.showModal():
-        
-        print "Hello %s %s. Thank you for registering." % (
+
+        print("Hello %s %s. Thank you for registering." % (
             #frm.entries.firstName.getValue(),
             #frm.entries.name.getValue())
             firstName.getValue(),
-            name.getValue())
+            name.getValue()))
     else:
-        
-        print "You cancelled the form."
+
+        print("You cancelled the form.")

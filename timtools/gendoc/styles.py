@@ -14,7 +14,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Lino; if not, write to the Free Software Foundation,
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-
 """
 This is an alternative for reportlab/lib/styles.py
 The original version of styles.py is copyright ReportLab Inc. 2000
@@ -43,18 +42,17 @@ Changes made by Luc Saffre:
 
 from reportlab.lib import colors
 from reportlab.lib import pagesizes
-from reportlab.lib.units import inch,mm
+from reportlab.lib.units import inch, mm
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
 
-VA_MIDDLE="MIDDLE"
-VA_CENTER="MIDDLE"
-VA_TOP="TOP"
-VA_BOTTOM="BOTTOM"
+VA_MIDDLE = "MIDDLE"
+VA_CENTER = "MIDDLE"
+VA_TOP = "TOP"
+VA_BOTTOM = "BOTTOM"
 
 from lino.misc.pset import PropertySet, StyleSheet
 # from sdoc.lists import ListStyle, NumberedListStyle
 # from lino.sdoc.tables import TableModel
-
 
 
 class FlowStyle(PropertySet):
@@ -64,12 +62,13 @@ class FlowStyle(PropertySet):
         spaceBefore=0,
         spaceAfter=0,
         backColor=None,
-        keepWithNext=False,    
-        pageBreakBefore=False, 
-        pageBreakAfter=False,  
-        wordWrap=None, # added for reportlab 2.x
-        )
-    
+        keepWithNext=False,
+        pageBreakBefore=False,
+        pageBreakAfter=False,
+        wordWrap=None,  # added for reportlab 2.x
+    )
+
+
 class CharacterStyle(PropertySet):
     defaults = dict(
         fontName='Times-Roman',
@@ -77,27 +76,26 @@ class CharacterStyle(PropertySet):
         textColor=colors.black,
         rise=False,
         underline=False,
-        )
-        
+    )
+
+
 class ParagraphStyle(FlowStyle):
-    defaults = dict(dict(
-        leading=12,
-        firstLineIndent=0,
-        textStyle=None,
-        alignment=TA_LEFT,
-        allowSplitting = True,
-        bulletFontName='Times-Roman',
-        bulletFontSize=10,
-        bulletIndent=0,
-        wrap=True,
-        **FlowStyle.defaults),**CharacterStyle.defaults)
+    defaults = dict(
+        dict(leading=12,
+             firstLineIndent=0,
+             textStyle=None,
+             alignment=TA_LEFT,
+             allowSplitting=True,
+             bulletFontName='Times-Roman',
+             bulletFontSize=10,
+             bulletIndent=0,
+             wrap=True,
+             **FlowStyle.defaults), **CharacterStyle.defaults)
 
 
 class LineStyle(PropertySet):
-    defaults = {
-        'width':1,
-        'color': colors.black
-        }
+    defaults = {'width': 1, 'color': colors.black}
+
     def prepareCanvas(self, canvas):
         """You can ask a LineStyle to set up the canvas for drawing
         the lines."""
@@ -105,24 +103,18 @@ class LineStyle(PropertySet):
         #etc. etc.
 
 
-
-
 class ListStyle(FlowStyle):
-    defaults = dict(
-        bulletWidth=12,
-        bulletText= '-',
-        **FlowStyle.defaults)
-        
-    def getBulletText(self,listInstance):
+    defaults = dict(bulletWidth=12, bulletText='-', **FlowStyle.defaults)
+
+    def getBulletText(self, listInstance):
         return self.bulletText
-      
+
+
 class NumberedListStyle(ListStyle):
-    defaults = dict(
-        showParent=False,
-        **ListStyle.defaults)
-        
-    def getBulletText(self,listInstance):
-        text = str(listInstance.itemCount)+'.'
+    defaults = dict(showParent=False, **ListStyle.defaults)
+
+    def getBulletText(self, listInstance):
+        text = str(listInstance.itemCount) + '.'
         if self.showParent:
             parent = listInstance.getParent()
             if parent is not None:
@@ -131,30 +123,23 @@ class NumberedListStyle(ListStyle):
 
 
 class TableStyle(FlowStyle):
-	defaults = dict(
-		flowStyle=None,
-		paraStyle=None,
-		dataCellFormats=[],
-		headerCellFormats= [],
-		showHeaders=False,
-		isgrowing=True,
-		**FlowStyle.defaults)
-	
-	def formatTable(self,cmdName,*params):
-		# self.dataCellFormats = list(self.dataCellFormats)
-		addCellFormats(self.dataCellFormats,
-							cmdName,
-							(0,0),
-							(-1,-1),
-							*params)
-		
-	def formatHeader(self,cmdName,*params):
-		# self.headerCellFormats = list(self.headerCellFormats)
-		addCellFormats(self.headerCellFormats,
-							cmdName,
-							(0,0),
-							(-1,0),
-							*params)
+    defaults = dict(flowStyle=None,
+                    paraStyle=None,
+                    dataCellFormats=[],
+                    headerCellFormats=[],
+                    showHeaders=False,
+                    isgrowing=True,
+                    **FlowStyle.defaults)
+
+    def formatTable(self, cmdName, *params):
+        # self.dataCellFormats = list(self.dataCellFormats)
+        addCellFormats(self.dataCellFormats, cmdName, (0, 0), (-1, -1),
+                       *params)
+
+    def formatHeader(self, cmdName, *params):
+        # self.headerCellFormats = list(self.headerCellFormats)
+        addCellFormats(self.headerCellFormats, cmdName, (0, 0), (-1, 0),
+                       *params)
 
 
 class DocumentStyle(PropertySet):
@@ -169,7 +154,8 @@ class DocumentStyle(PropertySet):
         footer=None,
         innerMargin=None,
         outerMargin=None,
-        )
+    )
+
 
 class FrameStyle(PropertySet):
     defaults = dict(
@@ -185,10 +171,9 @@ class FrameStyle(PropertySet):
         paddingBottom=None,
         paddingRight=None,
         paddingLeft=None,
-        )
-    
-    
-    
+    )
+
+
 ## class DocumentTool:
 ##    def __init__(self,doc):
 ##       self.doc = doc
@@ -203,103 +188,102 @@ class FrameStyle(PropertySet):
 ##       self.doc.p("Page %d" % self.doc.getPageNumber())
 ##       self.doc.endTable()
 
-   
+#
+#
+#
 
-#
-#
-#
 
 def getDefaultStyleSheet():
-   sheet = StyleSheet()
-   sheet.define("BODY",DocumentStyle())
-   sheet.define("Header",FrameStyle(valign=VA_BOTTOM))
-   sheet.define("Footer",FrameStyle(valign=VA_TOP))
-   sheet.define("P",ParagraphStyle(
-      fontName='Times-Roman',
-      fontSize=10,
-      spaceBefore=3,
-      spaceAfter=3,
-      leading=12
-      ))
+    sheet = StyleSheet()
+    sheet.define("BODY", DocumentStyle())
+    sheet.define("Header", FrameStyle(valign=VA_BOTTOM))
+    sheet.define("Footer", FrameStyle(valign=VA_TOP))
+    sheet.define(
+        "P",
+        ParagraphStyle(fontName='Times-Roman',
+                       fontSize=10,
+                       spaceBefore=3,
+                       spaceAfter=3,
+                       leading=12))
 
-   sheet.define("TH",sheet.P.child(alignment=TA_CENTER))
-   sheet.define("TD",sheet.P.child())
-   sheet.define("TR",sheet.P.child())
-   sheet.define("Verses",sheet.P.child(wrap=False))
-   sheet.define("Right",sheet.P.child(alignment=TA_RIGHT))
-   sheet.define("Center",sheet.P.child(alignment=TA_CENTER))
-   sheet.define("H1",sheet.P.child(
-      fontName = 'Times-Bold',
-      keepWithNext=True,
-      fontSize=18,
-      leading=22,
-      spaceAfter=6))
+    sheet.define("TH", sheet.P.child(alignment=TA_CENTER))
+    sheet.define("TD", sheet.P.child())
+    sheet.define("TR", sheet.P.child())
+    sheet.define("Verses", sheet.P.child(wrap=False))
+    sheet.define("Right", sheet.P.child(alignment=TA_RIGHT))
+    sheet.define("Center", sheet.P.child(alignment=TA_CENTER))
+    sheet.define(
+        "H1",
+        sheet.P.child(fontName='Times-Bold',
+                      keepWithNext=True,
+                      fontSize=18,
+                      leading=22,
+                      spaceAfter=6))
 
-   sheet.define("H2",sheet.H1.child(
-      fontSize=14,
-      leading=18,
-      spaceBefore=12,
-      spaceAfter=6))
+    sheet.define(
+        "H2",
+        sheet.H1.child(fontSize=14, leading=18, spaceBefore=12, spaceAfter=6))
 
-   sheet.define("H3",sheet.H2.child(
-      fontSize=12,
-      leading=14,
-      spaceBefore=12,
-      spaceAfter=6))
+    sheet.define(
+        "H3",
+        sheet.H2.child(fontSize=12, leading=14, spaceBefore=12, spaceAfter=6))
 
-   sheet.define("PRE",sheet.P.child(
-      fontName='Courier',
-      wrap=False,
-      fontSize=8,
-      leading=8.8,
-      firstLineIndent=0,
-      leftIndent=36))
+    sheet.define(
+        "PRE",
+        sheet.P.child(fontName='Courier',
+                      wrap=False,
+                      fontSize=8,
+                      leading=8.8,
+                      firstLineIndent=0,
+                      leftIndent=36))
 
-   #sheet.define("Wrapped",sheet.P.child(wrap=False,
-   #                                          alignment=TA_LEFT))
-   
-   sheet.define('UL', ListStyle(bulletWidth=12))
-   sheet.define('OL', NumberedListStyle(bulletWidth=12))
+    #sheet.define("Wrapped",sheet.P.child(wrap=False,
+    #                                          alignment=TA_LEFT))
 
-   sheet.define("LI",sheet.P.child(
-       spaceBefore=1,
-       spaceAfter=1,
-       leftIndent=30,
-       firstLineIndent=0,
-       bulletText="\xe2\x80\xa2",
-       bulletIndent=0))
+    sheet.define('UL', ListStyle(bulletWidth=12))
+    sheet.define('OL', NumberedListStyle(bulletWidth=12))
 
-   sheet.define("TABLE", TableStyle(
-       leftIndent=20,
-       rightIndent=50,
-       dataCellFormats=[
-       ('ALIGN',(0,0),(-1,-1),'LEFT'),
-       ('VALIGN',(0,0),(-1,-1),'TOP'),
-       ('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
-       ('BOX', (0,0), (-1,-1), 0.25, colors.black),
-       ]))
+    sheet.define(
+        "LI",
+        sheet.P.child(spaceBefore=1,
+                      spaceAfter=1,
+                      leftIndent=30,
+                      firstLineIndent=0,
+                      bulletText="\xe2\x80\xa2",
+                      bulletIndent=0))
 
-   sheet.define("EmptyTable", TableStyle( dataCellFormats=[
-       ('ALIGN',(0,0),(-1,-1),'LEFT'),
-       ('VALIGN',(0,0),(-1,-1),'TOP'),
-       ]))
-		
-   sheet.define("DataTable",TableStyle(dataCellFormats=[
-       ('ALIGN',(0,0),(-1,-1),'LEFT'),
-       ('VALIGN',(0,0),(-1,-1),'TOP'),
-       ('LINEBELOW', (0,0), (-1,-1), 0.25, colors.black),
-       ('BOX', (0,0), (-1,-1), 0.25, colors.black),
-       # ('BACKGROUND', (0,0), (-1,-1), colors.grey),
-       ]))
+    sheet.define(
+        "TABLE",
+        TableStyle(leftIndent=20,
+                   rightIndent=50,
+                   dataCellFormats=[
+                       ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+                       ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+                       ('INNERGRID', (0, 0), (-1, -1), 0.25, colors.black),
+                       ('BOX', (0, 0), (-1, -1), 0.25, colors.black),
+                   ]))
 
-   
-   return sheet
+    sheet.define(
+        "EmptyTable",
+        TableStyle(dataCellFormats=[
+            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+            ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+        ]))
 
-   #tool = DocumentTool(doc)
+    sheet.define(
+        "DataTable",
+        TableStyle(dataCellFormats=[
+            ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+            ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+            ('LINEBELOW', (0, 0), (-1, -1), 0.25, colors.black),
+            ('BOX', (0, 0), (-1, -1), 0.25, colors.black),
+            # ('BACKGROUND', (0,0), (-1,-1), colors.grey),
+        ]))
 
-   #s.define('TitlePageHeader',tool.TitlePageHeader)
+    return sheet
 
-   #return s
+    #tool = DocumentTool(doc)
 
+    #s.define('TitlePageHeader',tool.TitlePageHeader)
 
-   
+    #return s

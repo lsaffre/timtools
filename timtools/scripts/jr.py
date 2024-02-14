@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 
-## Copyright 2005-2009 Luc Saffre 
+## Copyright 2005-2009 Luc Saffre
 
 ## This file is part of the Lino project.
 
@@ -26,169 +26,177 @@ from PIL.TiffImagePlugin import DATE_TIME
 
 from timtools.console.application import Application, UsageError
 
+
 class MyException(Exception):
     pass
 
-def avitime(root,name):
+
+def avitime(root, name):
     pass
 
-def wavtime(root,name,seq):
+
+def wavtime(root, name, seq):
     # this is wrong.
     # i want to know how the creation date is stored in .wav files
-    filename=os.path.join(root, name)
-    sti=os.stat(filename)
+    filename = os.path.join(root, name)
+    sti = os.stat(filename)
     return time.localtime(sti.st_ctime)
     #return time.strftime("%Y_%m_%d-%H_%M_%S.wav",ct)
-    
+
 
 class JpgRename(Application):
 
-    name="jr (aka jpgrename)"
+    name = "jr (aka jpgrename)"
 
-    copyright="""\
+    copyright = """\
 Copyright (c) 2002-2009 Luc Saffre.
 This software comes with ABSOLUTELY NO WARRANTY and is
 distributed under the terms of the GNU General Public License.
 See file COPYING.txt for more information."""
-    
-    usage="usage: timtools jr [options] [DIR]"
-    description="""\
+
+    usage = "usage: timtools jr [options] [DIR]"
+    description = """\
 where DIR (default .) is a directory with .jpg files to rename.
 """
-    def setupOptionParser(self,parser):
-        Application.setupOptionParser(self,parser)
+
+    def setupOptionParser(self, parser):
+        Application.setupOptionParser(self, parser)
+
+        parser.add_option("-s",
+                          "--simulate",
+                          help="simulate only, don't do it",
+                          action="store_true",
+                          dest="simulate",
+                          default=False)
+
+        parser.add_option("-d",
+                          "--timediff",
+                          help="correct EXIF time by adding TIMEDIFF minutes",
+                          action="store",
+                          type="int",
+                          dest="timediff",
+                          default=0)
 
         parser.add_option(
-            "-s", "--simulate",
-            help="simulate only, don't do it",
-            action="store_true",
-            dest="simulate",
-            default=False)
-
-        parser.add_option(
-            "-d", "--timediff",
-            help="correct EXIF time by adding TIMEDIFF minutes",
-            action="store", type="int",
-            dest="timediff",
-            default=0)
-        
-        parser.add_option(
-            "-f", "--format",
-            help="format template for new filename (1=YYYY_MM_DD-hh_mm_ss,2=YYYMMDD-SEQ,...)",
-            action="store", type="int",
+            "-f",
+            "--format",
+            help=
+            "format template for new filename (1=YYYY_MM_DD-hh_mm_ss,2=YYYMMDD-SEQ,...)",
+            action="store",
+            type="int",
             dest="format",
             default=3)
-        
-        parser.add_option(
-            "--suffix",
-            help="add SUFFIX to each filename",
-            action="store", type="string",
-            dest="suffix",
-            default="")
+
+        parser.add_option("--suffix",
+                          help="add SUFFIX to each filename",
+                          action="store",
+                          type="string",
+                          dest="suffix",
+                          default="")
 
     def run(self):
-         
+
         self.converters = {
-            '.jpg' : self.jpgtime,
-            '.avi' : avitime,
-            '.wav' : wavtime,
-            }
+            '.jpg': self.jpgtime,
+            '.avi': avitime,
+            '.wav': wavtime,
+        }
 
         if len(self.args) == 0:
-            dirs=['.']
+            dirs = ['.']
         else:
-            dirs=self.args
+            dirs = self.args
 
         for dirname in dirs:
             self.walk(dirname)
-            
-    def walk(self,dirname):
+
+    def walk(self, dirname):
         for root, dirs, files in os.walk(dirname):
             filedates = []
             for name in files:
-                base,ext = os.path.splitext(name)
-                cv = self.converters.get(ext.lower(),None)
+                base, ext = os.path.splitext(name)
+                cv = self.converters.get(ext.lower(), None)
                 if cv is not None:
                     try:
-                        dt=cv(root,name)
-                    except MyException,e:
+                        dt = cv(root, name)
+                    except MyException, e:
                         self.warning(str(e))
                     else:
                         if dt is None: pass
                         else:
-                            filedates.append((dt,base,ext))
+                            filedates.append((dt, base, ext))
             if len(filedates) == 0:
                 self.notice("Nothing to do.")
                 return
-                
-            filedates.sort(lambda a,b : cmp(a[0],b[0]))
-            
+
+            filedates.sort(lambda a, b: cmp(a[0], b[0]))
+
             if not self.confirm(
                 "Rename %d files in directory %s ?" % \
                 (len(filedates),root)):
                 return
-            seq=0
-            for dt,oldname,ext in filedates:
+            seq = 0
+            for dt, oldname, ext in filedates:
                 seq += 1
-                newname=self.dt2filename(dt,seq)
+                newname = self.dt2filename(dt, seq)
                 if self.options.suffix:
-                    newname+=self.options.suffix
-                o=os.path.join(root,oldname)+ext
-                n=os.path.join(root,newname)+ext
+                    newname += self.options.suffix
+                o = os.path.join(root, oldname) + ext
+                n = os.path.join(root, newname) + ext
                 if self.options.simulate:
-                    self.notice("Would rename %s to %s", o,n)
+                    self.notice("Would rename %s to %s", o, n)
                 else:
-                    self.notice("Rename %s to %s", o,n)
+                    self.notice("Rename %s to %s", o, n)
                     try:
-                        os.rename(o,n)
-                    except WindowsError,e:
+                        os.rename(o, n)
+                    except WindowsError, e:
                         self.warning(str(e))
-                                   
-    def dt2filename(self,dt,seq):
-        dt += datetime.timedelta(0,0,0,0,self.options.timediff)
+
+    def dt2filename(self, dt, seq):
+        dt += datetime.timedelta(0, 0, 0, 0, self.options.timediff)
         #print '_'.join(d)+'-'+'_'.join(t)+'.jpg', "->", dt.strftime("%Y_%m_%d-%H_%M_%S.jpg")
         #return '_'.join(d)+'-'+'_'.join(t)+'.jpg'
         if self.options.format == 1:
             return dt.strftime("%Y_%m_%d-%H_%M_%S")
-        elif self.options.format == 2: # my new naming schema
+        elif self.options.format == 2:  # my new naming schema
             return dt.strftime("%Y%m%d") + "-%03d" % seq
         elif self.options.format == 3:
             return dt.strftime("%Y%m-%d_%H%M-%S")
         else:
             raise MyException("%s : invalid format" % self.options.format)
 
-    def jpgtime(self,root,name):
-        filename=os.path.join(root, name)
+    def jpgtime(self, root, name):
+        filename = os.path.join(root, name)
         try:
             img = Image.open(filename)
-        except IOError,e:
+        except IOError, e:
             raise MyException(filename + ":" + str(e))
-        exif=img._getexif()
+        exif = img._getexif()
         if exif is None:
-            raise MyException(filename+ ': no EXIF information found')
+            raise MyException(filename + ': no EXIF information found')
         if not exif.has_key(DATE_TIME):
-            raise MyException(filename+ ':'+ str(exif.keys()))
+            raise MyException(filename + ':' + str(exif.keys()))
         a = exif[DATE_TIME].split()
-        if len(a) != 2: 
-            raise MyException(filename+ ': invalid DATE_TIME format')
-        d=a[0].split(':')
-        if len(d) != 3: 
-            raise MyException(filename+ ': invalid DATE format')
-        t=a[1].split(':')
-        if len(t) != 3: 
-            raise MyException(filename+ ': invalid TIME format')
-        args=[int(x) for x in d] + [int(x) for x in t]
+        if len(a) != 2:
+            raise MyException(filename + ': invalid DATE_TIME format')
+        d = a[0].split(':')
+        if len(d) != 3:
+            raise MyException(filename + ': invalid DATE format')
+        t = a[1].split(':')
+        if len(t) != 3:
+            raise MyException(filename + ': invalid TIME format')
+        args = [int(x) for x in d] + [int(x) for x in t]
         return datetime.datetime(*args)
-        
+
     def unused(self):
-        nfn=self.dt2filename(exif[DATE_TIME])
+        nfn = self.dt2filename(exif[DATE_TIME])
         if nfn is None:
             raise MyException(
                 '%s: could not parse DATE_TIME "%s"' \
                 % (filename, exif[DATE_TIME]))
-        nfn+= self.options.suffix
+        nfn += self.options.suffix
         return nfn + ".jpg"
 
-   
-def main(*args,**kw):
-    JpgRename().main(*args,**kw)
+
+def main(*args, **kw):
+    JpgRename().main(*args, **kw)

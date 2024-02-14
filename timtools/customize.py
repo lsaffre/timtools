@@ -4,17 +4,15 @@
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation; either version 3 of the License, or
 ## (at your option) any later version.
-## TimTools is distributed in the hope that it will be useful, 
+## TimTools is distributed in the hope that it will be useful,
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
 ## You should have received a copy of the GNU General Public License
 ## along with TimTools; if not, see <http://www.gnu.org/licenses/>.
 
-
 import sys
 import locale
-
 """
 
 """
@@ -45,11 +43,12 @@ import locale
 ##               sys.getdefaultencoding(),"to",encoding
 ##         sys.setdefaultencoding(encoding)
 
+
 def getlocalencoding():
     return locale.getdefaultlocale()[1]
 
+
 def setlocalencoding():
-    
     """Set system default encoding according to locale settings.
 
     This must be called during site.py because
@@ -62,8 +61,8 @@ def setlocalencoding():
     
     """
     if sys.getdefaultencoding() != 'ascii': return
-    if not hasattr(sys,'setdefaultencoding'): return
-    loc=getlocalencoding()
+    if not hasattr(sys, 'setdefaultencoding'): return
+    loc = getlocalencoding()
     if loc and sys.getdefaultencoding() != loc:
         #print "setting defaultencoding from", \
         #      sys.getdefaultencoding(),"to",loc

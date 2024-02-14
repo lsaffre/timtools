@@ -1,4 +1,4 @@
-## Copyright 2005-2007 Luc Saffre 
+## Copyright 2005-2007 Luc Saffre
 
 ## This file is part of the Lino project.
 
@@ -19,9 +19,11 @@
 from timtools.textprinter.textprinter import TextPrinter
 from timtools.console import syscon
 
+
 class PlainTextPrinter(TextPrinter):
-    def __init__(self,writer=None,cpl=72,frameStyle="+-+|+-+|",**kw):
-        TextPrinter.__init__(self,pageSize=(cpl,0),cpl=cpl,**kw)
+
+    def __init__(self, writer=None, cpl=72, frameStyle="+-+|+-+|", **kw):
+        TextPrinter.__init__(self, pageSize=(cpl, 0), cpl=cpl, **kw)
         if writer is None:
             """
             
@@ -31,7 +33,7 @@ class PlainTextPrinter(TextPrinter):
             instance.
             
             """
-            writer=syscon.getSystemConsole()
+            writer = syscon.getSystemConsole()
             #writer=syscon.getSystemConsole().stdout
             #writer=self.session.toolkit.stdout
             #writer=sys.stdout
@@ -45,34 +47,27 @@ class PlainTextPrinter(TextPrinter):
         self.bottomBorder = frameStyle[5]
         self.bottomLeft = frameStyle[6]
         self.leftBorder = frameStyle[7]
-        
-        
+
     def onBeginPage(self):
-        self._writer.write(
-            self.topLeft+
-            self.topBorder*self.getCpl()
-            +self.topRight
-            +"\n")
-        self.textobject=""
-        
+        self._writer.write(self.topLeft + self.topBorder * self.getCpl() +
+                           self.topRight + "\n")
+        self.textobject = ""
+
     def onEndPage(self):
-        self._writer.write(
-            self.bottomLeft+
-            self.bottomBorder*self.getCpl()+
-            self.bottomRight+
-            "\n")
-    
-    def write(self,text):
+        self._writer.write(self.bottomLeft +
+                           self.bottomBorder * self.getCpl() +
+                           self.bottomRight + "\n")
+
+    def write(self, text):
         self.beforeWrite()
         #self.writer(text)
         self.textobject += text
-            
+
     def newline(self):
         ln = self.textobject.ljust(self.getCpl())
         ln = ln[:self.getCpl()]
-        self._writer.write(self.leftBorder+ln+self.rightBorder+"\n")
+        self._writer.write(self.leftBorder + ln + self.rightBorder + "\n")
         self.textobject = ""
-        
-    def insertImage(self,*args,**kw):
-        pass
 
+    def insertImage(self, *args, **kw):
+        pass

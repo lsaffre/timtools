@@ -1,6 +1,6 @@
 #coding: latin1
 
-## Copyright 2003-2009 Luc Saffre 
+## Copyright 2003-2009 Luc Saffre
 
 ## This file is part of the Lino project.
 
@@ -20,7 +20,7 @@
 
 import os
 
-from timtools.i18n import itr,_
+from timtools.i18n import itr, _
 
 itr("Are you sure you want to abort?",
     de="Arbeitsvorgang abbrechen?",
@@ -36,145 +36,152 @@ class Session:
     Session is the base class for Application and for Task.
 
     """
-    name=None
+    name = None
 
-    def __init__(self,toolkit=None,**kw):
+    def __init__(self, toolkit=None, **kw):
         #assert toolkit is not None
         from timtools.console import syscon
         if toolkit is None:
-            toolkit=syscon.getSystemConsole()
-        self.toolkit=toolkit
+            toolkit = syscon.getSystemConsole()
+        self.toolkit = toolkit
         #self.debug(self.__class__.__name__+".__init__()")
 
         self._connections = []
         self._databases = []
-        
+
         self.configure(**kw)
-    
+
     def configure(self):
         pass
-        
-    def buildMessage(self,msg,*args):
+
+    def buildMessage(self, msg, *args):
         if len(args) == 0:
             return msg
         return msg % args
-    
+
     def isInteractive(self):
         return True
+
     def isDebug(self):
         return self.toolkit.isDebug()
 
-    def confirm(self,*args,**kw):
-        return self.toolkit.show_confirm(self,*args,**kw)
-    def decide(self,*args,**kw):
-        return self.toolkit.show_decide(self,*args,**kw)
-    def message(self,*args,**kw):
-        return self.toolkit.show_message(self,*args,**kw)
-    def notice(self,*args,**kw):
-        return self.toolkit.show_notice(self,*args,**kw)
-    def debug(self,*args,**kw):
-        return self.toolkit.show_debug(self,*args,**kw)
-    def warning(self,*args,**kw):
-        return self.toolkit.show_warning(self,*args,**kw)
-    def verbose(self,*args,**kw):
-        return self.toolkit.show_verbose(self,*args,**kw)
-    def error(self,*args,**kw):
-        return self.toolkit.show_error(self,*args,**kw)
-    def exception(self,*args,**kw):
-        print("session.py", args, kw)
-        return self.toolkit.showException(self,*args,**kw)
+    def confirm(self, *args, **kw):
+        return self.toolkit.show_confirm(self, *args, **kw)
 
-    def logmessage(self,*args,**kw):
-        return self.toolkit.logmessage(self,*args,**kw)
-    
-    def showfile(self,filename):
+    def decide(self, *args, **kw):
+        return self.toolkit.show_decide(self, *args, **kw)
+
+    def message(self, *args, **kw):
+        return self.toolkit.show_message(self, *args, **kw)
+
+    def notice(self, *args, **kw):
+        return self.toolkit.show_notice(self, *args, **kw)
+
+    def debug(self, *args, **kw):
+        return self.toolkit.show_debug(self, *args, **kw)
+
+    def warning(self, *args, **kw):
+        return self.toolkit.show_warning(self, *args, **kw)
+
+    def verbose(self, *args, **kw):
+        return self.toolkit.show_verbose(self, *args, **kw)
+
+    def error(self, *args, **kw):
+        return self.toolkit.show_error(self, *args, **kw)
+
+    def exception(self, *args, **kw):
+        print("session.py", args, kw)
+        return self.toolkit.showException(self, *args, **kw)
+
+    def logmessage(self, *args, **kw):
+        return self.toolkit.logmessage(self, *args, **kw)
+
+    def showfile(self, filename):
         if self.isInteractive():
-            os.system("start "+filename)
+            os.system("start " + filename)
         else:
             assert os.path.exists(filename)
-        
-    def loop(self,func,label,maxval=0,*args,**kw):
+
+    def loop(self, func, label, maxval=0, *args, **kw):
         "run func with a Task or Progresser"
         if maxval == 0:
-            task=Task(label)
+            task = Task(label)
         else:
-            task=Progresser(label,maxval)
-        task.toolkit=self.toolkit
-        func(task,*args,**kw)
+            task = Progresser(label, maxval)
+        task.toolkit = self.toolkit
+        func(task, *args, **kw)
         #task.runfrom(self,*args,**kw)
         #task=Task(self,label,maxval)
         #task.loop(func,*args,**kw)
         return task
 
-    def runtask(self,task,*args,**kw):
+    def runtask(self, task, *args, **kw):
         # used by timtools.scripts.sync.Sync.run()
-        return task.runfrom(self.toolkit,*args,**kw)
+        return task.runfrom(self.toolkit, *args, **kw)
 
-    def showReport(self,*args,**kw):
-        return self.toolkit.show_report(*args,**kw)
-    def textprinter(self,*args,**kw):
-        return self.toolkit.textprinter(self,*args,**kw)
+    def showReport(self, *args, **kw):
+        return self.toolkit.show_report(*args, **kw)
+
+    def textprinter(self, *args, **kw):
+        return self.toolkit.textprinter(self, *args, **kw)
 
     def breathe(self):
         return self.toolkit.on_breathe(self)
-    
+
     def requestAbort(self):
-        if self.confirm( _("Are you sure you want to abort?"),
-                         default=False):
+        if self.confirm(_("Are you sure you want to abort?"), default=False):
             from timtools.console.exceptions import UserAborted
             raise UserAborted()
         #self._abortRequested=False
         self.toolkit.onTaskResume(self)
         #self._abortRequested=True
 
-    def showForm(self,frm):
+    def showForm(self, frm):
         return frm.show(self)
-    
 
+    def connection(self, *args, **kw):
 
-    def connection(self,*args,**kw):
-        
         from timtools.adamo.qtconn import Connection
         #from timtools.adamo.dbds.firebird import Connection
         #from timtools.adamo.dbds.sqlite_dbd import Connection
         #from timtools.adamo.dbds.mysql_dbd import Connection
         #from timtools.adamo.dbds.gadfly_dbd import Connection
-        
-##         try:
-##             from timtools.adamo.dbds.sqlite_dbd import Connection
-##         except ImportError:
-##             try:
-##                 from timtools.adamo.dbds.mysql_dbd import Connection
-##             except ImportError:
-##                 try:
-##                     from timtools.adamo.dbds.gadfly_dbd import Connection
-##                 except ImportError:
-##                     raise DatabaseError("no database driver available")
 
-        conn = Connection(self,*args,**kw)
+        ##         try:
+        ##             from timtools.adamo.dbds.sqlite_dbd import Connection
+        ##         except ImportError:
+        ##             try:
+        ##                 from timtools.adamo.dbds.mysql_dbd import Connection
+        ##             except ImportError:
+        ##                 try:
+        ##                     from timtools.adamo.dbds.gadfly_dbd import Connection
+        ##                 except ImportError:
+        ##                     raise DatabaseError("no database driver available")
+
+        conn = Connection(self, *args, **kw)
         self._connections.append(conn)
         #print conn
         return conn
 
-    def database(self,schema,name=None,**kw):
+    def database(self, schema, name=None, **kw):
         #if name is None:
         #    name = str(schema)+str(len(self._databases)+1)
         from timtools.adamo.database import Database
-        db = Database(schema,name=name,**kw)
+        db = Database(schema, name=name, **kw)
         self._databases.append(db)
         return db
 
     def startDump(self):
         assert len(self._connections) == 1
         self._connections[0].startDump()
+
     def stopDump(self):
         assert len(self._connections) == 1
         return self._connections[0].stopDump()
-    
+
     def peekDump(self):
         assert len(self._connections) == 1
         return self._connections[0].peekDump()
-        
 
     def shutdown(self):
         # tests/adamo/7.py failed when several tests
@@ -182,9 +189,9 @@ class Session:
         #if self.ui is None:
         #    return
         #self.app.debug("Center.shutdown()")
-##         for sch in self._schemas:
-##             sch.shutdown(syscon)
-##         self._schemas = []
+        ##         for sch in self._schemas:
+        ##             sch.shutdown(syscon)
+        ##         self._schemas = []
         for db in self._databases:
             db.close()
         self._databases = []

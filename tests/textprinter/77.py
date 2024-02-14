@@ -19,23 +19,25 @@
 
 import sys
 import os
-opj=os.path.join
+
+opj = os.path.join
 from lino.tools.tsttools import TestCase, main
 from lino.textprinter import winprn
 from lino import config
 
 #~ dataPath = os.path.join(
-    #~ config.paths.get('docs_path'),'examples','textprinter')
-    
-dataPath = opj(os.path.dirname(__file__),'data')
+#~ config.paths.get('docs_path'),'examples','textprinter')
+
+dataPath = opj(os.path.dirname(__file__), 'data')
+
 
 class Case(TestCase):
     ""
 
-    def doit(self,d):
+    def doit(self, d):
 
         d.writeln("--- File 5.prn:---")
-        d.readfile(opj(dataPath,"5.prn"),encoding="cp850")
+        d.readfile(opj(dataPath, "5.prn"), encoding="cp850")
         d.writeln("--- eof 5.prn---")
 
         d.writeln("Here is some more text.")
@@ -49,34 +51,31 @@ class Case(TestCase):
         d.write("This is a very long line. ")
         d.write("Just do demonstrate that TextPrinter ")
         d.write("doesn't wrap paragraphs for you...")
-        d.write("Blabla bla. "*20)
+        d.write("Blabla bla. " * 20)
         d.writeln("Amen.")
-        
+
         #d.drawDebugRaster()
         d.close()
-        
 
     def test01(self):
 
-        spoolFile = self.addTempFile("77.ps",showOutput=True)
+        spoolFile = self.addTempFile("77.ps", showOutput=True)
         d = winprn.Win32TextPrinter(
             #config.win32.get('postscript_printer'),
             self.runtests.options.postscript_printer,
-            spoolFile )
+            spoolFile)
         self.doit(d)
 
-        
-        spoolFile = self.addTempFile("77L.ps",showOutput=True)
+        spoolFile = self.addTempFile("77L.ps", showOutput=True)
         d = winprn.Win32TextPrinter(
             #config.win32.get('postscript_printer'),
             self.runtests.options.postscript_printer,
-            spoolFile )
+            spoolFile)
         d.setOrientationLandscape()
         d.writeln("And now the same in landscape. ")
         d.writeln()
         self.doit(d)
 
+
 if __name__ == '__main__':
     main()
-
-

@@ -16,42 +16,30 @@
 ## along with Lino; if not, write to the Free Software Foundation,
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-
-
-
-
-
-
-
 raise "no longer used"
 
 from lino.reports.base import BaseReport, ConfigError
 
+
 class OoReport(BaseReport):
-    
-    def __init__(self,
-                 document,
-                 **kw):
+
+    def __init__(self, document, **kw):
         self.document = document
-        BaseReport.__init__(self,**kw)
-        
+        BaseReport.__init__(self, **kw)
+
         #self.columnSep = columnSep
         #self.columnHeaderSep = columnHeaderSep
-        
-        
+
     def onBeginReport(self):
         self.table = self.document.table(name=self.getLabel())
         for col in self.columns:
             self.table.column()
         BaseReport.onBeginReport(self)
 
-
     def renderHeader(self):
-        l = [ col.getLabel() for col in self.columns ]
+        l = [col.getLabel() for col in self.columns]
         self.table.headerRow(*l)
-        
 
     def onEndRow(self):
-        l = [ v for v in self.cellValues ]
+        l = [v for v in self.cellValues]
         self.table.row(*l)
-        

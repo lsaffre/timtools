@@ -2,6 +2,6 @@
 
 # __all__ = [""]
 
-class PdsError(Exception):
-	pass
 
+class PdsError(Exception):
+    pass

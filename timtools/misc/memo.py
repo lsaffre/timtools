@@ -16,26 +16,26 @@
 ## along with Lino; if not, write to the Free Software Foundation,
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-
 import re
 from timtools.misc.txt2html import txt2html
 
+
 class MemoParser:
 
-    def __init__(self,cmds):
+    def __init__(self, cmds):
         self.cmds = cmds
 
-    def parse(self,renderer,txt):
+    def parse(self, renderer, txt):
 
         if txt.startswith("#raw"):
             txt = txt[4:]
-            
+
         #if False:
         #   txt = reSTify(txt)
         #else:
-        #   txt = txt2html(txt) 
+        #   txt = txt2html(txt)
 
-        txt = re.sub(r'\\\n\s*','',txt)
+        txt = re.sub(r'\\\n\s*', '', txt)
 
         #regex  = re.compile(r'\\\n\s*')
         #txt = txt.repl('\\\n','\n')
@@ -56,11 +56,11 @@ class MemoParser:
                     line = line[pos:]
 
                 pos = line.find(']')
-                piece = line[:pos+1]
+                piece = line[:pos + 1]
                 tag = line[1:pos]
                 # print tag
-                line = line[pos+1:]
-                cmd = tag.split(None,1)
+                line = line[pos + 1:]
+                cmd = tag.split(None, 1)
                 try:
                     f = self.cmds[cmd[0].lower()]
                 except KeyError:
@@ -71,8 +71,8 @@ class MemoParser:
                     else:
                         params = None
                     try:
-                        f(renderer,params)
-                    except Exception,e:
+                        f(renderer, params)
+                    except Exception as e:
                         renderer.write(txt2html(piece + " : " + str(e)))
                     #if renderText is not None:
                     #   renderer.write(txt2html(piece + " returned " + repr(renderText)))
@@ -84,10 +84,12 @@ class MemoParser:
     #def write(self,txt):
     #   self.html += txt
 
+
 if __name__ == "__main__":
-    
+
     p = MemoParser({})
-    print p.parse(r"""This is a [ref http://www.foo.bar/very/\
+    print(
+        p.parse(r"""This is a [ref http://www.foo.bar/very/\)
     long/\
     filename.html reference with a long URL].
-    """)
+    """))

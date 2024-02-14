@@ -1,4 +1,4 @@
-## Copyright 2005 Luc Saffre 
+## Copyright 2005 Luc Saffre
 
 ## This file is part of the Lino project.
 
@@ -29,4 +29,3 @@ ds = sess.query(Partners, orderBy="name")
 frm = gui.form(label="The first DataGrid Form")
 frm.addDataGrid(ds)
 frm.show()
-

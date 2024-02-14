@@ -15,54 +15,58 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Lino; if not, write to the Free Software Foundation,
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-
-
 """
 this module defines one class for each internal file of an OOo document
 """
 
 import os.path
+
 opj = os.path.join
 import codecs
 
+
 class InternalFile:
     filename = NotImplementedError
-    def __init__(self,doc):
+
+    def __init__(self, doc):
         #assert isinstance(gen,OoGenerator)
         self.doc = doc
-        
+
     def writeFile(self):
-        f = codecs.open(opj(self.doc.tempDir,self.filename),"w",
+        f = codecs.open(opj(self.doc.tempDir, self.filename),
+                        "w",
                         encoding="utf-8")
         self.writeInternalContent(f)
         f.close()
-        
-    def writeInternalContent(self,f):
+
+    def writeInternalContent(self, f):
         raise NotImplementedError
-        
+
 
 class InternalXmlFile(InternalFile):
     #doctype=NotImplementedError
-    def writeInternalContent(self,f):
+    def writeInternalContent(self, f):
         f.write("""\
 <?xml version="1.0" encoding="utf-8"?>
 """)
         self.writeXmlContent(f)
 
-    def writeXmlContent(self,f):
+    def writeXmlContent(self, f):
         raise NotImplementedError
-        
-        
+
+
 class MIMETYPE(InternalFile):
     filename = 'mimetype'
-    def writeInternalContent(self,f):
-        f.write(self.doc.mimetype+"\n")
-        
-    
+
+    def writeInternalContent(self, f):
+        f.write(self.doc.mimetype + "\n")
+
+
 class MANIFEST(InternalXmlFile):
     filename = 'manifest.xml'
+
     #doctype = 'manifest:manifest'
-    def writeXmlContent(self,f):
+    def writeXmlContent(self, f):
         f.write("""\
 <!DOCTYPE %s PUBLIC "-//OpenOffice.org//DTD Manifest 1.0//EN" "Manifest.dtd">
 <manifest:manifest xmlns:manifest="http://openoffice.org/2001/manifest">
@@ -75,10 +79,12 @@ class MANIFEST(InternalXmlFile):
 </manifest:manifest>
 """)
 
+
 class META(InternalXmlFile):
     filename = 'meta.xml'
+
     #doctype = 'office:document-meta'
-    def writeXmlContent(self,f):
+    def writeXmlContent(self, f):
         f.write("""\
 <office:document-meta 
 xmlns:office="http://openoffice.org/2000/office" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -100,13 +106,13 @@ xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="http://openoffice.org/20
 </office:meta>
 </office:document-meta>
         """)
-        
-        
-        
+
+
 class SETTINGS(InternalXmlFile):
     filename = 'settings.xml'
+
     #doctype = 'office:document-settings'
-    def writeXmlContent(self,f):
+    def writeXmlContent(self, f):
         f.write("""\
 <!DOCTYPE office:document-settings PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "office.dtd">
 <office:document-settings 
@@ -118,12 +124,13 @@ class SETTINGS(InternalXmlFile):
 </office:settings>
 </office:document-settings>
         """)
-        
-        
+
+
 class STYLES(InternalXmlFile):
     filename = 'styles.xml'
+
     #doctype = 'office:document-styles'
-    def writeXmlContent(self,f):
+    def writeXmlContent(self, f):
         f.write("""\
 <!DOCTYPE office:document-styles PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "office.dtd">       
 <office:document-styles 
@@ -148,19 +155,19 @@ office:version="1.0">
         self.doc.styles.__xml__(f.write)
         self.doc.autoStyles.__xml__(f.write)
         self.doc.masterStyles.__xml__(f.write)
-        
-        f.write("""\n</office:document-styles>""")
-        
 
-    
+        f.write("""\n</office:document-styles>""")
+
+
 class CONTENT(InternalXmlFile):
     filename = 'content.xml'
+
     #doctype = 'office:document-content'
-    
-    def writeXmlContent(self,f):
+
+    def writeXmlContent(self, f):
         #def uw(s):
         #    f.write(s.encode("utf-8"))
-            
+
         f.write("""\
 <!DOCTYPE office:document-content PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "office.dtd">
 <office:document-content 
@@ -182,13 +189,10 @@ office:class="%s"
 office:version="1.0">
 """ % self.doc.officeClass)
 
-    
         self.doc.fonts.__xml__(f.write)
         self.doc.autoStyles.__xml__(f.write)
         self.doc.body.__xml__(f.write)
         f.write("\n</office:document-content>")
 
 
-
-
-IFILES = (MIMETYPE,MANIFEST,SETTINGS,META,STYLES,CONTENT)
+IFILES = (MIMETYPE, MANIFEST, SETTINGS, META, STYLES, CONTENT)

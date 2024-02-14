@@ -1,4 +1,4 @@
-## Copyright 2003-2007 Luc Saffre 
+## Copyright 2003-2007 Luc Saffre
 
 ## This file is part of the Lino project.
 
@@ -19,57 +19,62 @@
 import sys
 import atexit
 
-DEBUG=False
+DEBUG = False
 
-_syscon=None
-_main=None
+_syscon = None
+_main = None
+
 
 def getSystemConsole():
     global _syscon
     if _syscon is None:
         from timtools.console.console import TtyConsole, Console
-        if hasattr(sys.stdout,'isatty') and sys.stdout.isatty():
-            _syscon=TtyConsole(sys.stdout, sys.stderr)
+        if hasattr(sys.stdout, 'isatty') and sys.stdout.isatty():
+            _syscon = TtyConsole(sys.stdout, sys.stderr)
         else:
-            _syscon=Console(sys.stdout, sys.stderr)
+            _syscon = Console(sys.stdout, sys.stderr)
     return _syscon
+
 
 def setSystemConsole(con):
     global _syscon
-    _syscon=con
+    _syscon = con
 
 
 def setMainSession(sess):
     global _main
-    assert _main is None, "cannot replace main session %r by %r" % (_main,sess)
-    _main=sess
+    assert _main is None, "cannot replace main session %r by %r" % (_main,
+                                                                    sess)
+    _main = sess
+
 
 def getMainSession():
     #global _main
     if _main is None:
         from timtools.console.application import Application
-        a=Application()
+        a = Application()
         a.main()
     return _main
-        
-    
+
 
 def shutdown():
     if _main is not None:
         _main.shutdown()
     if _syscon is not None:
         _syscon.shutdown()
-        
 
     if DEBUG:
         l = sys.modules.keys()
         l.sort()
         print("used modules: " + ' '.join(l))
 
+
 atexit.register(shutdown)
 
-def confirm(*args,**kw):
-    return getMainSession().confirm(*args,**kw)
 
-def connection(*args,**kw):
-    return getMainSession().connection(*args,**kw)
+def confirm(*args, **kw):
+    return getMainSession().confirm(*args, **kw)
+
+
+def connection(*args, **kw):
+    return getMainSession().connection(*args, **kw)

@@ -4,15 +4,14 @@
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation; either version 3 of the License, or
 ## (at your option) any later version.
-## TimTools is distributed in the hope that it will be useful, 
+## TimTools is distributed in the hope that it will be useful,
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
 ## You should have received a copy of the GNU General Public License
 ## along with TimTools; if not, see <http://www.gnu.org/licenses/>.
 
 from reporter import OdbcReporter
-
 
 DSN = "Test"
 CAT = "ETC"
@@ -20,8 +19,6 @@ REF1 = ""
 REF2 = ""
 DATE1 = "{01/01/2002}"
 DATE2 = "{01/31/2002}"
-
-
 
 SQL1 = """
 SELECT NUM, REF, HEADING1,HEADING2,
@@ -44,8 +41,6 @@ SQL1 += """
   WHERE REF BETWEEN "1" and "9" 
 """
 
-
-
 SQL2 = """
   SELECT HST.DBK,HST.DOCNO,
          HST.DOCDATE,
@@ -63,48 +58,45 @@ SQL2 = """
   ORDER BY HST.DOCDATE
 """
 
+
 class ArtReporter(OdbcReporter):
-   def onHeader(self):
-      self.writer.write("Historique stock\n")
-      self.writer.write("%(DATE1)s - %(DATE2)s\n" % globals())
-   
-   def onEachRow(self):
-      # print self.currentRow.ref
-      self.writer.write(
-         ("%(ref)s\t%(heading1)s\tstock initial\t" \
-         + "%(stk1)d\n") %
-         self.currentRow)
-      rpt = OdbcReporter(self.conn)
-      sql = SQL2 % (self.currentRow.num, DATE1, DATE2)
-      rpt.setSQL(sql)
-      rpt.indent = 1
-      rpt.go(self.writer)
-      if self.recno > 0:
-         self.writer.write("\n")
-         self.writer.write(
-            ("%(ref)s\t%(heading1)s\t%(heading2)s\tstock final\t"
-             + "%(stk2)d\n") %
-            self.currentRow)
-         self.writer.write("\n")
+
+    def onHeader(self):
+        self.writer.write("Historique stock\n")
+        self.writer.write("%(DATE1)s - %(DATE2)s\n" % globals())
+
+    def onEachRow(self):
+        # print self.currentRow.ref
+        self.writer.write(
+           ("%(ref)s\t%(heading1)s\tstock initial\t" \
+           + "%(stk1)d\n") %
+           self.currentRow)
+        rpt = OdbcReporter(self.conn)
+        sql = SQL2 % (self.currentRow.num, DATE1, DATE2)
+        rpt.setSQL(sql)
+        rpt.indent = 1
+        rpt.go(self.writer)
+        if self.recno > 0:
+            self.writer.write("\n")
+            self.writer.write(
+                ("%(ref)s\t%(heading1)s\t%(heading2)s\tstock final\t" +
+                 "%(stk2)d\n") % self.currentRow)
+            self.writer.write("\n")
 
 
 if __name__ == "__main__":
 
+    rpt = ArtReporter()
+    rpt.setDSN(DSN)
+    rpt.setSQL(SQL1)
 
-   rpt = ArtReporter()
-   rpt.setDSN(DSN)
-   rpt.setSQL(SQL1)
+    rpt.addColumn("stk1", "NUMBER",
+                  lambda row: row.curr_stk - row.mvt_after - row.mvt_between)
+    rpt.addColumn("stk2", "NUMBER", lambda row: row.curr_stk - row.mvt_after)
 
-   rpt.addColumn("stk1","NUMBER",
-                 lambda row :
-                 row.curr_stk - row.mvt_after - row.mvt_between)
-   rpt.addColumn("stk2","NUMBER",
-                 lambda row :
-                 row.curr_stk - row.mvt_after)
-
-   if 1:
-      w = file("tmp.txt","w")
-      rpt.go(w)
-   else:
-      rpt.go()
-   w.close()
+    if 1:
+        w = file("tmp.txt", "w")
+        rpt.go(w)
+    else:
+        rpt.go()
+    w.close()

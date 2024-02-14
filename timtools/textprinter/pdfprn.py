@@ -5,9 +5,9 @@
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation; either version 3 of the License, or
 ## (at your option) any later version.
-## TimTools is distributed in the hope that it will be useful, 
+## TimTools is distributed in the hope that it will be useful,
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
 ## You should have received a copy of the GNU General Public License
 ## along with TimTools; if not, see <http://www.gnu.org/licenses/>.
@@ -16,7 +16,7 @@ import os
 import sys
 
 from reportlab.pdfgen import canvas
-from reportlab.lib.units import inch,mm
+from reportlab.lib.units import inch, mm
 from reportlab.lib.pagesizes import letter, A4
 
 from reportlab.pdfbase import pdfmetrics
@@ -27,30 +27,29 @@ from timtools.textprinter.textprinter import FileTextPrinter, \
      ParserError
 
 # name: (regular, bold, italic, bolditalic)
-FONTFILES={
-    "Courier": ("cour.ttf", "courbd.ttf","couri.ttf","courbi.ttf"),
-    
-    "LucidaSansTypewriter": ("ltype.ttf","ltypeb.ttf","ltypeo.ttf","ltypebo.ttf"),
-    "LucidaConsole": ("lucon.ttf",),
-    "VeraMono": ("VeraMono.ttf", "VeraMoBd.ttf","VeraMoIt.ttf","VeraMoBI.ttf"),
-    "DejaVu": ( "DejaVuSansMono.ttf","DejaVuSansMono-Bold.ttf",
-               "DejaVuSansMono-Oblique.ttf","DejaVuSansMono-BoldOblique.ttf"),
+FONTFILES = {
+    "Courier": ("cour.ttf", "courbd.ttf", "couri.ttf", "courbi.ttf"),
+    "LucidaSansTypewriter":
+    ("ltype.ttf", "ltypeb.ttf", "ltypeo.ttf", "ltypebo.ttf"),
+    "LucidaConsole": ("lucon.ttf", ),
+    "VeraMono":
+    ("VeraMono.ttf", "VeraMoBd.ttf", "VeraMoIt.ttf", "VeraMoBI.ttf"),
+    "DejaVu": ("DejaVuSansMono.ttf", "DejaVuSansMono-Bold.ttf",
+               "DejaVuSansMono-Oblique.ttf", "DejaVuSansMono-BoldOblique.ttf"),
     # http://dejavu.sourceforge.net
-    
-    "Liberation": ("LiberationMono-Regular.ttf","LiberationMono-Bold.ttf",
-                   "LiberationMono-Italic.ttf","LiberationMono-BoldItalic.ttf"),
+    "Liberation":
+    ("LiberationMono-Regular.ttf", "LiberationMono-Bold.ttf",
+     "LiberationMono-Italic.ttf", "LiberationMono-BoldItalic.ttf"),
     # https://www.redhat.com/promo/fonts/
-    }
+}
 
 
 class Status:
     """
     could be used to save/restore the status of the textobject
     """
-    def __init__(self,size=10.0,
-                 fontName="Courier",
-                 bold=False,
-                 ital=False):
+
+    def __init__(self, size=10.0, fontName="Courier", bold=False, ital=False):
         self.ital = ital
         self.bold = bold
         self.fontName = fontName
@@ -60,17 +59,15 @@ class Status:
         self.underline = False
 
 
-        
-
 class PdfTextPrinter(FileTextPrinter):
     "http://timtools.saffre-rumma.ee/src/299.html"
-    
-    extension=".pdf"
-    ratio_width2size=1.67   # fontsize = width * ratio_width2size
+
+    extension = ".pdf"
+    ratio_width2size = 1.67  # fontsize = width * ratio_width2size
     #ratio_size2leading=1.1 # leading = fontsize * ratio_size2leading
-    ratio_size2leading=1.065 # leading = fontsize * ratio_size2leading
-    charwidth=0.6
-    
+    ratio_size2leading = 1.065  # leading = fontsize * ratio_size2leading
+    charwidth = 0.6
+
     def __init__(self, filename, fontName="Courier", **kw):
         FileTextPrinter.__init__(self, filename, pageSize=A4, **kw)
 
@@ -80,9 +77,11 @@ class PdfTextPrinter(FileTextPrinter):
             self._can_bold = False
         else:
             self._can_bold = True
-            pdfmetrics.registerFont(TTFont(fontName+"-Bold", fontfiles[1]))
-            pdfmetrics.registerFont(TTFont(fontName+"-Oblique", fontfiles[2]))
-            pdfmetrics.registerFont(TTFont(fontName+"-BoldOblique", fontfiles[3]))
+            pdfmetrics.registerFont(TTFont(fontName + "-Bold", fontfiles[1]))
+            pdfmetrics.registerFont(TTFont(fontName + "-Oblique",
+                                           fontfiles[2]))
+            pdfmetrics.registerFont(
+                TTFont(fontName + "-BoldOblique", fontfiles[3]))
 
 ##         try:
 ## ##             font=TTFont("Courier", "cour.ttf")
@@ -114,12 +113,12 @@ class PdfTextPrinter(FileTextPrinter):
 ##                                       self.margin,
 ##                                       self.pageHeight-(2*self.margin)-25*mm,
 ##                                       25*mm,25*mm)
-                                     
+
 ##          textobject = self.canvas.beginText()
 ##          textobject.setTextOrigin(self.margin+26*mm,
 ##                                           self.pageHeight-(2*self.margin))
 ##          textobject.setFont("Times-Bold", 12)
-##          textobject.textLine("Rumma & Ko OÜ")
+##          textobject.textLine("Rumma & Ko Oï¿½")
 ##          textobject.setFont("Times-Roman", 10)
 ##          textobject.textLine("Tartu mnt. 71-5")
 ##          textobject.textLine("10115 Tallinn")
@@ -129,32 +128,33 @@ class PdfTextPrinter(FileTextPrinter):
 ##     def createTextObject(self):
 ##         #textobject.setFont("Courier", 10)
 ##         return textobject
-        
+
     def onBeginPage(self):
         #self.background()
         self.x = self.margin
-        self.y = self.pageHeight-self.margin
+        self.y = self.pageHeight - self.margin
         if self.isLandscape():
             self.canvas.rotate(90)
-            self.canvas.translate(0, -210.0*mm)
+            self.canvas.translate(0, -210.0 * mm)
         #FileTextPrinter.onBeginPage(self)
-    
+
     def onEndPage(self):
         #self.canvas.drawText(self.textobject)
         self.canvas.showPage()
         #self.textobject = None
-        
+
     def onSetPageSize(self):
         self.canvas.setPageSize((self.pageHeight, self.pageWidth))
-            
+
     def onEndDoc(self):
         try:
             self.canvas.save()
         except IOError as e:
-            print "ERROR : could not save pdf file:"
-            print e
+            print("ERROR : could not save pdf file:")
+            print(e)
             sys.exit(-1)
-            
+
+
 ##     def onSetFont(self):
 ##         TextPrinter.onSetFont(self)
 
@@ -174,17 +174,15 @@ class PdfTextPrinter(FileTextPrinter):
                     fontname += "Oblique"
             elif self.status.ital:
                 fontname += "-Oblique"
-            
-        self.canvas.setFont(fontname,
-                            self.status.size,
-                            self.leading)
+
+        self.canvas.setFont(fontname, self.status.size, self.leading)
         if False and not self._can_bold:
             # disabled because that doesn't look satisfying either
             if self.status.bold:
                 self.canvas.setFillGray(0.0)
             else:
                 self.canvas.setFillGray(0.2)
-        
+
     def write(self, text):
         self.session.debug("write(%r)", text)
         self.beforeWrite()
@@ -192,32 +190,31 @@ class PdfTextPrinter(FileTextPrinter):
         assert not "\r" in text, repr(text)
         self.prepareFont()
 
-        self.maxLeading=max(self.leading,self.maxLeading)
-        
+        self.maxLeading = max(self.leading, self.maxLeading)
+
         if len(text) == 0:
             return
-        
-        if False: # reportlab version 1.x
-            try:
-                text = text.encode("iso-8859-1","strict")
-            except UnicodeError, e:
-                print e
-                print repr(text)
-                text = text.encode("iso-8859-1","replace")
 
-        tmpLeading=self.status.size * self.ratio_size2leading
-        self.canvas.drawString(self.x,self.y-tmpLeading,text)
+        if False:  # reportlab version 1.x
+            try:
+                text = text.encode("iso-8859-1", "strict")
+            except UnicodeError as e:
+                print(e)
+                print(repr(text))
+                text = text.encode("iso-8859-1", "replace")
+
+        tmpLeading = self.status.size * self.ratio_size2leading
+        self.canvas.drawString(self.x, self.y - tmpLeading, text)
         self.x += self.canvas.stringWidth(text)
-        
+
     def newline(self):
         # self.session.debug("PdfTextPrinter.newline()")
-        self.write("") # see http://timtools.saffre-rumma.ee/news/463.html
+        self.write("")  # see http://timtools.saffre-rumma.ee/news/463.html
         self.x = self.margin
         self.y -= self.maxLeading
-        self.maxLeading=0
+        self.maxLeading = 0
 
-        
-    def length2i(self,s):
+    def length2i(self, s):
         "http://timtools.saffre-rumma.ee/src/328.html"
         try:
             if s.endswith("mm"):
@@ -227,31 +224,33 @@ class PdfTextPrinter(FileTextPrinter):
                 return float(s[:-2]) * self.status.size * self.charwidth
             if s.endswith("ln"):
                 #print "1ln=%s"%self.leading
-                return float(s[:-2]) * self.leading 
+                return float(s[:-2]) * self.leading
             return float(s) * mm
-        except ValueError,e:
+        except ValueError as e:
             raise ParserError("invalid length: %r" % s)
-        
-        
-    def insertImage(self,filename,
-                    w=None,h=None,
-                    x=None,y=None,
-                    dx=None,dy=None,
+
+    def insertImage(self,
+                    filename,
+                    w=None,
+                    h=None,
+                    x=None,
+                    y=None,
+                    dx=None,
+                    dy=None,
                     behindText=None):
         "http://timtools.saffre-rumma.ee/src/334.html"
         if behindText is not None:
-            print """\
+            print("""\
 Warning: PdfTextPrinter.insertImage() does not support *behindText*.
-Images are always placed *over* any text that occurs before them in 
+Images are always placed *over* any text that occurs before them in
 the input file.
-            """
+            """)
         self.flush()
         width = height = None
         if w is not None:
             width = self.length2i(w)
         if h is not None:
             height = self.length2i(h)
-
 
         if height is None:
             img = self.openImage(filename)
@@ -263,10 +262,9 @@ the input file.
             width = int(height * img.size[0] / img.size[1])
             del img
 
-
-        # position of picture is the current text cursor 
+        # position of picture is the current text cursor
         #(cx,cy) = self.canvas.getCursor()
-        cx,cy = self.x, self.y
+        cx, cy = self.x, self.y
         if cx == 0 and cy == 0:
             # print "no text has been processed until now"
             cx = self.margin
@@ -274,48 +272,45 @@ the input file.
         else:
             # but picture starts on top of charbox:
             cy += self.leading
-            
-        if x is None: x=cx
+
+        if x is None: x = cx
         else: x = self.length2i(x)
-        if y is None: y=cy
+        if y is None: y = cy
         else: y = self.length2i(y)
-            
+
         if dx is not None:
             x += self.length2i(dx)
         if dy is not None:
             y -= self.length2i(dy)
         #print filename,(x,y-height, width,height)
-        self.canvas.drawImage(filename,
-                              x,y-height, width,height)
+        self.canvas.drawImage(filename, x, y - height, width, height)
 
-
-
-    def setCpi(self,cpi):
+    def setCpi(self, cpi):
         "http://timtools.saffre-rumma.ee/src/330.html"
         w = inch / cpi
         self.status.size = w * self.ratio_width2size
-        self.cpl=self.lineWidth() / inch * cpi
+        self.cpl = self.lineWidth() / inch * cpi
         #print __name__, self.width
         self.onSetFont()
-         
-    def setItalic(self,ital):
+
+    def setItalic(self, ital):
         self.status.ital = ital
         self.onSetFont()
-    
-    def setBold(self,bold):
+
+    def setBold(self, bold):
         #console.debug("setBold(%s)"%str(bold))
         self.status.bold = bold
         self.onSetFont()
-        
-    def setUnderline(self,ul):
+
+    def setUnderline(self, ul):
         #console.debug("setUnderline(%s)"%str(ul))
         self.status.underline = ul
         self.onSetFont()
-        
-    def setLpi(self,lpi):
+
+    def setLpi(self, lpi):
         self.lpi = lpi
         self.onSetFont()
-        
+
     def drawDebugRaster(self):
         self.flush()
 
@@ -325,22 +320,20 @@ the input file.
         BOTTOM = 0
         WIDTH = self.pageWidth
         HEIGHT = self.pageHeight
-        CS = 9.0*mm # Cross Size
+        CS = 9.0 * mm  # Cross Size
 
-        self.canvas.setFont("Helvetica",6)
+        self.canvas.setFont("Helvetica", 6)
         self.canvas.setLineWidth(0.01)
-        
-        self.canvas.rect(LEFT,TOP,WIDTH,HEIGHT)
+
+        self.canvas.rect(LEFT, TOP, WIDTH, HEIGHT)
 
         x = LEFT
         while x <= RIGHT:
             y = BOTTOM
             while y <= TOP:
-                self.canvas.line(x-CS,y,x+CS,y)
-                self.canvas.line(x,y-CS,x,y+CS)
-                self.canvas.drawString(x,y,"(%d,%d)"%(round(x/mm),round(y/mm)))
-                y += 20.0*mm
-            x += 20.0*mm
-        
-
-        
+                self.canvas.line(x - CS, y, x + CS, y)
+                self.canvas.line(x, y - CS, x, y + CS)
+                self.canvas.drawString(
+                    x, y, "(%d,%d)" % (round(x / mm), round(y / mm)))
+                y += 20.0 * mm
+            x += 20.0 * mm

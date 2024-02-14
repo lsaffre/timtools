@@ -1,4 +1,4 @@
-## Copyright 2007-2009 Luc Saffre 
+## Copyright 2007-2009 Luc Saffre
 
 ## This file is part of the Lino project.
 
@@ -19,6 +19,3 @@
 raise """No longer supported. There are many other similar modules to generate HTML from Python, and this one is quite buggy and would need more work. I decided to switch to jinja2 for quick HTML generation. LS 20090210."""
 
 from timtools.htgen.story import Document
-
-
-

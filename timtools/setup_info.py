@@ -4,24 +4,24 @@ This module is being execfile'd from `setup.py`, `timtools/__init__.py`
 and possibly some external tools, too.
 """
 SETUP_INFO = dict(
-  name = 'timtools',
-  version = '2.0.2',
-  install_requires = ['reportlab', 'pyinstaller'],
-  description = "A collection of command-line tools for Win32",
-  license = 'GPL',
-  # test_suite = 'tests',
-  # test_suite = None,
-  test_suite = 'empty',
-  author = 'Luc Saffre',
-  author_email = 'luc.saffre@gmail.com',
-  url = "https://github.com/lsaffre/timtools",
-  long_description="""\
+    name='timtools',
+    version='2.0.2',
+    install_requires=['reportlab', 'pyinstaller'],
+    description="A collection of command-line tools for Win32",
+    license='GPL',
+    # test_suite = 'tests',
+    # test_suite = None,
+    test_suite='empty',
+    author='Luc Saffre',
+    author_email='luc.saffre@gmail.com',
+    url="https://github.com/lsaffre/timtools",
+    long_description="""\
 timtools is a collection of command-line tools for TIM.
 
 The central project homepage is http://timtools.lino-framework.org
 
 """,
-  classifiers="""\
+    classifiers="""\
 Development Status :: 5 - Production/Stable
 Environment :: Console
 Intended Audience :: System Administrators
@@ -36,7 +36,8 @@ Topic :: Utilities
 Topic :: Printing
 """.splitlines())
 
-SETUP_INFO.update(packages = [str(n) for n in """
+SETUP_INFO.update(
+    packages=[str(n) for n in """
 timtools
 """.splitlines() if n])
 

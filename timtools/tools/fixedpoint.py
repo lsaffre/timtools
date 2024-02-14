@@ -99,7 +99,6 @@ Provided as-is; use at your own risk; no warranty; no promises; enjoy!
 # Released to the public domain 28-Mar-2001,
 # by Tim Peters (tim.one@home.com).
 
-
 # 28-Mar-01 ver 0.0,4
 #     Use repr() instead of str() inside __str__, because str(long) changed
 #     since this was first written (used to produce trailing "L", doesn't
@@ -122,6 +121,7 @@ __copyright__ = "Copyright (C) Python Software Foundation"
 __author__ = "Tim Peters"
 __version__ = 0, 1, 0
 
+
 def bankersRounding(self, dividend, divisor, quotient, remainder):
     """
     rounding via nearest-even
@@ -134,6 +134,7 @@ def bankersRounding(self, dividend, divisor, quotient, remainder):
     if c > 0 or (c == 0 and (quotient & 1) == 1):
         quotient += 1
     return quotient
+
 
 def addHalfAndChop(self, dividend, divisor, quotient, remainder):
     """
@@ -148,18 +149,23 @@ def addHalfAndChop(self, dividend, divisor, quotient, remainder):
         quotient += 1
     return quotient
 
+
 # 2002-10-20 dougfort - fake classes for pre 2.2 compatibility
 try:
     object
 except NameError:
+
     class object:
         pass
+
     def property(x, y):
         return None
+
 
 # The default value for the number of decimal digits carried after the
 # decimal point.  This only has effect at compile-time.
 DEFAULT_PRECISION = 2
+
 
 class FixedPoint(object):
     """Basic FixedPoint object class,
@@ -167,6 +173,7 @@ class FixedPoint(object):
         self.n is a long; self.p is an int
     """
     __slots__ = ['n', 'p']
+
     def __init__(self, value=0, precision=DEFAULT_PRECISION):
         self.n = self.p = 0
         self.set_precision(precision)
@@ -228,9 +235,9 @@ class FixedPoint(object):
             self.n = n
             return
 
-        if isinstance(value, type(42-42j)):
+        if isinstance(value, type(42 - 42j)):
             raise TypeError("can't convert complex to FixedPoint: " +
-                            `value`)
+                            ` value `)
 
         # can we coerce to a float?
         yes = 1
@@ -252,7 +259,7 @@ class FixedPoint(object):
             self.__init__(aslong, p)
             return
 
-        raise TypeError("can't convert to FixedPoint: " + `value`)
+        raise TypeError("can't convert to FixedPoint: " + ` value `)
 
     def get_precision(self):
         """Return the precision of this FixedPoint.
@@ -277,9 +284,9 @@ class FixedPoint(object):
             p = int(precision)
         except:
             raise TypeError("precision not convertable to int: " +
-                            `precision`)
+                            ` precision `)
         if p < 0:
-            raise ValueError("precision must be >= 0: " + `precision`)
+            raise ValueError("precision must be >= 0: " + ` precision `)
 
         if p > self.p:
             self.n = self.n * _tento(p - self.p)
@@ -302,7 +309,7 @@ class FixedPoint(object):
                "." + frac
 
     def __repr__(self):
-        return "FixedPoint" + `(str(self), self.p)`
+        return "FixedPoint" + ` (str(self), self.p) `
 
     def copy(self):
         return _mkFP(self.n, self.p, type(self))
@@ -423,7 +430,7 @@ class FixedPoint(object):
     def __int__(self):
         """Return integer value of FixedPoint object."""
         return int(self.__long__())
-    
+
     def frac(self):
         """Return fractional portion as a FixedPoint.
 
@@ -452,21 +459,23 @@ class FixedPoint(object):
             n = n / 10
         return n, p
 
+
 # 2002-10-04 dougfort - Default to Banker's Rounding for backward compatibility
 FixedPoint.round = bankersRounding
 
 # return 10L**n
+
 
 def _tento(n, cache={}):
     """Cached computation of 10**n"""
     try:
         return cache[n]
     except KeyError:
-        answer = cache[n] = 10L ** n
+        answer = cache[n] = 10L**n
         return answer
 
-def _norm(x, y, isinstance=isinstance, FixedPoint=FixedPoint,
-                _tento=_tento):
+
+def _norm(x, y, isinstance=isinstance, FixedPoint=FixedPoint, _tento=_tento):
     """Return xn, yn, p s.t.
            p = max(x.p, y.p)
            x = xn / 10**p
@@ -492,6 +501,7 @@ def _norm(x, y, isinstance=isinstance, FixedPoint=FixedPoint,
         p = xp  # same as yp
     return xn, yn, p
 
+
 def _mkFP(n, p, FixedPoint=FixedPoint):
     """Make FixedPoint objext - Return a new FixedPoint object with the selected precision."""
     f = FixedPoint()
@@ -499,6 +509,7 @@ def _mkFP(n, p, FixedPoint=FixedPoint):
     f.n = n
     f.p = p
     return f
+
 
 # crud for parsing strings
 import re
@@ -509,7 +520,8 @@ import re
 # by an optional fraction, or a decimal point followed by at least
 # one digit.  Yuck.
 
-_parser = re.compile(r"""
+_parser = re.compile(
+    r"""
     \s*
     (?P<sign>[-+])?
     (
@@ -528,7 +540,7 @@ def _string2exact(s):
     """Return n, p s.t. float string value == n * 10**p exactly."""
     m = _parser(s)
     if m is None:
-        raise ValueError("can't parse as number: " + `s`)
+        raise ValueError("can't parse as number: " + ` s `)
 
     exp = m.group('exp')
     if exp is None:
@@ -557,6 +569,7 @@ def _string2exact(s):
 
     return i, exp
 
+
 def _test():
     """Unit testing framework"""
     fp = FixedPoint
@@ -574,22 +587,22 @@ def _test():
     assert abs(o) < abs(t)
     assert o == o and t == t
     assert t.copy() == t
-    assert o == -t/2 == -.5 * t
+    assert o == -t / 2 == -.5 * t
     assert abs(t) == o + o
     assert abs(o) == o
-    assert o/t == -0.5
-    assert -(t/o) == (-t)/o == t/-o == 2
+    assert o / t == -0.5
+    assert -(t / o) == (-t) / o == t / -o == 2
     assert 1 + o == o + 1 == fp(" +00.000011e+5  ")
-    assert 1/o == 10
+    assert 1 / o == 10
     assert o + t == t + o == -o
-    assert 2.0 * t == t * 2 == "2" * t == o/o * 2L * t
-    assert 1 - t == -(t - 1) == fp(6L)/5
-    assert t*t == 4*o*o == o*4*o == o*o*4
+    assert 2.0 * t == t * 2 == "2" * t == o / o * 2L * t
+    assert 1 - t == -(t - 1) == fp(6L) / 5
+    assert t * t == 4 * o * o == o * 4 * o == o * o * 4
     assert fp(2) - "1" == 1
-    assert float(-1/t) == 5.0
+    assert float(-1 / t) == 5.0
     for p in range(20):
         assert 42 + fp("1e-20", p) - 42 == 0
-    assert 1/(42 + fp("1e-20", 20) - 42) == fp("100.0E18")
+    assert 1 / (42 + fp("1e-20", 20) - 42) == fp("100.0E18")
     o = fp(".9995", 4)
     assert 1 - o == fp("5e-4", 10)
     o.set_precision(3)
@@ -612,8 +625,8 @@ def _test():
     assert fp(-7) % -4 == -7 % fp(-4) == -3
     assert fp(7.0) % "-4.0" == 7 % fp(-4) == -1
     assert fp("5.5") % fp("1.1") == fp("5.5e100") % fp("1.1e100") == 0
-    assert divmod(fp("1e100"), 3) == (long(fp("1e100")/3), 1)
+    assert divmod(fp("1e100"), 3) == (long(fp("1e100") / 3), 1)
+
 
 if __name__ == '__main__':
     _test()
-

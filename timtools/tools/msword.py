@@ -34,7 +34,6 @@
 #  - conversion between different formats
 #  - if no fpropset, fall back to Word
 #
-
 """
 This allows handling of MS Word documents.
 
@@ -45,10 +44,11 @@ This also uses FilePropertySet (FPropSet) to quickly get to file
 summary information -- doesn't require waiting for Word to launch.
 """
 
-
 import os
 
+
 class MsWordDocument:
+
     def __init__(self, path=None, from_buffer=None):
         """
         This creates an MsWordDocument, but Word is not launched unless
@@ -127,9 +127,10 @@ class MsWordDocument:
         app.Visible = 1
         return
 
+
 if __name__ == '__main__':
     # Yes, this test is rather fragile.
     import os
     doc = MsWordDocument(os.getcwd() + '\\test.doc')
-    assert(doc.title == 'Test Document')
-    assert(len(doc.content) == 296)
+    assert (doc.title == 'Test Document')
+    assert (len(doc.content) == 296)

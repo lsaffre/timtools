@@ -1,12 +1,13 @@
 try:
-  True
+    True
 except NameError:
-  True, False = 1, 0
+    True, False = 1, 0
 
 try:
-   file
+    file
 except NameError:
-   file = open
-   
+    file = open
+
+
 def _(x):
-   return x
+    return x

@@ -15,7 +15,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Lino; if not, write to the Free Software Foundation,
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-
 """
 
 pdfprn and winprn produced different results if font size
@@ -32,11 +31,12 @@ from lino.tools.tsttools import TestCase, main
 from lino.textprinter import winprn
 from lino.textprinter import pdfprn
 
+
 class Case(TestCase):
     ""
 
-    def doit(self,d):
-        INPUT="""
+    def doit(self, d):
+        INPUT = """
         
         \033c5 ABCDEFG HIJKLMNO \033c12 
         abcdefg : hijk lmno
@@ -46,23 +46,20 @@ class Case(TestCase):
         for line in INPUT.splitlines():
             d.writeln(line)
         d.close()
-        
 
     def test01(self):
 
-        spoolFile = self.addTempFile("1.ps",showOutput=True)
+        spoolFile = self.addTempFile("1.ps", showOutput=True)
         d = winprn.Win32TextPrinter(
             #config.win32.get('postscript_printer'),
             self.runtests.options.postscript_printer,
             spoolFile)
         self.doit(d)
-        
-        spoolFile = self.addTempFile("1.pdf",showOutput=True)
+
+        spoolFile = self.addTempFile("1.pdf", showOutput=True)
         d = pdfprn.PdfTextPrinter(spoolFile)
         self.doit(d)
-        
+
 
 if __name__ == '__main__':
     main()
-
-

@@ -4,14 +4,12 @@
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation; either version 3 of the License, or
 ## (at your option) any later version.
-## TimTools is distributed in the hope that it will be useful, 
+## TimTools is distributed in the hope that it will be useful,
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
 ## You should have received a copy of the GNU General Public License
 ## along with TimTools; if not, see <http://www.gnu.org/licenses/>.
-
-
 """
 This is an alternative for reportlab/lib/styles.py
 The original version of styles.py is copyright ReportLab Inc. 2000
@@ -38,7 +36,7 @@ Changes made by Luc Saffre <luc.saffre@gmx.net>
 
 from reportlab.lib import colors
 from reportlab.lib import pagesizes
-from reportlab.lib.units import inch,mm
+from reportlab.lib.units import inch, mm
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
 
 from timtools.misc.pset import PropertySet, StyleSheet
@@ -46,66 +44,65 @@ from timtools.misc.pset import PropertySet, StyleSheet
 # from timtools.sdoc.tables import TableModel
 
 
-
 class ParagraphStyle(PropertySet):
     defaults = {
-        'fontName':'Times-Roman',
-        'fontSize':10,
-        'leading':12,
-        'leftIndent':0,
-        'rightIndent':0,
-        'firstLineIndent':0,
-        'alignment':TA_LEFT,
-        'spaceBefore':0,
-        'spaceAfter':0,
-        'keepWithNext':False,    # added by LS
-        'allowSplitting' : True,
-        'bulletFontName':'Times-Roman',
-        'bulletFontSize':10,
-        'bulletIndent':0,
+        'fontName': 'Times-Roman',
+        'fontSize': 10,
+        'leading': 12,
+        'leftIndent': 0,
+        'rightIndent': 0,
+        'firstLineIndent': 0,
+        'alignment': TA_LEFT,
+        'spaceBefore': 0,
+        'spaceAfter': 0,
+        'keepWithNext': False,  # added by LS
+        'allowSplitting': True,
+        'bulletFontName': 'Times-Roman',
+        'bulletFontSize': 10,
+        'bulletIndent': 0,
         'textColor': colors.black,
-        'backColor':None,
-        'wordWrap':None, 
-        'borderWidth': 0, 
-        'borderPadding': 0, 
-        'borderColor': None, 
-        'borderRadius': None, 
-        'allowWidows': 1, 
-        'allowOrphans': 0, 
-        'textTransform':None,   #uppercase lowercase (captitalize not yet) or None or absent 
-        'wrap':True # added by LS
-        }
+        'backColor': None,
+        'wordWrap': None,
+        'borderWidth': 0,
+        'borderPadding': 0,
+        'borderColor': None,
+        'borderRadius': None,
+        'allowWidows': 1,
+        'allowOrphans': 0,
+        'textTransform':
+        None,  #uppercase lowercase (captitalize not yet) or None or absent 
+        'wrap': True  # added by LS
+    }
 
 
 class LineStyle(PropertySet):
-    defaults = {
-        'width':1,
-        'color': colors.black
-        }
+    defaults = {'width': 1, 'color': colors.black}
+
     def prepareCanvas(self, canvas):
         """You can ask a LineStyle to set up the canvas for drawing
         the lines."""
         canvas.setLineWidth(1)
         #etc. etc.
 
-# added by LS
 
+# added by LS
 
 
 class DocumentStyle(PropertySet):
     defaults = {
-        'pagesize':pagesizes.A4,
-        'showBoundary':0,
-        'leftMargin':inch,
-        'rightMargin':inch,
-        'rightMargin':inch,
-        'topMargin':inch,
-        'bottomMargin':inch,
-        'header':None,
-        'footer':None,
-        'innerMargin':None,
-        'outerMargin':None,
-        }
+        'pagesize': pagesizes.A4,
+        'showBoundary': 0,
+        'leftMargin': inch,
+        'rightMargin': inch,
+        'rightMargin': inch,
+        'topMargin': inch,
+        'bottomMargin': inch,
+        'header': None,
+        'footer': None,
+        'innerMargin': None,
+        'outerMargin': None,
+    }
+
 
 ## class DocumentTool:
 ##    def __init__(self,doc):
@@ -121,62 +118,60 @@ class DocumentStyle(PropertySet):
 ##       self.doc.p("Page %d" % self.doc.getPageNumber())
 ##       self.doc.endTable()
 
-   
+#
+#
+#
 
-#
-#
-#
 
 def getDefaultStyleSheet():
-   sheet = StyleSheet()
-   sheet.define("Document",DocumentStyle())
-   sheet.define("Normal",ParagraphStyle(
-      fontName='Times-Roman',
-      fontSize=10,
-      spaceBefore=2,
-      spaceAfter=2,
-      leading=12
-      ))
+    sheet = StyleSheet()
+    sheet.define("Document", DocumentStyle())
+    sheet.define(
+        "Normal",
+        ParagraphStyle(fontName='Times-Roman',
+                       fontSize=10,
+                       spaceBefore=2,
+                       spaceAfter=2,
+                       leading=12))
 
-   sheet.define("Number",sheet.Normal.child(alignment=TA_RIGHT))
-   sheet.define("Heading1",sheet.Normal.child(
-      fontName = 'Times-Bold',
-      fontSize=18,
-      leading=22,
-      spaceAfter=6))
+    sheet.define("Number", sheet.Normal.child(alignment=TA_RIGHT))
+    sheet.define(
+        "Heading1",
+        sheet.Normal.child(fontName='Times-Bold',
+                           fontSize=18,
+                           leading=22,
+                           spaceAfter=6))
 
-   sheet.define("Heading2",sheet.Normal.child(
-      fontName = 'Times-Bold',
-      fontSize=14,
-      leading=18,
-      spaceBefore=12,
-      spaceAfter=6))
+    sheet.define(
+        "Heading2",
+        sheet.Normal.child(fontName='Times-Bold',
+                           fontSize=14,
+                           leading=18,
+                           spaceBefore=12,
+                           spaceAfter=6))
 
-   sheet.define("Heading3",sheet.Normal.child(
-      fontName = 'Times-BoldItalic',
-      fontSize=12,
-      leading=14,
-      spaceBefore=12,
-      spaceAfter=6))
+    sheet.define(
+        "Heading3",
+        sheet.Normal.child(fontName='Times-BoldItalic',
+                           fontSize=12,
+                           leading=14,
+                           spaceBefore=12,
+                           spaceAfter=6))
 
-   sheet.define("Code",sheet.Normal.child(
-      fontName='Courier',
-      wrap=False,
-      fontSize=8,
-      leading=8.8,
-      firstLineIndent=0,
-      leftIndent=36))
+    sheet.define(
+        "Code",
+        sheet.Normal.child(fontName='Courier',
+                           wrap=False,
+                           fontSize=8,
+                           leading=8.8,
+                           firstLineIndent=0,
+                           leftIndent=36))
 
-   sheet.define("Wrapped",sheet.Normal.child(wrap=False,
-                                             alignment=TA_LEFT))
-   return sheet
+    sheet.define("Wrapped", sheet.Normal.child(wrap=False, alignment=TA_LEFT))
+    return sheet
 
+    #tool = DocumentTool(doc)
 
-   #tool = DocumentTool(doc)
+    #s.define('TitlePageHeader',tool.TitlePageHeader)
 
-   #s.define('TitlePageHeader',tool.TitlePageHeader)
-
-   #return s
-
-
-   
+    #return s

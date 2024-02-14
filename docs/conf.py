@@ -17,11 +17,11 @@ extensions = []
 extlinks = {}
 
 from rstgen.sphinxconf import configure
+
 configure(globals())
 
 # extensions += ['atelier.sphinxconf.complex_tables']
 # extensions += ['sphinx.ext.autosummary']
-
 
 # Add any paths that contain templates here, relative to this directory.
 # templates_path = ['.templates']
@@ -46,13 +46,10 @@ version = SETUP_INFO['version']
 # pygments_style = 'sphinx'
 
 html_sidebars = {
-   '**': ['globaltoc.html', 'searchbox.html', 'links.html'],
+    '**': ['globaltoc.html', 'searchbox.html', 'links.html'],
 }
 
-
-
 html_static_path = ['.static']
-
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
@@ -60,7 +57,6 @@ html_static_path = ['.static']
 last_updated = True
 
 html_favicon = 'favicon.ico'
-
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
@@ -88,7 +84,6 @@ html_copy_source = False
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'timtools'
-
 
 # Options for LaTeX output
 # ------------------------
@@ -125,7 +120,6 @@ htmlhelp_basename = 'timtools'
 #language="de"
 
 # srcref_base_uri="http://code.google.com/p/timtools/source/browse"
-
 
 # http://sphinx.pocoo.org/theming.html
 # my_font_family = "Swiss, Helvetica, 'Liberation Sans'"

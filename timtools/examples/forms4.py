@@ -1,4 +1,4 @@
-## Copyright 2005 Luc Saffre 
+## Copyright 2005 Luc Saffre
 
 ## This file is part of the Lino project.
 
@@ -21,12 +21,14 @@ from lino.forms import gui
 from lino.schemas.sprl import demo
 from lino.schemas.sprl.tables import Partners
 
+
 def main():
     sess = demo.beginSession()
-    ds = sess.query(Partners,"name firstName email phone city id")
+    ds = sess.query(Partners, "name firstName email phone city id")
     frm = gui.form()
     ds.setupForm(frm)
     frm.show()
+
 
 if __name__ == "__main__":
     gui.parse_args()

@@ -15,7 +15,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with Lino; if not, write to the Free Software Foundation,
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-
 """
 testing textprinter
 """
@@ -23,59 +22,60 @@ testing textprinter
 from lino.tools.tsttools import TestCase, main
 #from lino import config
 
+
 class Case(TestCase):
     ""
 
-    def doit(self,d):
+    def doit(self, d):
         d.printLine("")
         d.printLine("TextPrinter Test page")
         d.printLine("")
         cols = 9
-        d.printLine("".join([" "*9+str(i+1) for i in range(cols)]))
-        d.printLine("1234567890"*cols)
+        d.printLine("".join([" " * 9 + str(i + 1) for i in range(cols)]))
+        d.printLine("1234567890" * cols)
         d.printLine("")
         d.printLine("Here is some \033b1bold\033b0 text.")
         d.printLine("Here is some \033u1underlined\033u0 text.")
         d.printLine("Here is some \033i1italic\033i0 text.")
-        
+
         d.close()
-        
 
     def test01(self):
 
         from lino.textprinter import winprn
-        spoolFile = self.addTempFile("3.ps",showOutput=True)
+        spoolFile = self.addTempFile("3.ps", showOutput=True)
         d = winprn.Win32TextPrinter(
             self.runtests.options.postscript_printer,
             #config.win32.get('postscript_printer'),
             spoolFile)
         self.doit(d)
-        
+
     def test02(self):
 
         from lino.textprinter import pdfprn
-        fn = self.addTempFile("3.pdf",showOutput=True)
+        fn = self.addTempFile("3.pdf", showOutput=True)
         d = pdfprn.PdfTextPrinter(fn)
         self.doit(d)
-        
+
     def test03(self):
 
         from lino.textprinter import htmlprn
-        fn = self.addTempFile("3.html",showOutput=True)
+        fn = self.addTempFile("3.html", showOutput=True)
         #f = open(fn,"wt")
         #f.write("<html><body>")
         d = htmlprn.HtmlTextPrinter(fn)
         self.doit(d)
         #f.write("</body></html>")
         #f.close()
-        
+
     def test04(self):
 
         from lino.textprinter import plain
         d = plain.PlainTextPrinter()
         self.doit(d)
-        s=self.getConsoleOutput()
-        self.assertEquivalent(s,"""
+        s = self.getConsoleOutput()
+        self.assertEquivalent(
+            s, """
 +------------------------------------------------------------------------+
 |                                                                        |
 |TextPrinter Test page                                                   |
@@ -88,9 +88,7 @@ class Case(TestCase):
 |Here is some italic text.                                               |
 +------------------------------------------------------------------------+        
         """)
-        
+
 
 if __name__ == '__main__':
     main()
-
-

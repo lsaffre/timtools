@@ -19,8 +19,6 @@ raise "no longer used since 20050302"
 ## You should have received a copy of the GNU General Public License
 ## along with Lino; if not, write to the Free Software Foundation,
 ## Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
-
-
 """
 oogen : generate OpenOffice documents programmatically
 
@@ -35,21 +33,23 @@ Bibliography:
 """
 import zipfile
 import os.path
+
 opj = os.path.join
 
 from timtools.oogen.ifiles import IFILES
 from timtools.ui import console
 
+
 class OoGenerator:
     "base clase for OoText,OoSpreadsheet,..."
     extension = NotImplementedError
     mimetype = NotImplementedError
-    
-    def __init__(self,doc=None,filename=None):
+
+    def __init__(self, doc=None, filename=None):
         if doc is None:
             doc = Document()
         self.doc = doc
-        
+
         self.tempDir = r'c:\temp'
 
         if filename is None:
@@ -57,17 +57,16 @@ class OoGenerator:
         if not filename.lower().endswith(self.extension):
             filename += self.extension
         self.outputFilename = filename
-        
+
         self.ifiles = tuple([cl(self) for cl in IFILES])
-        
+
     def save(self):
-        job = console.job("Writing "+self.outputFilename)
+        job = console.job("Writing " + self.outputFilename)
         for f in self.ifiles:
             f.writeFile()
-        zf = zipfile.ZipFile(self.outputFilename,'w',
-                             zipfile.ZIP_DEFLATED)
+        zf = zipfile.ZipFile(self.outputFilename, 'w', zipfile.ZIP_DEFLATED)
         for f in self.ifiles:
-            zf.write(opj(self.tempDir,f.filename),f.filename)
+            zf.write(opj(self.tempDir, f.filename), f.filename)
         zf.close()
         job.done()
 
@@ -76,16 +75,17 @@ class OoText(OoGenerator):
     extension = ".sxw"
     officeClass = "text"
     mimetype = "application/vnd.sun.xml.writer"
-    
-    def writeBody(self,wr):
+
+    def writeBody(self, wr):
         for elem in self.doc.story:
             elem.__xml__(wr)
+
 
 class OoSpreadsheet(OoGenerator):
     extension = ".sxc"
     officeClass = "spreadsheet"
     mimetype = "application/vnd.sun.xml.calc"
-        
-    def writeBody(self,wr):
+
+    def writeBody(self, wr):
         for elem in self.doc.tables:
             elem.__xml__(wr)
